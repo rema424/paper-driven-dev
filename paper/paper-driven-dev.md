@@ -1,11 +1,11 @@
 # Paper-Driven Development: Leveraging Academic Paper Structure for LLM-Assisted Software Design Analysis
 
-> **実験条件**: Model: Claude Opus 4 | N: 1 (CS1: citation rendering) | Date: 2026-02 | Evaluator: 著者
-> **注意**: comparison-data.md の定量比較は別条件（Model: o3, N: 2）で実施。同一実験ではない。
+> **実験条件**: Model: GPT-5.2 (via Codex) | N: 2 (CS1: citation rendering, CS2: session management) | Date: 2026-02 | Evaluator: 著者
+> **補足**: 3条件比較（A/B/C）と B バリアント比較（B1/B2/B3）の定量データは comparison-data.md に集約。
 
 ## Abstract
 
-We present Paper-Driven Development (PDD), a methodology for LLM-assisted software design analysis that instructs the model to produce output in academic paper format. When asked to write a "paper" rather than simply "propose a solution," the template structurally elicits four behaviors that are absent or shallow in conventional prompting: (1) exhaustive survey of existing approaches, (2) critical evaluation with explicit limitations, (3) formal justification of proposals through invariants, and (4) derivation of testable properties. We describe the methodology, demonstrate it through a case study on real-time citation rendering in RAG streaming systems, and compare the output quality against conventional prompting on the same problem. We propose three hypotheses for why paper format elicits higher-quality output—training data quality bias, implicit chain-of-thought, and persona effect—while acknowledging that causal validation remains future work. PDD is released as an open-source Claude Code plugin.
+We present Paper-Driven Development (PDD), a methodology for LLM-assisted software design analysis that uses a seven-section academic paper template (§1–§7) to guide model output. In an exploratory case study with GPT-5.2 (N=2, two software design problems), we compared three prompting conditions: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template. Changing the instruction framing alone (A→B) was associated with increased output structure and exploration breadth, yet three co-primary indicators—conflicting requirements identified, testable properties derived, and constraints disclosed—remained at zero across all framing variants (B1/B2/B3). These co-primary indicators were consistently observed only under the PDD template condition (C). We interpret the template's role as information externalization: by specifying what sections to write, the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce. We propose a two-tier practical guideline—Tier 1: change instruction framing (zero cost) to increase exploration breadth; Tier 2: apply the PDD template for critical design decisions where verifiability matters—while acknowledging that causal validation and generalization remain future work. PDD is released as an open-source Claude Code plugin.
 
 ## 1. Introduction
 
