@@ -195,7 +195,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 
 Paper-Driven Development suggests that instructing LLMs to produce design analysis in academic paper format is associated with improved output quality along four dimensions: exhaustiveness of alternatives, criticality of evaluation, formality of justification, and testability of properties. The methodology requires no model fine-tuning or special tooling—only a structured prompt template.
 
-The key insight is that paper format does not help LLMs find better answers (both conventional and PDD prompting reached the same solution in our case study). Rather, it helps LLMs **justify and verify** their answers, producing analysis that is more reviewable, more testable, and more honest about its limitations.
+The key insight is that, in our case studies (both involving problems with relatively clear optimal solutions), paper format did not lead to different design conclusions—both conventional and PDD prompting reached the same solution. Rather, the template helps LLMs **justify and verify** their answers, producing analysis that is more reviewable, more testable, and more honest about its limitations.
 
 PDD is available as an open-source Claude Code plugin at https://github.com/rema424/paper-driven-dev.
 
