@@ -1,5 +1,8 @@
 # LLM に「論文を書け」と言うだけで、設計分析の品質向上が観測される — Paper-Driven Development の提案
 
+> **実験条件**: Model: Claude Opus 4 | N: 1 (RAG citation rendering) | Date: 2026-02 | Evaluator: 著者
+> **注意**: 定量比較データ（comparison-data.md）は別条件（Model: o3, N: 2）で取得。同一実験ではない。
+
 ## はじめに
 
 LLM に設計上の問題を相談するとき、あなたはどんなプロンプトを書いていますか？

@@ -1,5 +1,8 @@
 # Quantitative Comparison Data: Conventional Prompting vs Paper-Driven Development
 
+> **実験条件**: Model: OpenAI o3 (via Codex) | N: 2 (CS1: citation rendering, CS2: session management) | Date: 2026-02 | Evaluator: 著者
+> **注意**: paper-driven-dev.md 本文中の定性分析は別条件（Model: Claude Opus 4, N: 1）で実施。同一実験ではない。
+
 ## Methodology
 
 - **Model**: OpenAI o3 (via Codex), February 2026

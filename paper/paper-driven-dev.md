@@ -1,5 +1,8 @@
 # Paper-Driven Development: Leveraging Academic Paper Structure for LLM-Assisted Software Design Analysis
 
+> **実験条件**: Model: Claude Opus 4 | N: 1 (CS1: citation rendering) | Date: 2026-02 | Evaluator: 著者
+> **注意**: comparison-data.md の定量比較は別条件（Model: o3, N: 2）で実施。同一実験ではない。
+
 ## Abstract
 
 We present Paper-Driven Development (PDD), a methodology that improves the quality of LLM-assisted software design analysis by instructing the model to produce output in academic paper format. When asked to write a "paper" rather than simply "propose a solution," the template structurally elicits four behaviors that are absent or shallow in conventional prompting: (1) exhaustive survey of existing approaches, (2) critical evaluation with explicit limitations, (3) formal justification of proposals through invariants, and (4) derivation of testable properties. We describe the methodology, demonstrate it through a case study on real-time citation rendering in RAG streaming systems, and compare the output quality against conventional prompting on the same problem. We propose three hypotheses for why paper format elicits higher-quality output—training data quality bias, implicit chain-of-thought, and persona effect—while acknowledging that causal validation remains future work. PDD is released as an open-source Claude Code plugin.
