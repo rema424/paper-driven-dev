@@ -2,13 +2,13 @@
 
 ## Abstract
 
-We present Paper-Driven Development (PDD), a methodology that improves the quality of LLM-assisted software design analysis by instructing the model to produce output in academic paper format. When asked to write a "paper" rather than simply "propose a solution," LLMs systematically exhibit four behaviors that are absent or shallow in conventional prompting: (1) exhaustive survey of existing approaches, (2) critical evaluation with explicit limitations, (3) formal justification of proposals through invariants, and (4) derivation of testable properties. We describe the methodology, demonstrate it through a case study on real-time citation rendering in RAG streaming systems, and compare the output quality against conventional prompting on the same problem. We propose three hypotheses for why paper format elicits higher-quality output—training data quality bias, implicit chain-of-thought, and persona effect—while acknowledging that causal validation remains future work. PDD is released as an open-source Claude Code plugin.
+We present Paper-Driven Development (PDD), a methodology that improves the quality of LLM-assisted software design analysis by instructing the model to produce output in academic paper format. When asked to write a "paper" rather than simply "propose a solution," the template structurally elicits four behaviors that are absent or shallow in conventional prompting: (1) exhaustive survey of existing approaches, (2) critical evaluation with explicit limitations, (3) formal justification of proposals through invariants, and (4) derivation of testable properties. We describe the methodology, demonstrate it through a case study on real-time citation rendering in RAG streaming systems, and compare the output quality against conventional prompting on the same problem. We propose three hypotheses for why paper format elicits higher-quality output—training data quality bias, implicit chain-of-thought, and persona effect—while acknowledging that causal validation remains future work. PDD is released as an open-source Claude Code plugin.
 
 ## 1. Introduction
 
 Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2].
 
-We observed an unexpected phenomenon: when instructed to produce a design analysis in academic paper format—with sections for problem definition, related work, proposed method, and evaluation—LLMs generate systematically more thorough and rigorous analysis compared to conventional prompting. Specifically, four behaviors emerge without explicit instruction:
+We observed an unexpected phenomenon: when instructed to produce a design analysis in academic paper format—with sections for problem definition, related work, proposed method, and evaluation—LLMs generated more thorough and rigorous analysis compared to conventional prompting in our case studies. Specifically, the template structurally elicits four behaviors:
 
 1. **Exhaustive prior art survey**: The model enumerates multiple existing approaches, not just the one it recommends.
 2. **Critical evaluation**: Each approach is analyzed for limitations, not just advantages.
@@ -159,7 +159,7 @@ We propose three non-mutually-exclusive hypotheses:
 
 **H3: Persona Effect.** "Write a paper" implicitly sets the persona to "researcher," which activates behavioral patterns associated with academic rigor: systematic literature review, critical evaluation, formal definitions, and honest disclosure of limitations. This aligns with findings on role prompting [8].
 
-The practical conclusion is the same regardless of which hypothesis is correct: paper format elicits higher-quality design analysis from LLMs.
+The practical conclusion is the same regardless of which hypothesis is correct: in our case studies, the paper-format template was associated with higher-quality design analysis from LLMs.
 
 ### 5.2 Relationship to Format Constraint Research
 
@@ -193,7 +193,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 
 ## 8. Conclusion
 
-Paper-Driven Development demonstrates that instructing LLMs to produce design analysis in academic paper format systematically improves output quality along four dimensions: exhaustiveness of alternatives, criticality of evaluation, formality of justification, and testability of properties. The methodology requires no model fine-tuning or special tooling—only a structured prompt template.
+Paper-Driven Development suggests that instructing LLMs to produce design analysis in academic paper format is associated with improved output quality along four dimensions: exhaustiveness of alternatives, criticality of evaluation, formality of justification, and testability of properties. The methodology requires no model fine-tuning or special tooling—only a structured prompt template.
 
 The key insight is that paper format does not help LLMs find better answers (both conventional and PDD prompting reached the same solution in our case study). Rather, it helps LLMs **justify and verify** their answers, producing analysis that is more reviewable, more testable, and more honest about its limitations.
 
