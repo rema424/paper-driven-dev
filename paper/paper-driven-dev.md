@@ -226,6 +226,20 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 - **Hallucination risk**: LLMs may fabricate non-existent approaches or citations in §3. The template mitigates this by instructing the model to base analysis on known technologies, but does not eliminate the risk.
 - **Confirmation bias**: Paper-format output may *appear* more rigorous without improving actual design quality. Downstream outcome measurement is needed.
 
+### 5.6 Robustness Check: Self-Blinded Rescoring
+
+To assess the stability of the manual scoring, we conducted a self-blinded rescoring procedure. All 10 output files (5 conditions × 2 case studies) were stripped of condition labels, randomized, and re-scored by an independent AI agent (Claude Code) using only the rubric definitions in Appendix A.2. The rescorer had no access to condition labels or original scores. Full results are reported in Appendix B.
+
+**Agreement rates by indicator**: existing approaches 90%, conflicting requirements 80%, formal invariants 90%, testable properties 50%, constraints disclosed 30%.
+
+**Core claim robustness.** For conflicting requirements and testable properties under the strict definition (derived properties only, not input requirements), the finding that "these indicators were zero in all non-template conditions and non-zero only in C" was confirmed by the rescoring. In condition C, both indicators showed perfect agreement between original and rescoring (conflicting requirements: 2/2, 3/3; testable properties: 6/6, 7/7).
+
+**Rubric sensitivity.** The two low-agreement indicators reveal rubric ambiguity:
+- *Testable properties (50%)*: The rescorer counted B-condition input requirements (R1–R4 notation) as testable properties, while the original scoring distinguished input requirements (what the system must do) from derived testable properties (how the proposed solution behaves). Under the strict definition, B=0 holds; under the broad definition, B conditions contain 3–4 testable conditions. This distinction was not explicit in the original rubric and has been clarified in Appendix A.2.
+- *Constraints disclosed (30%)*: The original scoring included operational advice and future work items as constraint disclosure, while the rescorer counted only explicit limitations and boundary conditions of the proposed approach. The baseline values shift (A/B: 1.5 → 0–1), but the increase pattern under C is preserved.
+
+**Limitations of this procedure.** This is not independent third-party evaluation. The rescoring was conducted by an AI agent under author instruction, and both scorer and rescorer are AI systems with potentially correlated biases. The procedure serves as a supplementary robustness check, not a substitute for the blinded human evaluation recommended in §7.
+
 ## 6. Related Work
 
 **Spec-Driven Development.** Kiro (AWS) and GitHub Spec Kit [3, 4] structure requirements into specifications that guide LLM code generation. PDD complements SDD by addressing design rationale rather than requirements.
@@ -314,7 +328,7 @@ Each indicator was counted manually by the first author using the following defi
 | Indicator | Counting rule |
 |-----------|--------------|
 | **Conflicting requirements** | Count of explicitly stated pairs of opposing requirements or trade-offs. Implicit tensions (e.g., "balancing X and Y" without formal definition) are counted as 0. |
-| **Testable properties** | Count of concrete conditions that could be translated to test cases. Given/When/Then format counts as 1 per property. Evaluation metrics (e.g., "accuracy should be 100%") count as 1 per metric. |
+| **Testable properties** | Count of concrete conditions derived from the proposed solution that could be translated to test cases. Given/When/Then format counts as 1 per property. Evaluation metrics (e.g., "accuracy should be 100%") count as 1 per metric. **Distinction**: Input requirements that define the problem (e.g., R1–R4 notation formalizing what the system must do) are not counted; only properties derived from the proposed approach (verifying how the solution behaves) are counted. See Appendix B for the impact of this distinction on inter-rater agreement. |
 | **Constraints disclosed** | Count of explicitly stated limitations, boundary conditions, or failure modes of the proposed approach. General disclaimers (e.g., "further testing needed") do not count. |
 | **Existing approaches analyzed** | Count of distinct alternative approaches enumerated and evaluated. Passing mentions without evaluation do not count. |
 | **Formal invariants/proofs** | Count of mathematical or logical properties formally stated (definitions, theorems, proofs). Informal reasoning does not count. |
@@ -334,3 +348,69 @@ All raw outputs and measurement data are publicly available in the project repos
 - **Temperature**: Default (not explicitly set)
 - **Single run**: Each condition was executed once per case study. No repetition or cherry-picking was performed.
 - **Context**: Each condition was run in a fresh Codex thread with no prior conversation history, except CS2-B3 which was recovered in the same thread after context compression (see §5.5).
+
+---
+
+## Appendix B: Self-Blinded Rescoring
+
+### B.1 Procedure
+
+1. All 10 output files (5 conditions × 2 case studies) were stripped of condition labels and file names
+2. Files were presented in randomized order
+3. An independent AI agent (Claude Code) scored each file using only the rubric definitions in Appendix A.2
+4. The rescorer had no access to condition labels, original scores, or the paper's claims
+
+This procedure is author-initiated AI-based rescoring, not independent human evaluation. See §5.6 for interpretation and limitations.
+
+### B.2 Rescoring Results
+
+**CS1: RAG Citation Renumbering**
+
+| Metric | A (orig) | A (rescore) | B1 (orig) | B1 (rescore) | B2 (orig) | B2 (rescore) | B3 (orig) | B3 (rescore) | C (orig) | C (rescore) |
+|--------|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Total lines | 58 | 63 | 96 | 101 | 86 | 92 | 98 | 104 | 137 | 142 |
+| Existing approaches | 0 | 0 | 0 | 0 | 2 | 1 | 3 | 3 | 4 | 4 |
+| Conflicting requirements | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 2 | 2 |
+| Formal invariants | 0 | 0 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 0 |
+| Testable properties | 0 | 0 | 0 | 3 | 0 | 4 | 0 | 4 | 6 | 6 |
+| Constraints disclosed | 2 | 1 | 2 | 2 | 2 | 1 | 2 | 1 | 6 | 3 |
+
+**CS2: Multi-Tenant Session Management**
+
+| Metric | A (orig) | A (rescore) | B1 (orig) | B1 (rescore) | B2 (orig) | B2 (rescore) | B3 (orig) | B3 (rescore) | C (orig) | C (rescore) |
+|--------|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Total lines | 65 | 70 | 83 | 88 | 117 | 123 | 109 | 115 | 121 | 126 |
+| Existing approaches | 3 | 3 | 4 | 4 | 3 | 3 | 4 | 4 | 4 | 4 |
+| Conflicting requirements | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 1 | 3 | 3 |
+| Formal invariants | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| Testable properties | 0 | 0 | 0 | 4 | 0 | 0 | 0 | 4 | 7 | 7 |
+| Constraints disclosed | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 5 | 5 |
+
+### B.3 Agreement Rates
+
+| Indicator | Agreements / Total | Agreement Rate |
+|-----------|---:|---:|
+| Existing approaches | 9/10 | 90% |
+| Conflicting requirements | 8/10 | 80% |
+| Formal invariants | 9/10 | 90% |
+| Testable properties | 5/10 | 50% |
+| Constraints disclosed | 3/10 | 30% |
+
+### B.4 Agreement in Condition C
+
+| Indicator | CS1-C | CS2-C |
+|-----------|-------|-------|
+| Existing approaches | 4 / 4 ✓ | 4 / 4 ✓ |
+| Conflicting requirements | 2 / 2 ✓ | 3 / 3 ✓ |
+| Testable properties | 6 / 6 ✓ | 7 / 7 ✓ |
+| Constraints disclosed | 6 → 3 ✗ | 5 / 5 ✓ |
+
+In condition C, conflicting requirements and testable properties showed perfect agreement across both case studies. Constraints disclosed diverged in CS1 due to the inclusion/exclusion of future work items.
+
+### B.5 Analysis of Disagreements
+
+**Testable properties (50% agreement).** All disagreements occurred in B conditions, where the rescorer counted input requirements (R1–R4 notation) as testable properties. The original scoring distinguished input requirements (problem-level specifications) from derived testable properties (solution-level verifiable behaviors). Under the strict definition (derived properties only), B=0 holds across all variants. Under the broad definition (any testable condition), B conditions contain 3–4 items. The strict definition is adopted in the paper because §6 of the PDD template requests properties of the proposed solution, not restatements of problem requirements.
+
+**Constraints disclosed (30% agreement).** Two sources of disagreement: (1) In A/B conditions, the original scoring counted operational advice as constraint disclosure while the rescorer did not. This reduces baseline values from 1.5 to 0–1 but preserves the increase pattern under C. (2) In CS1-C, the original scoring included 3 future work items as constraints; the rescorer excluded these. The C-condition increase relative to A/B is maintained under both interpretations.
+
+**Conflicting requirements (80% agreement).** In CS2-B1 and CS2-B3, the rescorer counted narrative tension descriptions as conflicting requirements (1 each), while the original scoring required formally defined pairs (as in §1.2). The qualitative difference between narrative mention and formal definition remains.
