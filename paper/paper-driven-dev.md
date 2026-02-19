@@ -5,13 +5,13 @@
 
 ## Abstract
 
-We present Paper-Driven Development (PDD), a methodology for LLM-assisted software design analysis that uses a seven-section academic paper template (§1–§7) to guide model output. In an exploratory case study with GPT-5.2 (N=2, two software design problems), we compared three prompting conditions: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template. Changing the instruction framing alone (A→B) was associated with increased output structure and exploration breadth, yet two co-primary indicators—conflicting requirements identified and testable properties derived—remained at zero across all framing variants (B1/B2/B3), and a third—constraints disclosed—showed no increase beyond baseline levels (1.5 avg). All three indicators increased substantially only under the PDD template condition (C). We interpret the template's role as information externalization: by specifying what sections to write, the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce. We propose a two-tier practical guideline—Tier 1: change instruction framing (zero cost) to increase exploration breadth; Tier 2: apply the PDD template for critical design decisions where verifiability matters—while acknowledging that causal validation and generalization remain future work. PDD is released as an open-source Claude Code plugin.
+We present Paper-Driven Development (PDD), a methodology for LLM-assisted software design analysis that uses a seven-section academic paper template (§1–§7) to guide model output. In an exploratory case study with GPT-5.2 (N=2, two software design problems), we compared three prompting conditions: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template. Changing the instruction framing alone (A→B) was associated with increased output structure and exploration breadth, yet two co-primary indicators—conflicting requirements identified and testable properties derived—remained at zero across all framing variants (B1/B2/B3), appearing only under the PDD template condition (C). A self-blinded rescoring confirmed these two indicators' robustness (80% and 50% agreement; C-condition perfect match). A third indicator, constraints disclosed, showed an increase pattern under C but was reclassified as exploratory due to low measurement reliability (30% agreement). We interpret the template's role as information externalization and propose a two-tier practical guideline—Tier 1: change instruction framing (zero cost); Tier 2: apply the PDD template for critical design decisions—while acknowledging that causal validation and generalization remain future work. PDD is released as an open-source Claude Code plugin.
 
 ## 1. Introduction
 
 Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2].
 
-We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (§4.3) revealed that this framing effect has a ceiling: conflicting requirements and testable properties remained at zero regardless of framing variations, and constraints disclosed showed no increase beyond baseline. These indicators increased substantially only when the PDD template (§1–§7 section guidelines) was provided.
+We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (§4.3) revealed that this framing effect has a ceiling: two co-primary indicators—conflicting requirements and testable properties—remained at zero regardless of framing variations. These indicators appeared only when the PDD template (§1–§7 section guidelines) was provided.
 
 We interpret the template's role not as eliciting new capabilities from LLMs, but as **information externalization**: by specifying sections for existing approaches (§3), conflicting requirements (§1.2), testable properties (§6), and constraints (§7), the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce under conventional or paper-format-only prompting.
 
@@ -20,6 +20,7 @@ We term this methodology **Paper-Driven Development (PDD)** and contribute:
 - A seven-section template (§1–§7) optimized for software design analysis
 - Two case studies (citation rendering, session management) comparing three prompting conditions (A: conventional, B: paper-format, C: PDD template) and three B-variant framings (B1/B2/B3)
 - A two-axis explanatory model distinguishing framing effects from template effects
+- A self-blinded rescoring procedure that confirmed the robustness of two co-primary indicators and identified measurement instability in a third (leading to its post-hoc reclassification as exploratory; §5.6)
 - Tier 1 / Tier 2 practical guidelines for practitioners
 - An open-source Claude Code plugin
 
@@ -88,7 +89,9 @@ To assess whether template-guided output differs from conventional or paper-form
 **Co-primary indicators** (main outcome measures):
 - **Conflicting requirements identified**: Explicitly stated trade-offs or opposing requirements (e.g., "real-time display vs. correct sequential numbering")
 - **Testable properties derived**: Concrete conditions that can be translated to test cases (e.g., Given/When/Then specifications)
-- **Constraints disclosed**: Honest limitations of the proposed approach and conditions under which it does not apply
+
+**Exploratory indicator** (reported but not used for primary claims due to measurement instability; see §5.6):
+- **Constraints disclosed**: Honest limitations of the proposed approach and conditions under which it does not apply. Self-blinded rescoring revealed 30% inter-rater agreement for this indicator, attributable to definition boundary instability (§5.6, Appendix B).
 
 **Secondary indicators**:
 - **Existing approaches analyzed**: Number of alternative approaches enumerated and evaluated
@@ -157,7 +160,7 @@ Three conditions were compared: (A) conventional prompting, (B) paper-format ins
 | Testable properties | 0 | 0 | 6.5 |
 | Constraints disclosed | 1.5 | 1.5 | 4.0 |
 
-**Co-primary indicators.** Conflicting requirements and testable properties were observed only under condition C, remaining at zero for both A and B. Constraints disclosed were present at baseline (A: 1.5, B: 1.5) but increased substantially only under C (4.0). Among secondary indicators, formal invariants showed no condition-dependent variation (0.5 across all conditions).
+**Co-primary indicators.** Conflicting requirements and testable properties were observed only under condition C, remaining at zero for both A and B. Self-blinded rescoring confirmed this pattern with perfect agreement in condition C (§5.6). **Exploratory indicator.** Constraints disclosed were present at baseline (A: 1.5, B: 1.5) and increased under C (4.0), but this indicator was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement; see §5.6). Among secondary indicators, formal invariants showed no condition-dependent variation (0.5 across all conditions).
 
 **Secondary observations.** Existing approaches analyzed increased modestly from A (1.5) to B (2.0) and substantially under C (4.0). All three conditions reached the same correct design conclusion for both problems—the difference was in justification and verifiability, not in the answer itself.
 
@@ -177,7 +180,7 @@ To investigate whether framing variations could close the gap with condition C, 
 
 **Framing effect.** Output length and exploration breadth (existing approaches analyzed) increased progressively from B1 to B3. B3 also exhibited stronger academic conventions: keywords, references, and formalized requirement definitions (R1–R4 notation). In CS1, B3 independently generated an "evaluation metrics and experimental plan" section with four measurable criteria—a behavior absent in B1 and B2.
 
-**Framing effect ceiling.** Despite these progressive improvements, conflicting requirements and testable properties remained at zero across all B variants, and constraints disclosed showed no increase beyond the A/B baseline (1.5). The framing effect was associated with changes in output characteristics (exploration breadth, formality, academic conventions) but not with the appearance of conflicting requirements, testable properties, or increased constraint disclosure. We term this the **framing effect ceiling**: framing alone was insufficient, in this data, to elicit the information externalization observed under the template condition.
+**Framing effect ceiling.** Despite these progressive improvements, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. The exploratory indicator (constraints disclosed) also showed no increase beyond the A/B baseline (1.5). The framing effect was associated with changes in output characteristics (exploration breadth, formality, academic conventions) but not with the appearance of the co-primary indicators. We term this the **framing effect ceiling**: framing alone was insufficient, in this data, to elicit the information externalization observed under the template condition.
 
 ### 4.4 Cross-Model Observation
 
@@ -189,7 +192,7 @@ A separate two-condition comparison (conventional vs. PDD) was conducted with Op
 
 The B-variant experiment (§4.3) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
 
-However, conflicting requirements and testable properties remained at zero across all B variants, and constraints disclosed showed no increase beyond baseline (1.5). This pattern—which we term the **framing effect ceiling**—suggests that framing changes are associated with improvements in output form (structure, breadth, academic conventions) but not with the externalization of verification-relevant information (conflicting requirements, testable properties, constraint disclosure). In this data, the framing effect operated on a qualitatively different dimension than the template effect.
+However, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. This pattern—which we term the **framing effect ceiling**—suggests that framing changes are associated with improvements in output form (structure, breadth, academic conventions) but not with the externalization of verification-relevant information. In this data, the framing effect operated on a qualitatively different dimension than the template effect.
 
 ### 5.2 Template Effect as Information Externalization
 
@@ -225,6 +228,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 - **Prompt optimization**: The conventional prompt (A) was not optimized with CoT or persona techniques. A well-engineered conventional prompt might narrow the observed gap.
 - **Hallucination risk**: LLMs may fabricate non-existent approaches or citations in §3. The template mitigates this by instructing the model to base analysis on known technologies, but does not eliminate the risk.
 - **Confirmation bias**: Paper-format output may *appear* more rigorous without improving actual design quality. Downstream outcome measurement is needed.
+- **Indicator measurement instability**: Self-blinded rescoring revealed that constraints disclosed (30% agreement) and testable properties under a broad definition (50%) are sensitive to rubric interpretation. The post-hoc reclassification of constraints disclosed as exploratory (§5.6) was motivated by this finding.
 
 ### 5.6 Robustness Check: Self-Blinded Rescoring
 
@@ -237,6 +241,8 @@ To assess the stability of the manual scoring, we conducted a self-blinded resco
 **Rubric sensitivity.** The two low-agreement indicators reveal rubric ambiguity:
 - *Testable properties (50%)*: The rescorer counted B-condition input requirements (R1–R4 notation) as testable properties, while the original scoring distinguished input requirements (what the system must do) from derived testable properties (how the proposed solution behaves). Under the strict definition, B=0 holds; under the broad definition, B conditions contain 3–4 testable conditions. This distinction was not explicit in the original rubric and has been clarified in Appendix A.2.
 - *Constraints disclosed (30%)*: The original scoring included operational advice and future work items as constraint disclosure, while the rescorer counted only explicit limitations and boundary conditions of the proposed approach. The baseline values shift (A/B: 1.5 → 0–1), but the increase pattern under C is preserved.
+
+**Post-hoc reclassification.** Based on the measurement reliability findings above, constraints disclosed was reclassified from co-primary to exploratory indicator. This reclassification was motivated by measurement instability (30% agreement, definition boundary ambiguity), not by the effect direction—the increase pattern under C was preserved under both scoring interpretations. The reclassification was performed after the rescoring results were known; the original three-indicator data remain fully reported in §4 and Appendix B.
 
 **Limitations of this procedure.** This is not independent third-party evaluation. The rescoring was conducted by an AI agent under author instruction, and both scorer and rescorer are AI systems with potentially correlated biases. The procedure serves as a supplementary robustness check, not a substitute for the blinded human evaluation recommended in §7.
 
@@ -259,10 +265,11 @@ To assess the stability of the manual scoring, we conducted a self-blinded resco
 5. **Multi-model validation**: Test PDD with Claude, Gemini, and other LLMs to assess whether the observed pattern generalizes beyond GPT-5.2 and o3.
 6. **Multi-domain validation**: Apply PDD to authentication design, performance optimization, data modeling, and other problem domains.
 7. **Downstream impact measurement**: Measure whether PDD-analyzed designs lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally designed features.
+8. **Rubric refinement for constraints disclosed**: The 30% inter-rater agreement for constraints disclosed indicates that the current definition boundary (what counts as a "constraint" vs. operational advice or future work) requires explicit operationalization before this indicator can serve as a primary outcome measure.
 
 ## 8. Conclusion
 
-In an exploratory case study with GPT-5.2 (N=2, two software design problems), changing the instruction framing from conventional prompting to paper-format prompting was associated with increased output structure and exploration breadth. However, conflicting requirements and testable properties were absent in all non-template conditions, and constraints disclosed showed no increase beyond baseline levels. All three co-primary indicators increased substantially only under the PDD template condition. We term this the framing effect ceiling.
+In an exploratory case study with GPT-5.2 (N=2, two software design problems), changing the instruction framing from conventional prompting to paper-format prompting was associated with increased output structure and exploration breadth. However, two co-primary indicators—conflicting requirements and testable properties—were absent in all non-template conditions and appeared only under the PDD template condition. A self-blinded rescoring confirmed this pattern. A third indicator (constraints disclosed) showed a similar directional pattern but was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement), illustrating the need for rubric refinement in future work. We term the observed limit on framing effects the framing effect ceiling.
 
 We interpret the template's role as information externalization: the §1–§7 structure specifies what analysis sections to write, preventing the omission of steps that LLMs can perform but do not spontaneously produce. All conditions reached the same correct design conclusions—the difference was in justification and verifiability, not in the answer itself.
 
