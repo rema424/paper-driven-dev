@@ -8,6 +8,8 @@
 - **PDD prompt**: §1–§7 template with section guidelines
 - **Measurement**: Manual counting by authors (automated metrics are future work)
 
+> **注意**: Before（Conventional）プロンプトは最適化していない。CoT やペルソナプロンプティング等を組み合わせた強化版プロンプトとの比較は将来課題である。
+
 ## Case Study 1: RAG Citation Renumbering
 
 | Metric | Conventional | PDD | Delta |
