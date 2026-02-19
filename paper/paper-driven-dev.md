@@ -83,7 +83,7 @@ Key design decisions in the template:
 - **§6 requires testable properties in Given/When/Then format.** This bridges the gap between design analysis and test-driven development.
 - **§7 requires honest disclosure of constraints.** This counteracts LLMs' tendency to present proposals as universally applicable.
 
-### 3.2 Integration with Development Workflow
+### 3.3 Integration with Development Workflow
 
 PDD is designed as an optional step in the design phase, not a replacement for existing practices:
 
@@ -104,7 +104,7 @@ Phase 3: Implementation (TDD)
            §6 properties → test cases
 ```
 
-### 3.3 Application Criteria
+### 3.4 Application Criteria
 
 PDD is effective when:
 - Multiple design approaches are viable and trade-off analysis is needed
