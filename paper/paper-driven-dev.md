@@ -44,7 +44,7 @@ Research on LLM reasoning suggests that output structure affects quality:
 
 ### 2.3 Gap in Existing Approaches
 
-No existing methodology combines all four properties that PDD elicits: (1) exhaustive alternatives survey, (2) critical evaluation with limitations, (3) formal invariants, and (4) testable properties. Spec-driven development addresses requirements clarity but not design rationale. RFC/ADR records decisions but does not enforce analysis depth. CoT improves reasoning but does not structure the output for design review.
+No existing methodology structurally enforces the combination of exhaustive alternatives survey, critical evaluation with limitations, and derivation of testable properties. Spec-driven development addresses requirements clarity but not design rationale. RFC/ADR records decisions but does not enforce analysis depth. CoT improves reasoning but does not structure the output for design review. PDD addresses this gap through a section-level template that makes these analysis steps explicit.
 
 ## 3. Paper-Driven Development
 
@@ -80,6 +80,26 @@ Key design decisions in the template:
 - **§3 requires explicit "Limitations" for each approach.** This prevents the common failure mode of listing only advantages before recommending a solution.
 - **§6 requires testable properties in Given/When/Then format.** This bridges the gap between design analysis and test-driven development.
 - **§7 requires honest disclosure of constraints.** This counteracts LLMs' tendency to present proposals as universally applicable.
+
+### 3.2 Evaluation Framework
+
+To assess whether template-guided output differs from conventional or paper-format-only output, we define the following indicator hierarchy.
+
+**Co-primary indicators** (main outcome measures):
+- **Conflicting requirements identified**: Explicitly stated trade-offs or opposing requirements (e.g., "real-time display vs. correct sequential numbering")
+- **Testable properties derived**: Concrete conditions that can be translated to test cases (e.g., Given/When/Then specifications)
+- **Constraints disclosed**: Honest limitations of the proposed approach and conditions under which it does not apply
+
+**Secondary indicators**:
+- **Existing approaches analyzed**: Number of alternative approaches enumerated and evaluated
+- **Formal invariants/proofs**: Mathematical or logical properties formally stated
+- **Total output length**: Line count of LLM output
+
+We adopt a two-axis explanatory model to describe the data:
+- **Framing axis** (A → B1 → B2 → B3): Variation in instruction wording without template structure
+- **Template axis** (B → C): Addition of §1–§7 section guidelines to a paper-format instruction
+
+This two-axis model is a descriptive framework for organizing the observed data, not a claim of independence or orthogonality. A factorial design testing independence was not conducted.
 
 ### 3.3 Integration with Development Workflow
 
