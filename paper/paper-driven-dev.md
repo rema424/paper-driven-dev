@@ -150,6 +150,10 @@ We prompted the same problem using a conventional format ("Please propose a desi
 
 Both approaches arrived at the same correct conclusion. The difference lies in the **verifiability and justification** of that conclusion.
 
+### 4.4 Preliminary Multi-Model Observation
+
+The qualitative case study in §4.1–§4.3 was conducted with Claude Opus 4, while a separate quantitative comparison (see companion document `comparison-data.md`) was conducted with OpenAI o3 on the same two problems. Although the experimental conditions differ (model, number of runs, evaluator), both models exhibited a similar pattern: conventional prompting produced correct but terse conclusions, while the PDD template elicited exhaustive alternatives analysis, formal trade-off identification, and testable properties. This does not constitute a controlled multi-model comparison, but provides preliminary evidence that the observed effect is not unique to a single model family. Rigorous multi-model reproducibility testing remains future work (§7).
+
 ## 5. Discussion
 
 ### 5.1 Why Paper Format Works: Three Hypotheses
