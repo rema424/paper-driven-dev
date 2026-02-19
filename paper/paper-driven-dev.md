@@ -137,40 +137,51 @@ PDD is unnecessary when:
 
 ## 4. Case Study
 
-### 4.1 Problem: Real-Time Citation Rendering in RAG Streaming
+We applied PDD to two software design problems using GPT-5.2 (via Codex), comparing three prompting conditions and three B-variant framings. All outputs and raw measurements are available in the companion document `comparison-data.md`.
 
-We applied PDD to a real design problem: rendering citation references in real-time during LLM streaming output in a RAG (Retrieval-Augmented Generation) system.
+### 4.1 Problem Descriptions
 
-The core conflict: citations must be displayed as sequential numbers ([1], [2], [3]) without gaps, but renumbering requires knowing all citations—which is impossible during streaming when the full text has not yet been generated.
+**CS1: Real-Time Citation Rendering in RAG Streaming.** Citations must be displayed as sequential numbers ([1], [2], [3]) without gaps during LLM streaming output, but renumbering requires knowing all citations—which is impossible when the full text has not yet been generated.
 
-### 4.2 PDD Output Analysis
+**CS2: Multi-Tenant SaaS Session Management.** A session management system must simultaneously support multi-device login, administrator-initiated immediate session revocation, horizontal scaling, and low latency—requirements that create tension between stateless and stateful architectures.
 
-The paper-format output (270 lines) produced:
+### 4.2 Three-Condition Comparison (A/B/C)
 
-- **§1.2**: Formally identified two conflicting requirements (real-time display vs. correct sequential numbering)
-- **§3**: Analyzed five existing approaches (spinner wait, manual JSON parser, LLM direct numbering, gap tolerance, temporary numbers with replacement), each with specific limitations
-- **§4**: Identified the root cause as "non-deterministic numbering order"—client-side and server-side use different ordering sources
-- **§5**: Proposed "body-order unification with append-only invariant," formally defined as: for any prefix P of complete text T, all (source_ID, display_ID) pairs assigned by renumber(P) remain identical in renumber(T)
-- **§6**: Defined four testable properties (consistency, append-only, sequential, graceful degradation)
-- **§7**: Identified three specific constraints (summary citation timing, JSON field order dependency, mid-token citation appearance)
+Three conditions were compared: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template with §1–§7 guidelines. Each condition was run once per case study (N=2 total).
 
-### 4.3 Comparison with Conventional Prompting
+| Metric | A: Conventional (avg) | B: Paper-format (avg) | C: PDD Template (avg) |
+| --- | ---: | ---: | ---: |
+| Total lines | 62 | 90 | 129 |
+| Existing approaches analyzed | 1.5 | 2.0 | 4.0 |
+| Conflicting requirements | 0 | 0 | 2.5 |
+| Testable properties | 0 | 0 | 6.5 |
+| Constraints disclosed | 1.5 | 1.5 | 4.0 |
 
-We prompted the same problem using a conventional format ("Please propose a design analysis and solution for this problem"). The output (40 lines) correctly identified the same core algorithm (first-occurrence ordering with incremental mapping) but differed significantly:
+**Co-primary indicators.** Conflicting requirements, testable properties, and constraints disclosed were observed only under condition C. These indicators remained at zero for both A and B conditions across both case studies.
 
-| Aspect | Conventional | PDD |
-| --- | --- | --- |
-| Existing approaches analyzed | 0 | 5 |
-| Trade-off definition | Implicit | Formal (two conflicting requirements) |
-| Proposal justification | "This is optimal" (assertion) | Elimination of 5 alternatives + invariant proof |
-| Testable properties | 0 | 4 |
-| Constraints disclosed | 1 | 3 |
+**Secondary observations.** Existing approaches analyzed increased modestly from A (1.5) to B (2.0) and substantially under C (4.0). All three conditions reached the same correct design conclusion for both problems—the difference was in justification and verifiability, not in the answer itself.
 
-Both approaches arrived at the same correct conclusion. The difference lies in the **verifiability and justification** of that conclusion.
+**Qualitative notes.** Condition B spontaneously produced academic conventions (abstract, keywords, references in CS2; a mathematical proof of prefix-determinability in CS1) that were absent in both A and C. This suggests that paper-format framing activates distinct output behaviors, though these did not include the co-primary indicators.
 
-### 4.4 Preliminary Multi-Model Observation
+### 4.3 B-Variant Comparison (B1/B2/B3)
 
-The qualitative case study in §4.1–§4.3 was conducted with Claude Opus 4, while a separate quantitative comparison (see companion document `comparison-data.md`) was conducted with OpenAI o3 on the same two problems. Although the experimental conditions differ (model, number of runs, evaluator), both models exhibited a similar pattern: conventional prompting produced correct but terse conclusions, while the PDD template elicited exhaustive alternatives analysis, formal trade-off identification, and testable properties. This does not constitute a controlled multi-model comparison, but provides preliminary evidence that the observed effect is not unique to a single model family. Rigorous multi-model reproducibility testing remains future work (§7).
+To investigate whether framing variations could close the gap with condition C, we tested three B-variant phrasings: B1 ("学術論文の形式で書いてください" — write in academic paper format), B2 ("論文を書いてください" — write a paper), and B3 ("学術論文を書いてください" — write an academic paper).
+
+| Metric | B1 (avg) | B2 (avg) | B3 (avg) | C (avg, ref) |
+| --- | ---: | ---: | ---: | ---: |
+| Total lines | 90 | 102 | 104 | 129 |
+| Existing approaches analyzed | 2.0 | 2.5 | 3.5 | 4.0 |
+| Conflicting requirements | 0 | 0 | 0 | 2.5 |
+| Testable properties | 0 | 0 | 0 | 6.5 |
+| Constraints disclosed | 1.5 | 1.5 | 1.5 | 4.0 |
+
+**Framing effect.** Output length and exploration breadth (existing approaches analyzed) increased progressively from B1 to B3. B3 also exhibited stronger academic conventions: keywords, references, and formalized requirement definitions (R1–R4 notation). In CS1, B3 independently generated an "evaluation metrics and experimental plan" section with four measurable criteria—a behavior absent in B1 and B2.
+
+**Framing effect ceiling.** Despite these progressive improvements, all three co-primary indicators remained at zero across all B variants. The framing effect was associated with changes in output characteristics (exploration breadth, formality, academic conventions) but not with the appearance of conflicting requirements, testable properties, or increased constraint disclosure. We term this the **framing effect ceiling**: framing alone was insufficient, in this data, to elicit the information externalization observed under the template condition.
+
+### 4.4 Cross-Model Observation
+
+A separate two-condition comparison (conventional vs. PDD) was conducted with OpenAI o3 on the same two problems (see `comparison-data.md`, supplementary section). Although experimental conditions differed (model, number of conditions), o3 exhibited a similar pattern: co-primary indicators appeared only under the PDD template condition. This does not constitute a controlled multi-model comparison, but provides preliminary evidence that the observed pattern is not unique to a single model family.
 
 ## 5. Discussion
 
