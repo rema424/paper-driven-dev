@@ -1,0 +1,11 @@
+{
+  "name": "paper-driven-dev",
+  "description": "Paper-Driven Development: Use academic paper format to get high-quality design analysis from LLMs",
+  "version": "0.1.0",
+  "author": {
+    "name": "rema424"
+  },
+  "repository": "https://github.com/rema424/paper-driven-dev",
+  "license": "MIT",
+  "keywords": ["paper-driven-development", "design-analysis", "llm", "tdd"]
+}

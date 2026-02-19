@@ -1,0 +1,13 @@
+{
+  "name": "rema424-paper-driven-dev",
+  "owner": {
+    "name": "rema424"
+  },
+  "plugins": [
+    {
+      "name": "paper-driven-dev",
+      "source": ".",
+      "description": "Paper-Driven Development: Use academic paper format for LLM-assisted design analysis"
+    }
+  ]
+}
