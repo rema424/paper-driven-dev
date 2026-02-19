@@ -11,19 +11,17 @@ We present Paper-Driven Development (PDD), a methodology for LLM-assisted softwa
 
 Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2].
 
-We observed an unexpected phenomenon: when instructed to produce a design analysis in academic paper format—with sections for problem definition, related work, proposed method, and evaluation—LLMs generated more thorough and rigorous analysis compared to conventional prompting in our case studies. Specifically, the template structurally elicits four behaviors:
+We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (§4.3) revealed that this framing effect has a ceiling: three co-primary indicators—conflicting requirements, testable properties, and constraints disclosed—remained at zero regardless of framing variations. These indicators were consistently observed only when the PDD template (§1–§7 section guidelines) was provided.
 
-1. **Exhaustive prior art survey**: The model enumerates multiple existing approaches, not just the one it recommends.
-2. **Critical evaluation**: Each approach is analyzed for limitations, not just advantages.
-3. **Formal justification**: Proposals include invariants and formal properties.
-4. **Testable properties**: The model derives concrete test conditions that can be directly translated to test cases.
+We interpret the template's role not as eliciting new capabilities from LLMs, but as **information externalization**: by specifying sections for existing approaches (§3), conflicting requirements (§1.2), testable properties (§6), and constraints (§7), the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce under conventional or paper-format-only prompting.
 
 We term this methodology **Paper-Driven Development (PDD)** and contribute:
 
 - A seven-section template (§1–§7) optimized for software design analysis
-- A case study comparing PDD output against conventional prompting on the same problem
-- Three hypotheses explaining the observed quality improvement
-- An open-source Claude Code plugin for practitioners
+- Two case studies (citation rendering, session management) comparing three prompting conditions (A: conventional, B: paper-format, C: PDD template) and three B-variant framings (B1/B2/B3)
+- A two-axis explanatory model distinguishing framing effects from template effects
+- Tier 1 / Tier 2 practical guidelines for practitioners
+- An open-source Claude Code plugin
 
 ## 2. Background
 
