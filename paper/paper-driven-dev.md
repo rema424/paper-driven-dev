@@ -256,6 +256,12 @@ To assess the stability of the manual scoring, we conducted a self-blinded resco
 
 **Prompt Engineering** [1, 2, 8]. CoT, persona prompting, and format constraint research provide theoretical grounding for PDD's observed effects. PDD can be viewed as a domain-specific application of these techniques to software design analysis.
 
+**Prompt Engineering Surveys.** The Prompt Report [10] catalogued 58 text-based prompting techniques across six problem-solving categories, establishing a taxonomy for the fragmented prompting landscape. PDD can be positioned within this taxonomy as a domain-specific template prompt combining elements of role prompting, structured output, and implicit CoT—applied specifically to software design analysis rather than general-purpose reasoning.
+
+**Self-Planning Code Generation.** Jiang et al. [11] decompose code generation into a planning phase (deriving solution steps from the problem intent) and an implementation phase. PDD similarly separates design analysis (§1–§7) from implementation but operates at the architectural level—structuring trade-off analysis and constraint identification rather than function-level code planning.
+
+**Prompt Templates in Practice.** A systematic analysis of prompt templates in real-world LLM-powered applications [12] found that template structure—component ordering, role placement, and example positioning—affects LLM instruction-following performance. PDD's §1–§7 structure is a specific instance of this broader observation, with the additional property that each section targets a distinct analytical dimension (problem definition, alternatives analysis, verification).
+
 ## 7. Future Work
 
 1. **D condition (structured checklist without paper framing)**: Test a condition where the same analysis steps (conflicting requirements, existing approaches, testable properties, constraints) are requested as a checklist without academic paper framing. This would separate the template effect from the paper format effect within condition C.
@@ -305,6 +311,16 @@ PDD is available as an open-source Claude Code plugin at https://github.com/rema
 ### Tutorial / Explainer
 
 [8] Learn Prompting, "Role Prompting." https://learnprompting.org/docs/advanced/zero_shot/role_prompting
+
+### Surveys
+
+[10] S. Schulhoff et al., "The Prompt Report: A Systematic Survey of Prompting Techniques," arXiv:2406.06608, 2024. https://arxiv.org/abs/2406.06608
+
+### Software Engineering
+
+[11] X. Jiang et al., "Self-Planning Code Generation with Large Language Models," ACM Trans. Softw. Eng. Methodol. 33(7), 2024. https://dl.acm.org/doi/10.1145/3672456
+
+[12] "From Prompts to Templates: A Systematic Prompt Template Analysis for Real-world LLMapps," Proc. FSE 2025 (Industry). https://arxiv.org/abs/2504.02052
 
 ### Books
 
