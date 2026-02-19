@@ -288,3 +288,49 @@ PDD is available as an open-source Claude Code plugin at https://github.com/rema
 ### Books
 
 [9] A. Gawande, "The Checklist Manifesto: How to Get Things Right," Metropolitan Books, 2009.
+
+---
+
+## Appendix A: Reproducibility Package
+
+### A.1 Prompts
+
+All prompts were in Japanese. The problem description was identical across conditions; only the instruction prefix differed.
+
+| Condition | Instruction prefix (Japanese) | Translation |
+|-----------|------------------------------|-------------|
+| A: Conventional | 「この問題の設計分析と解決策を提案してください」 | "Please propose a design analysis and solution for this problem" |
+| B1: Paper-format | 「この問題について学術論文の形式で書いてください」 | "Please write about this problem in academic paper format" |
+| B2: Paper-write | 「この問題について、論文を書いてください」 | "Please write a paper about this problem" |
+| B3: Academic-paper | 「この問題について、学術論文を書いてください」 | "Please write an academic paper about this problem" |
+| C: PDD Template | B1 の指示文 + §1–§7 テンプレートガイドライン | B1 instruction + §1–§7 template guidelines |
+
+The §1–§7 template guidelines used in condition C are defined in §3.1 of this paper.
+
+### A.2 Scoring Rubric
+
+Each indicator was counted manually by the first author using the following definitions:
+
+| Indicator | Counting rule |
+|-----------|--------------|
+| **Conflicting requirements** | Count of explicitly stated pairs of opposing requirements or trade-offs. Implicit tensions (e.g., "balancing X and Y" without formal definition) are counted as 0. |
+| **Testable properties** | Count of concrete conditions that could be translated to test cases. Given/When/Then format counts as 1 per property. Evaluation metrics (e.g., "accuracy should be 100%") count as 1 per metric. |
+| **Constraints disclosed** | Count of explicitly stated limitations, boundary conditions, or failure modes of the proposed approach. General disclaimers (e.g., "further testing needed") do not count. |
+| **Existing approaches analyzed** | Count of distinct alternative approaches enumerated and evaluated. Passing mentions without evaluation do not count. |
+| **Formal invariants/proofs** | Count of mathematical or logical properties formally stated (definitions, theorems, proofs). Informal reasoning does not count. |
+| **Total lines** | Line count of LLM output, excluding metadata headers. Empty lines included. |
+
+### A.3 Raw Data and Outputs
+
+All raw outputs and measurement data are publicly available in the project repository:
+
+- **LLM outputs**: `docs/examples/cs{1,2}-{conventional,paper-format,pdd-template}.md` (A/B1/C conditions), `docs/examples/cs{1,2}-{paper-write,academic-paper}.md` (B2/B3 conditions)
+- **Quantitative measurements**: `paper/comparison-data.md` (all tables, including per-case-study breakdowns)
+- **Repository**: https://github.com/rema424/paper-driven-dev
+
+### A.4 Execution Environment
+
+- **Model**: GPT-5.2, accessed via Codex CLI (OpenAI), February 2026
+- **Temperature**: Default (not explicitly set)
+- **Single run**: Each condition was executed once per case study. No repetition or cherry-picking was performed.
+- **Context**: Each condition was run in a fresh Codex thread with no prior conversation history, except CS2-B3 which was recovered in the same thread after context compression (see §5.5).
