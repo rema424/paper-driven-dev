@@ -172,6 +172,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 - **Confirmation bias**: The paper format may produce output that *appears* more rigorous without actually improving design quality. Controlled experiments measuring downstream implementation quality (bug rates, test coverage) are needed.
 - **Model dependency**: Results may vary across LLMs. This study used Claude; reproducibility on GPT and Gemini is untested.
 - **Evaluator bias**: The quality comparison in §4.3 was performed by the authors, not independent evaluators.
+- **Confounding: paper format vs. structured template**: This study does not separate the effect of "academic paper format" from the effect of "any structured template with defined sections." The observed quality improvement may stem from the structured template itself (section headings that enforce analysis steps) rather than from the paper format per se. Testing this would require comparison with a structured design document template (e.g., an enhanced RFC template with the same sections but no paper framing), which we leave as future work.
 
 ## 6. Related Work
 
