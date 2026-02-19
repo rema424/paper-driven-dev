@@ -185,30 +185,46 @@ A separate two-condition comparison (conventional vs. PDD) was conducted with Op
 
 ## 5. Discussion
 
-### 5.1 Why Paper Format Works: Three Hypotheses
+### 5.1 Framing Effect and Its Ceiling
 
-We propose three non-mutually-exclusive hypotheses:
+The B-variant experiment (§4.3) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
+
+However, all three co-primary indicators remained at zero across all B variants. This pattern—which we term the **framing effect ceiling**—suggests that framing changes are associated with improvements in output form (structure, breadth, academic conventions) but not with the externalization of verification-relevant information (conflicting requirements, testable properties, constraint disclosure). In this data, the framing effect operated on a qualitatively different dimension than the template effect.
+
+### 5.2 Template Effect as Information Externalization
+
+The co-primary indicators appeared consistently only under condition C, where the §1–§7 template was provided. This raises a tautology concern: if the template requests "conflicting requirements" in §1.2 and "testable properties" in §6, measuring their presence may simply confirm that the model followed instructions.
+
+We reframe this as **information externalization**. The template does not give LLMs new analytical capabilities—as evidenced by all conditions reaching the same correct design conclusions. Rather, it makes explicit what sections to write, thereby preventing the omission of analysis steps that LLMs can perform but do not spontaneously produce. The practical value lies in this externalization itself: just as a checklist reduces omission errors in surgery or aviation [9], the PDD template reduces omission of design analysis steps.
+
+This reframing shifts the contribution from "the template improves quality" (a causal claim unsupported by the data) to "the template is associated with the consistent appearance of verification-relevant information that is otherwise omitted" (an observational claim supported by the data). Whether this externalized information leads to better downstream outcomes (fewer bugs, higher test coverage) remains untested.
+
+### 5.3 Three Hypotheses
+
+We retain three non-mutually-exclusive hypotheses for why paper-format prompting affects LLM output:
 
 **H1: Training Data Quality Bias.** Academic papers undergo peer review and exhibit rigorous logical structure. LLMs trained on this data may activate higher-quality generation patterns when the output format matches paper conventions. However, training data composition is not publicly disclosed for most models, making this hypothesis difficult to verify directly.
 
-**H2: Implicit Chain-of-Thought.** The paper structure enforces a reasoning sequence: problem definition → analysis of existing work → identification of the core difficulty → proposal → verification. This mirrors CoT prompting but is induced by format rather than explicit instruction. Wei et al. [1] demonstrated that such structured reasoning improves accuracy.
+**H2: Implicit Chain-of-Thought.** The paper structure enforces a reasoning sequence: problem definition → analysis of existing work → identification of the core difficulty → proposal → verification. This mirrors CoT prompting but is induced by format rather than explicit instruction [1].
 
-**H3: Persona Effect.** "Write a paper" implicitly sets the persona to "researcher," which activates behavioral patterns associated with academic rigor: systematic literature review, critical evaluation, formal definitions, and honest disclosure of limitations. This aligns with findings on role prompting [8].
+**H3: Persona Effect.** "Write a paper" implicitly sets the persona to "researcher," which activates behavioral patterns associated with academic rigor [8]. The B-variant data partially supports this: B3 ("write an academic paper") exhibited more academic behaviors than B1 ("write in paper format"). However, this persona activation was insufficient to produce the co-primary indicators, suggesting that the persona effect accounts for the framing axis improvements but not for the template axis improvements observed in this data.
 
-The practical conclusion is the same regardless of which hypothesis is correct: in our case studies, the paper-format template was associated with higher-quality design analysis from LLMs.
+### 5.4 Relationship to Format Constraint Research
 
-### 5.2 Relationship to Format Constraint Research
+The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g., rigid JSON schemas) can degrade LLM reasoning by consuming cognitive capacity on format compliance. PDD's template is moderately structured: it specifies section topics but not sentence-level format. This may place PDD in the "sweet spot" of structural guidance—enough to direct reasoning without constraining it. The B-variant results are consistent with this interpretation: even without the template, paper-format framing (a lighter structural constraint) was associated with increased output structure without apparent degradation of reasoning quality.
 
-The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g., rigid JSON schemas) can degrade LLM reasoning by consuming cognitive capacity on format compliance. PDD's template is moderately structured: it specifies section topics but not sentence-level format. This may place PDD in the "sweet spot" of structural guidance—enough to direct reasoning without constraining it.
+### 5.5 Limitations and Threats to Validity
 
-### 5.3 Limitations and Threats to Validity
-
-- **Sample size (N=1)**: We demonstrate PDD on a single problem. Generalizability across domains is not yet established.
-- **Hallucination risk**: LLMs may fabricate non-existent approaches or citations in §3. The template mitigates this by instructing the model to base analysis on known technologies and codebase facts, but does not eliminate the risk.
-- **Confirmation bias**: The paper format may produce output that *appears* more rigorous without actually improving design quality. Controlled experiments measuring downstream implementation quality (bug rates, test coverage) are needed.
-- **Model dependency**: Results may vary across LLMs. This study used Claude; reproducibility on GPT and Gemini is untested.
-- **Evaluator bias**: The quality comparison in §4.3 was performed by the authors, not independent evaluators.
-- **Confounding: paper format vs. structured template**: This study does not separate the effect of "academic paper format" from the effect of "any structured template with defined sections." The observed quality improvement may stem from the structured template itself (section headings that enforce analysis steps) rather than from the paper format per se. Testing this would require comparison with a structured design document template (e.g., an enhanced RFC template with the same sections but no paper framing), which we leave as future work.
+- **Small sample (N=2)**: Two case studies, each run once per condition, are insufficient for statistical conclusions. All findings should be interpreted as exploratory observations, not confirmed effects.
+- **Single model (GPT-5.2)**: The primary experiment used a single model. The o3 observation (§4.4) provides weak supplementary evidence but does not constitute multi-model validation.
+- **Author evaluation**: All metrics were counted by the authors, not independent evaluators. Blinded evaluation is needed to rule out evaluator bias.
+- **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties, constraints) are closely aligned with template section requirements (§1.2, §6, §7). As discussed in §5.2, we frame this as information externalization rather than quality improvement, but the concern remains that we are partially measuring template compliance rather than independent analytical quality.
+- **Output length confound**: Condition C produced longer outputs (129 lines avg) than B (90 lines avg). The increase in co-primary indicators may partially reflect increased output volume rather than increased analytical depth. Per-line normalization was not performed.
+- **Missing D condition**: A structured checklist condition (same analysis steps as PDD but without paper framing) was not tested. This prevents separating the template effect from the paper format effect within condition C.
+- **CS2-B3 data uncertainty**: The CS2-B3 output was recovered after context compression in the same Codex thread. While likely close to the original, strict reproducibility cannot be guaranteed.
+- **Prompt optimization**: The conventional prompt (A) was not optimized with CoT or persona techniques. A well-engineered conventional prompt might narrow the observed gap.
+- **Hallucination risk**: LLMs may fabricate non-existent approaches or citations in §3. The template mitigates this by instructing the model to base analysis on known technologies, but does not eliminate the risk.
+- **Confirmation bias**: Paper-format output may *appear* more rigorous without improving actual design quality. Downstream outcome measurement is needed.
 
 ## 6. Related Work
 
