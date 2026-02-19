@@ -1,0 +1,19 @@
+# Claude Code local project settings (do not commit)
+.claude/settings.local.json
+
+# Worktrees (in-repo parallel development)
+.worktrees/
+
+# Internal development materials (README.md only tracked)
+.internal/**
+!.internal/README.md
+!.internal/docs
+!.internal/docs/**
+!.internal/prompts
+!.internal/prompts/**
+
+# Session work files
+.claude/plans/
+
+# Node.js
+node_modules/
