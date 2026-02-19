@@ -134,6 +134,99 @@ All three: **Yes** — all recommended short-lived JWT + Redis session store + e
 
 ---
 
+## Supplementary: B-Variant Prompt Wording Experiment
+
+> **実験条件**: Model: GPT-5.2 (via Codex) | N: 2 | Date: 2026-02 | Evaluator: 著者
+> **注意**: CS2-B3 の原文はコンテキスト圧縮により失われたため、同一 Codex スレッドの継続で復元した。厳密には再生成の可能性がある。
+
+### 目的
+
+「論文形式で書いてください」（B1）と「論文を書いてください」（B2）・「学術論文を書いてください」（B3）のプロンプト文言の違いが出力品質に与える影響を調べる。仮説: 「論文を書く」という表現が LLM の研究者ペルソナを活性化し、「形式で書く」（フォーマット指示）より深い分析を引き出す可能性。
+
+### 3条件の定義
+
+| 条件 | プロンプト冒頭 | 仮説上の位置づけ |
+|------|---------------|-----------------|
+| **B1: Paper-format** | 「学術論文の**形式で**書いてください」 | フォーマット指示（企業人ペルソナ維持？） |
+| **B2: Paper-write** | 「**論文を**書いてください」 | 論文執筆指示（研究者ペルソナ活性化？） |
+| **B3: Academic-paper** | 「**学術論文を**書いてください」 | 学術論文執筆指示（最も強い研究者ペルソナ？） |
+
+### CS1: RAG Citation Renumbering (B-variants)
+
+| Metric | B1: Paper-format | B2: Paper-write | B3: Academic-paper |
+| --- | ---: | ---: | ---: |
+| **Total lines** | 96 | 86 | 98 |
+| **Sections** | 7 (structured) | 7 (structured) | 8 (structured, w/ Keywords) |
+| **Existing approaches analyzed** | 0 | 2 | 3 |
+| **Conflicting requirements identified** | 0 (implicit) | 0 (implicit) | 0 (implicit) |
+| **Formal invariants/proofs** | 1 (prefix-determinability) | 1 (prefix安定性) | 1 (Prefix安定性, formal def.) |
+| **Testable properties** | 0 | 0 | 0 |
+| **Evaluation metrics defined** | 0 | 0 | 4 (§7) |
+| **Constraints/limitations disclosed** | 2 | 2 | 2 |
+| **Keywords** | No | No | Yes |
+| **References** | No | No | No |
+
+#### Notable qualitative differences (CS1)
+
+- **B2** は R1–R4 の形式的要件定義を自発的に生成。B1 にはない特徴。
+- **B3** は Prefix安定性の数学的定義（時刻 t、プレフィックス B_≤t の記法）を導入。さらに §7「評価指標と実験計画」で4つの計測可能な指標を定義。これは B1・B2 にない独自の貢献。
+- **B3** は3つの代替方式（プレースホルダ＋再描画、二段階生成、構造化セグメント列）を分析。B2 は2つ、B1 は0。
+
+### CS2: Multi-Tenant Session Management (B-variants)
+
+| Metric | B1: Paper-format | B2: Paper-write | B3: Academic-paper |
+| --- | ---: | ---: | ---: |
+| **Total lines** | 83 | 117 | 109 |
+| **Sections** | 8 (structured) | 8 (structured) | 9 (structured, w/ Keywords/Refs) |
+| **Existing approaches analyzed** | 4 | 3 | 4 |
+| **Conflicting requirements identified** | 0 (implicit) | 0 (implicit) | 0 (implicit) |
+| **Formal invariants/proofs** | 0 | 0 | 0 |
+| **Testable properties** | 0 | 0 | 0 |
+| **Constraints/limitations disclosed** | 1 | 1 | 1 |
+| **Formalized requirements (R1-R4)** | No | Yes (§2) | Yes (§2, R1-R4) |
+| **Comparison table** | Yes (§3) | No | Yes (§4) |
+| **Keywords** | Yes | No | Yes |
+| **References** | Yes (3) | No | Yes (4) |
+
+#### Notable qualitative differences (CS2)
+
+- **B2** は B1 より 41% 長い出力（117 vs 83行）。推奨方式を5つのサブセクション（4.1–4.5）で詳述し、マルチテナント固有の注意点を独立セクション化。
+- **B3** は要件を R1–R4 として形式化し、4方式の比較評価表を生成。参考文献4件（RFC 3件 + OWASP）を含む。
+- **B2** は3方式のみ比較（B1・B3 は4方式）。ただし各方式の分析深度は B2 が最も詳細。
+
+### Aggregate B-Variant Summary (N=2)
+
+| Metric | B1 (avg) | B2 (avg) | B3 (avg) | C (avg, ref) |
+| --- | ---: | ---: | ---: | ---: |
+| Total lines | 90 | 102 | 104 | 129 |
+| Existing approaches analyzed | 2.0 | 2.5 | 3.5 | 4.0 |
+| Conflicting requirements | 0 | 0 | 0 | **2.5** |
+| Formal invariants/proofs | 0.5 | 0.5 | 0.5 | 0.5 |
+| Testable properties | 0 | 0 | 0 | **6.5** |
+| Constraints disclosed | 1.5 | 1.5 | 1.5 | 4.0 |
+
+### Key findings
+
+1. **Conflicting requirements と testable properties は全 B バリアントで 0**。プロンプト文言を「形式で書いて」から「論文を書いて」「学術論文を書いて」に変えても、これらの行動は引き出されなかった。C（PDD テンプレート）のみがこれらを一貫して引き出す。
+
+2. **プロンプト文言による段階的改善は存在する**。B1 → B2 → B3 の順で以下の傾向:
+   - 出力量: B1(90) < B2(102) < B3(104)
+   - 既存アプローチ分析: B1(2.0) < B2(2.5) < B3(3.5)
+   - 学術的慣行（Keywords, References, 要件形式化）: B3 が最も充実
+
+3. **B3 固有の貢献**: CS1 で「評価指標と実験計画」セクション（4つの計測指標）を自発生成。これは Given/When/Then 形式ではないが、検証可能な基準を定義している点で注目に値する。
+
+4. **2種類の効果の分離**:
+   - **ペルソナ/フレーミング効果**（B1→B3）: 形式性・分析深度・学術的慣行が段階的に向上
+   - **テンプレート/チェックリスト効果**（B→C）: conflicting requirements と testable properties が質的に飛躍
+   - 両効果は異なる次元で作用しており、ペルソナ効果だけでは C の行動を引き出せない
+
+5. **ペルソナ仮説への含意**: 「論文を書いて」がLLMの研究者ペルソナを部分的に活性化する証拠はある（より学術的な出力）。しかし、研究者ペルソナだけでは「矛盾する要求の明示的定義」「検証可能な性質の列挙」には至らない。これらは研究者の「態度」ではなく、テンプレートによる「行動の具体的指示」によって引き出される。
+
+原文: `docs/examples/cs{1,2}-{paper-format,paper-write,academic-paper}.md`
+
+---
+
 ## Supplementary: o3 Two-Condition Comparison (Historical)
 
 > **実験条件**: Model: OpenAI o3 (via Codex) | N: 2 | Date: 2026-02 | Evaluator: 著者
