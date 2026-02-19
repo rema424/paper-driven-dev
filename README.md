@@ -58,13 +58,27 @@ claude --plugin-dir ./paper-driven-dev
 
 - [使い方ガイド](docs/guide.md) — 詳しい使い方、適用基準、関連手法との比較
 - [サンプル: RAG 引用リナンバリング](docs/examples/citation-rendering.md) — 実際の生成例
+- [サンプル: セッション管理方式の選定](docs/examples/session-management.md) — マルチテナント SaaS における認証設計分析
 
 ## 今後の計画
 
-- [ ] 異なるドメインでのサンプル追加（認証設計、パフォーマンス最適化等）
-- [ ] Before/After の定量比較（通常プロンプト vs 論文形式）
+### Done
+
+- [x] Before/After の定量比較（2ケーススタディ、[comparison-data.md](paper/comparison-data.md)）
+- [x] 学術論文ドラフトの執筆（[paper-driven-dev.md](paper/paper-driven-dev.md)）
+- [x] 内部監査（Claude Code / Codex による独立レビュー + ディスカッション）
+
+### In Progress
+
+- [ ] 監査指摘への対応（主張強度の調整、交絡因子の議論追加）
+
+### Planned
+
+- [ ] 異なるドメインでのサンプル追加（パフォーマンス最適化等）
 - [ ] 複数 LLM での再現性確認（Claude, GPT, Gemini）
-- [ ] 学術論文ドラフトの執筆・公開
+- [ ] テンプレートなし中間条件との比較
+- [ ] 強化版プロンプト（CoT + ペルソナ）との比較
+- [ ] 論文の投稿・公開
 
 ## License
 
