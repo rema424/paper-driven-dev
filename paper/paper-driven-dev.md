@@ -238,17 +238,26 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 
 ## 7. Future Work
 
-1. **Controlled comparison experiments**: Compare output quality across (a) conventional prompting, (b) spec-driven format, and (c) paper format, using independent evaluators and defined quality metrics.
-2. **Multi-domain validation**: Apply PDD to authentication design, performance optimization, data modeling, and other problem domains.
-3. **Multi-model reproducibility**: Test PDD with GPT, Gemini, and other LLMs.
-4. **Automated quality metrics**: Develop quantitative measures for design analysis quality (e.g., number of alternatives considered, specificity of limitations, testability of properties).
-5. **Downstream impact**: Measure whether PDD-analyzed features exhibit lower bug rates or higher test coverage compared to conventionally designed features.
+1. **D condition (structured checklist without paper framing)**: Test a condition where the same analysis steps (conflicting requirements, existing approaches, testable properties, constraints) are requested as a checklist without academic paper framing. This would separate the template effect from the paper format effect within condition C.
+2. **Repeated trials (N≥5)**: Run each condition multiple times on the same problems to assess within-condition variability and establish confidence intervals for the observed differences.
+3. **Blinded evaluation**: Have independent evaluators (not the authors) count the indicators without knowing which condition produced each output.
+4. **Per-line normalization**: Normalize co-primary indicator counts by output length to control for the output volume confound identified in §5.5.
+5. **Multi-model validation**: Test PDD with Claude, Gemini, and other LLMs to assess whether the observed pattern generalizes beyond GPT-5.2 and o3.
+6. **Multi-domain validation**: Apply PDD to authentication design, performance optimization, data modeling, and other problem domains.
+7. **Downstream impact measurement**: Measure whether PDD-analyzed designs lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally designed features.
 
 ## 8. Conclusion
 
-Paper-Driven Development suggests that instructing LLMs to produce design analysis in academic paper format is associated with improved output quality along four dimensions: exhaustiveness of alternatives, criticality of evaluation, formality of justification, and testability of properties. The methodology requires no model fine-tuning or special tooling—only a structured prompt template.
+In an exploratory case study with GPT-5.2 (N=2, two software design problems), changing the instruction framing from conventional prompting to paper-format prompting was associated with increased output structure and exploration breadth. However, three co-primary indicators—conflicting requirements, testable properties, and constraints disclosed—were consistently observed only under the PDD template condition, not under any framing variant. We term this the framing effect ceiling.
 
-The key insight is that, in our case studies (both involving problems with relatively clear optimal solutions), paper format did not lead to different design conclusions—both conventional and PDD prompting reached the same solution. Rather, the template helps LLMs **justify and verify** their answers, producing analysis that is more reviewable, more testable, and more honest about its limitations.
+We interpret the template's role as information externalization: the §1–§7 structure specifies what analysis sections to write, preventing the omission of steps that LLMs can perform but do not spontaneously produce. All conditions reached the same correct design conclusions—the difference was in justification and verifiability, not in the answer itself.
+
+For practitioners, we propose a two-tier guideline:
+
+- **Tier 1 (zero cost)**: Change the instruction framing from "analyze this problem" to "write a paper about this problem." This was associated with increased exploration breadth and structural formality in our data.
+- **Tier 2 (template cost)**: For critical design decisions where verifiability matters, apply the PDD template (§1–§7) to externalize conflicting requirements, testable properties, and constraints that may otherwise be omitted.
+
+These findings are limited to two case studies on a single model with author evaluation. Causal claims, generalization, and downstream impact validation remain future work (§7).
 
 PDD is available as an open-source Claude Code plugin at https://github.com/rema424/paper-driven-dev.
 
@@ -275,3 +284,7 @@ PDD is available as an open-source Claude Code plugin at https://github.com/rema
 ### Tutorial / Explainer
 
 [8] Learn Prompting, "Role Prompting." https://learnprompting.org/docs/advanced/zero_shot/role_prompting
+
+### Books
+
+[9] A. Gawande, "The Checklist Manifesto: How to Get Things Right," Metropolitan Books, 2009.
