@@ -11,6 +11,14 @@
 - **PDD prompt**: §1–§7 template with section guidelines
 - **Measurement**: Manual counting by authors (automated metrics are future work)
 
+### Line Counting Rules
+
+- **Total lines**: 出力全体の行数。空行を含む。
+- **空行の扱い**: 空行はセクション区切りとして存在するため Total lines に含めるが、「内容のある行」として個別にカウントする指標（e.g., existing approaches analyzed）には含めない。
+- **プロンプト行の除外**: ユーザーの入力プロンプト自体はカウント対象外。LLM の出力のみをカウントする。
+- **コードブロック**: コードブロック内の行も Total lines に含める。
+- **再現性**: 各出力の原文は `docs/examples/` に保存されており、カウントの再現が可能。
+
 > **注意**: Before（Conventional）プロンプトは最適化していない。CoT やペルソナプロンプティング等を組み合わせた強化版プロンプトとの比較は将来課題である。
 
 ## Case Study 1: RAG Citation Renumbering
