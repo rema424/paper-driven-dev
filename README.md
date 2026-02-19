@@ -67,17 +67,20 @@ claude --plugin-dir ./paper-driven-dev
 - [x] Before/After の定量比較（2ケーススタディ、[comparison-data.md](paper/comparison-data.md)）
 - [x] 学術論文ドラフトの執筆（[paper-driven-dev.md](paper/paper-driven-dev.md)）
 - [x] 内部監査（Claude Code / Codex による独立レビュー + ディスカッション）
+- [x] 3条件比較実験（A: Conventional / B: Paper-format / C: PDD Template）の実施
+- [x] B バリアント実験（B1/B2/B3）によるフレーミング効果の分離検証
+- [x] CC×Codex 構造化議論に基づく論文・文書の全面改訂
 
 ### In Progress
 
-- [ ] 監査指摘への対応（主張強度の調整、交絡因子の議論追加）
+- [ ] 論文の最終レビューと投稿準備
 
 ### Planned
 
 - [ ] 異なるドメインでのサンプル追加（パフォーマンス最適化等）
 - [ ] 複数 LLM での再現性確認（Claude, GPT, Gemini）
-- [ ] テンプレートなし中間条件との比較
 - [ ] 強化版プロンプト（CoT + ペルソナ）との比較
+- [ ] D 条件（論文形式なしのチェックリスト）の検証
 - [ ] 論文の投稿・公開
 
 ## License
