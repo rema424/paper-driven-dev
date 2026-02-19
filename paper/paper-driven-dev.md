@@ -209,9 +209,13 @@ PDD is available as an open-source Claude Code plugin at https://github.com/rema
 
 ## References
 
+### Academic
+
 [1] J. Wei et al., "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models," NeurIPS 2022. https://arxiv.org/abs/2201.11903
 
 [2] Y. Tam et al., "Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models," 2024. https://arxiv.org/abs/2408.02442
+
+### Practitioner
 
 [3] Thoughtworks, "Spec-driven development: unpacking 2025's new engineering practices," 2025. https://www.thoughtworks.com/en-us/insights/blog/agile-engineering-practices/spec-driven-development-unpacking-2025-new-engineering-practices
 
@@ -222,5 +226,7 @@ PDD is available as an open-source Claude Code plugin at https://github.com/rema
 [6] M. Nygard, "Documenting Architecture Decisions," 2011. https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions
 
 [7] Google Engineering Practices, "Design Documents." https://google.github.io/eng-practices/
+
+### Tutorial / Explainer
 
 [8] Learn Prompting, "Role Prompting." https://learnprompting.org/docs/advanced/zero_shot/role_prompting
