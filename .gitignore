@@ -11,6 +11,7 @@
 !.internal/docs/**
 !.internal/prompts
 !.internal/prompts/**
+!.internal/roadmap.md
 
 # Session work files
 .claude/plans/
