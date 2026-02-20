@@ -16,5 +16,9 @@
 # Session work files
 .claude/plans/
 
+# Evaluation blinding secrets (do not commit)
+paper/evaluation/blinding/mapping-secret.json
+paper/evaluation/calibration/mapping-secret.json
+
 # Node.js
 node_modules/
