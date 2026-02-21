@@ -380,18 +380,15 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 ## 8. Conclusion
 
-In an exploratory case study with GPT-5.2 (N=2, two software design problems), changing the instruction framing from conventional prompting to paper-format prompting was associated with increased output structure and exploration breadth. However, two co-primary indicators—conflicting requirements and testable properties—were absent in all non-template conditions and appeared only under the PDD template condition. A self-blinded rescoring confirmed this pattern. A third indicator (constraints disclosed) showed a similar directional pattern but was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement), illustrating the need for rubric refinement in future work. We term the observed limit on framing effects the framing effect ceiling.
+In a four-condition controlled experiment with GPT-5.2 (N=10 per condition, two software design problems), we found that structured analysis requirements — explicitly prompting an LLM to identify conflicting requirements, analyze existing approaches, derive testable properties, and disclose constraints — dramatically improve design analysis quality as measured by two co-primary indicators. Conditions with structured requirements (C: PDD template, D: structured checklist) achieved complete separation from conditions without them (A: conventional, B: paper-format), with Cliff's δ = 1.000 for all pairwise comparisons (§4.2).
 
-We interpret the template's role as information externalization: the §1–§7 structure specifies what analysis sections to write, preventing the omission of steps that LLMs can perform but do not spontaneously produce. All conditions reached the same correct design conclusions—the difference was in justification and verifiability, not in the answer itself.
+Crucially, the PDD template (C) and the structured checklist (D) produced statistically equivalent co-primary indicator levels (TOST p < 0.0001; §4.3). This equivalence triggered the pre-registered pivot criterion (protocol §9.1): the active ingredient is the structuring of analysis steps, not the academic paper format. Paper-format framing contributes a limited secondary effect — eliciting testable properties through mathematical formalization (B: TP ≈ 2.0 vs A: TP ≈ 0.2; §4.4) — but this effect is dwarfed by structured requirements (C/D: TP ≈ 5.2–5.3).
 
-For practitioners, we propose a two-tier guideline:
+We interpret the mechanism as **structured elicitation through information externalization** (§5.1): LLMs possess the analytical capabilities to identify trade-offs and derive verification conditions, but do not reliably exercise them without explicit prompting. Structured requirements — whether formatted as a paper template or a checklist — convert this sporadic capability into consistent output, analogous to how surgical checklists reduce omission errors [9].
 
-- **Tier 1 (zero cost)**: Change the instruction framing from "analyze this problem" to "write a paper about this problem." This was associated with increased exploration breadth and structural formality in our data.
-- **Tier 2 (template cost)**: For critical design decisions where verifiability matters, apply the PDD template (§1–§7) to externalize conflicting requirements, testable properties, and constraints that may otherwise be omitted.
+For practitioners, the key implication is that a structured checklist is sufficient. Academic paper format is not required to obtain the benefits of structured analysis. We provide both implementations — the PDD template and an equivalent checklist — as open-source tools at https://github.com/rema424/paper-driven-dev.
 
-These findings are limited to two case studies on a single model with author evaluation. Causal claims, generalization, and downstream impact validation remain future work (§7).
-
-PDD is available as an open-source Claude Code plugin at https://github.com/rema424/paper-driven-dev.
+These findings are limited to two problem domains on a single model with author evaluation. Third-party blinded evaluation is in progress (§4.6). Multi-model validation, domain generalization, and downstream impact measurement remain future work (§7).
 
 ## References
 
