@@ -9,20 +9,23 @@ We present Paper-Driven Development (PDD), a methodology for LLM-assisted softwa
 
 ## 1. Introduction
 
-Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2].
+Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2], but the mechanisms underlying these improvements — and which aspects of prompt structure matter most — remain poorly understood.
 
-We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (Appendix C) revealed that this framing effect has a ceiling: two co-primary indicators—conflicting requirements and testable properties—remained at zero regardless of framing variations. These indicators appeared only when the PDD template (§1–§7 section guidelines) was provided.
+This study originated from an observation we called **Paper-Driven Development (PDD)**: instructing an LLM to "write a paper" about a software design problem, guided by a seven-section academic paper template (§1–§7), appeared to produce more thorough design analysis than conventional prompting. An exploratory Phase 1 study (N=2; Appendix C) confirmed that two verification-relevant indicators — conflicting requirements identified and testable properties derived — appeared only under the PDD template condition, remaining at zero under both conventional prompting and paper-format-only instruction. However, this Phase 1 design could not distinguish two confounded factors within the PDD template: (1) the explicit analysis step requirements (e.g., "identify conflicting requirements," "derive testable properties") and (2) the academic paper framing.
 
-We interpret the template's role not as eliciting new capabilities from LLMs, but as **information externalization**: by specifying sections for existing approaches (§3), conflicting requirements (§1.2), testable properties (§6), and constraints (§7), the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce under conventional or paper-format-only prompting.
+To separate these factors, we designed a fourth condition — a structured checklist (D) that requests the same analysis steps as the PDD template but without academic paper framing. If D achieves equivalent results to C (PDD template), the active ingredient is the structuring of analysis steps, not the paper format. We pre-registered this equivalence test as a pivot criterion (protocol §9.1): if D ≈ C, the paper's thesis pivots from "PDD template superiority" to "structured analysis requirements as the active ingredient."
 
-We term this methodology **Paper-Driven Development (PDD)** and contribute:
+The Phase 2 experiment (4 conditions × 2 case studies × 5 runs = 40 executions with GPT-5.2) produced three main findings: (1) conditions with structured analysis requirements ({C, D}) dramatically outperform those without ({A, B}), with complete separation on both co-primary indicators (Cliff's δ = 1.000); (2) the PDD template (C) and the structured checklist (D) produce statistically equivalent results (TOST p < 0.0001), triggering the pre-registered pivot; and (3) paper-format framing alone (B) contributes a limited secondary effect on testable properties through mathematical formalization, but this effect is dwarfed by structured requirements.
 
-- A seven-section template (§1–§7) optimized for software design analysis
-- Two case studies (citation rendering, session management) comparing three prompting conditions (A: conventional, B: paper-format, C: PDD template) and three B-variant framings (B1/B2/B3)
-- A two-axis explanatory model distinguishing framing effects from template effects
-- A self-blinded rescoring procedure that confirmed the robustness of two co-primary indicators and identified measurement instability in a third (leading to its post-hoc reclassification as exploratory; §5.6)
-- Tier 1 / Tier 2 practical guidelines for practitioners
-- An open-source Claude Code plugin
+We interpret the mechanism as **structured elicitation through information externalization**: LLMs possess the analytical capabilities to identify trade-offs and derive verification conditions, but do not reliably exercise them without explicit prompting. Structured requirements — whether formatted as a paper template or a checklist — convert this sporadic capability into consistent output.
+
+This paper contributes:
+
+- Experimental evidence that structured analysis requirements produce complete separation (δ = 1.000) in verification-relevant indicators (conflicting requirements, testable properties) compared to unstructured prompting
+- An equivalence demonstration (TOST) showing that academic paper framing provides no additional benefit over a structured checklist for co-primary indicators
+- A three-tier hierarchy of prompting effects (A < B << {C, D}) clarifying the limited role of paper-format framing
+- A pre-registered four-condition experimental protocol with an explicit pivot criterion (§9.1), which was activated by the data
+- Two equivalent open-source implementations (PDD template and structured checklist) as Claude Code plugins
 
 ## 2. Background
 
