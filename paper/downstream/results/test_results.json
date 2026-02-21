@@ -1,0 +1,2686 @@
+{
+  "cs1": [
+    {
+      "impl_file": "cs1-checklist-run1.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs1-checklist-run2.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs1-checklist-run3.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs1-checklist-run4.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs1-checklist-run5.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run5"
+    },
+    {
+      "impl_file": "cs1-conventional-run1.py",
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "pass_rate": 0.8,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "failed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "failed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "'Hello world with no citation'\nE     \nE     - Hello world with no citation\nE     + Hello world with no citations\nE     ?                             +\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_first_appearance_order\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_text_preservation\n========================= 2 failed, 8 passed in 0.01s ==========================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs1-conventional-run2.py",
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "pass_rate": 0.8,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "failed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "failed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "'Hello world with no citation'\nE     \nE     - Hello world with no citation\nE     + Hello world with no citations\nE     ?                             +\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_first_appearance_order\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_text_preservation\n========================= 2 failed, 8 passed in 0.01s ==========================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs1-conventional-run3.py",
+      "total": 10,
+      "passed": 8,
+      "failed": 2,
+      "errors": 0,
+      "pass_rate": 0.8,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "failed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "failed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "'Hello world with no citation'\nE     \nE     - Hello world with no citation\nE     + Hello world with no citations\nE     ?                             +\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_first_appearance_order\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_text_preservation\n========================= 2 failed, 8 passed in 0.01s ==========================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs1-conventional-run4.py",
+      "total": 10,
+      "passed": 6,
+      "failed": 4,
+      "errors": 0,
+      "pass_rate": 0.6,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "failed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "failed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "failed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "failed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "========================\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_first_appearance_order\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_text_preservation\nFAILED paper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations\nFAILED paper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering\n========================= 4 failed, 6 passed in 0.02s ==========================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs1-conventional-run5.py",
+      "total": 10,
+      "passed": 6,
+      "failed": 4,
+      "errors": 0,
+      "pass_rate": 0.6,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "failed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "failed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "failed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "failed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "========================\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_first_appearance_order\nFAILED paper/downstream/tests/test_cs1.py::TestCS1BasicRenumbering::test_text_preservation\nFAILED paper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations\nFAILED paper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering\n========================= 4 failed, 6 passed in 0.01s ==========================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run5"
+    },
+    {
+      "impl_file": "cs1-paper-format-run1.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs1-paper-format-run2.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs1-paper-format-run3.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs1-paper-format-run4.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs1-paper-format-run5.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run5"
+    },
+    {
+      "impl_file": "cs1-pdd-template-run1.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs1-pdd-template-run2.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs1-pdd-template-run3.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs1-pdd-template-run4.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs1-pdd-template-run5.py",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_single_citation",
+          "result": "passed"
+        },
+        {
+          "name": "test_two_different_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_first_appearance_order",
+          "result": "passed"
+        },
+        {
+          "name": "test_text_preservation",
+          "result": "passed"
+        },
+        {
+          "name": "test_repeated_source_same_number",
+          "result": "passed"
+        },
+        {
+          "name": "test_number_stability_across_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_matches_citations",
+          "result": "passed"
+        },
+        {
+          "name": "test_source_list_ordering",
+          "result": "passed"
+        },
+        {
+          "name": "test_empty_stream",
+          "result": "passed"
+        },
+        {
+          "name": "test_multiple_citations_in_one_token",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "ests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_matches_citations PASSED [ 70%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_source_list_ordering PASSED [ 80%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_empty_stream PASSED [ 90%]\npaper/downstream/tests/test_cs1.py::TestCS1SourceListConsistency::test_multiple_citations_in_one_token PASSED [100%]\n\n============================== 10 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs1",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run5"
+    }
+  ],
+  "cs2": [
+    {
+      "impl_file": "cs2-checklist-run1.py",
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "errors": 0,
+      "pass_rate": 0.9333333333333333,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "failed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "AILURES ===================================\n______________ TestCS2EdgeCases.test_idempotent_bulk_invalidation ______________\npaper/downstream/tests/test_cs2.py:156: in test_idempotent_bulk_invalidation\n    assert count2 == 0\nE   assert 2 == 0\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation\n========================= 1 failed, 14 passed in 0.02s =========================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs2-checklist-run2.py",
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "errors": 0,
+      "pass_rate": 0.9333333333333333,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "failed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "AILURES ===================================\n______________ TestCS2EdgeCases.test_idempotent_bulk_invalidation ______________\npaper/downstream/tests/test_cs2.py:156: in test_idempotent_bulk_invalidation\n    assert count2 == 0\nE   assert 2 == 0\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation\n========================= 1 failed, 14 passed in 0.01s =========================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs2-checklist-run3.py",
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "errors": 0,
+      "pass_rate": 0.9333333333333333,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "failed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "AILURES ===================================\n______________ TestCS2EdgeCases.test_idempotent_bulk_invalidation ______________\npaper/downstream/tests/test_cs2.py:156: in test_idempotent_bulk_invalidation\n    assert count2 == 0\nE   assert 2 == 0\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation\n========================= 1 failed, 14 passed in 0.01s =========================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs2-checklist-run4.py",
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "errors": 0,
+      "pass_rate": 0.9333333333333333,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "failed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "AILURES ===================================\n______________ TestCS2EdgeCases.test_idempotent_bulk_invalidation ______________\npaper/downstream/tests/test_cs2.py:156: in test_idempotent_bulk_invalidation\n    assert count2 == 0\nE   assert 2 == 0\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation\n========================= 1 failed, 14 passed in 0.02s =========================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs2-checklist-run5.py",
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "errors": 0,
+      "pass_rate": 0.9333333333333333,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "failed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "AILURES ===================================\n______________ TestCS2EdgeCases.test_idempotent_bulk_invalidation ______________\npaper/downstream/tests/test_cs2.py:156: in test_idempotent_bulk_invalidation\n    assert count2 == 0\nE   assert 2 == 0\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation\n========================= 1 failed, 14 passed in 0.01s =========================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "checklist",
+      "condition_label": "D",
+      "run": "run5"
+    },
+    {
+      "impl_file": "cs2-conventional-run1.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs2-conventional-run2.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs2-conventional-run3.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs2-conventional-run4.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs2-conventional-run5.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "conventional",
+      "condition_label": "A",
+      "run": "run5"
+    },
+    {
+      "impl_file": "cs2-paper-format-run1.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs2-paper-format-run2.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs2-paper-format-run3.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs2-paper-format-run4.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs2-paper-format-run5.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "paper-format",
+      "condition_label": "B",
+      "run": "run5"
+    },
+    {
+      "impl_file": "cs2-pdd-template-run1.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run1"
+    },
+    {
+      "impl_file": "cs2-pdd-template-run2.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run2"
+    },
+    {
+      "impl_file": "cs2-pdd-template-run3.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run3"
+    },
+    {
+      "impl_file": "cs2-pdd-template-run4.py",
+      "total": 15,
+      "passed": 15,
+      "failed": 0,
+      "errors": 0,
+      "pass_rate": 1.0,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "n PASSED [ 73%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_idempotent_bulk_invalidation PASSED [ 80%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_mixed_invalidation_counts PASSED [ 86%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_token_is_nonempty_string PASSED [ 93%]\npaper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_multi_tenant_mixed_operations PASSED [100%]\n\n============================== 15 passed in 0.01s ==============================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run4"
+    },
+    {
+      "impl_file": "cs2-pdd-template-run5.py",
+      "total": 15,
+      "passed": 14,
+      "failed": 1,
+      "errors": 0,
+      "pass_rate": 0.9333333333333333,
+      "tests": [
+        {
+          "name": "test_create_and_validate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalid_token",
+          "result": "passed"
+        },
+        {
+          "name": "test_unique_tokens",
+          "result": "passed"
+        },
+        {
+          "name": "test_concurrent_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_all_user_sessions",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_does_not_affect_others",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidation_is_immediate",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_single_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_invalidate_nonexistent_session",
+          "result": "passed"
+        },
+        {
+          "name": "test_tenant_isolation",
+          "result": "passed"
+        },
+        {
+          "name": "test_session_recreation_after_bulk_invalidation",
+          "result": "failed"
+        },
+        {
+          "name": "test_idempotent_bulk_invalidation",
+          "result": "passed"
+        },
+        {
+          "name": "test_mixed_invalidation_counts",
+          "result": "passed"
+        },
+        {
+          "name": "test_token_is_nonempty_string",
+          "result": "passed"
+        },
+        {
+          "name": "test_multi_tenant_mixed_operations",
+          "result": "passed"
+        }
+      ],
+      "compile_success": true,
+      "stdout": "CIsImRldmljZV9pZCI6InBob25lIiwiaWF0IjoxNzcxNzE0NjA0LCJleHAiOjE3NzE3MTQ5MDR9.b5eGbABSXBrLG8Mm8im7BNVHVcZYeuSq4rrfTGEcMFo')\nE    +    where validate_session = <downstream_impl.SessionManager object at 0x10197e7b0>.validate_session\n=========================== short test summary info ============================\nFAILED paper/downstream/tests/test_cs2.py::TestCS2EdgeCases::test_session_recreation_after_bulk_invalidation\n========================= 1 failed, 14 passed in 0.02s =========================\n",
+      "stderr": "",
+      "cs": "cs2",
+      "condition": "pdd-template",
+      "condition_label": "C",
+      "run": "run5"
+    }
+  ]
+}
