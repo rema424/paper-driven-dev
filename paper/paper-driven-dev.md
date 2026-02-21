@@ -339,6 +339,35 @@ The externalization effect replicates with identical effect sizes: Cliff's δ = 
 
 **Consistency across case studies.** Both CS1 and CS2 show {C, D} > {A, B} for both CR and TP with Sonnet, confirming cross-domain consistency within the replication.
 
+### 4.8 Downstream Outcome: Implementation Test Pass Rate
+
+To address the limitation that co-primary indicators measure the *presence* of verification-relevant information but not its *downstream utility* (§5.5), we conducted a downstream outcome measurement: whether design analyses produced under different conditions lead to functionally correct code implementations.
+
+**Method.** All 40 design analysis outputs (4 conditions × 2 CS × 5 runs) were used as design input for code implementation. A separate LLM (Claude Sonnet 4.6) generated Python implementations from each design analysis, using a standardized prompt that included the problem statement, the design analysis output, and an interface specification. The implementation model had no access to the hidden test suites. Hidden test suites were derived solely from the original problem requirements: 10 tests for CS1 (citation renumbering) and 15 tests for CS2 (session management, including 5 edge-case tests targeting idempotency, tenant isolation, and state recovery). A reference implementation verified that all tests are satisfiable (10/10 and 15/15 respectively).
+
+*Table 9. Downstream implementation test pass rates by condition.*
+
+| Condition | CS1 Pass Rate | CS2 Pass Rate | Combined Mean |
+|-----------|:------------:|:------------:|:-------------:|
+| A (conventional) | 72.0% (SD=11.0) | 100.0% (SD=0.0) | 86.0% (SD=16.5) |
+| B (paper-format) | 100.0% (SD=0.0) | 100.0% (SD=0.0) | 100.0% (SD=0.0) |
+| C (PDD template) | 100.0% (SD=0.0) | 98.7% (SD=3.0) | 99.3% (SD=2.1) |
+| D (checklist) | 100.0% (SD=0.0) | 93.3% (SD=0.0) | 96.7% (SD=3.5) |
+
+**Main analysis.** The pre-registered comparison {C,D} vs {A,B} on test pass rate was not significant (stratified permutation test, p = 0.071, Cliff's δ = 0.025 [−0.275, 0.312]). The externalization effect observed for co-primary indicators does not directly translate to a downstream implementation quality advantage when using a capable implementation model.
+
+**Post-hoc finding.** The comparison B vs A was significant (p = 0.0001, Cliff's δ = 0.500 [0.200, 0.800]). This difference is driven entirely by CS1, where condition A implementations consistently failed two tests related to token buffering and text preservation (0% pass rate on `test_first_appearance_order` and `test_text_preservation`), while B, C, and D all achieved 100%.
+
+**Qualitative failure analysis.** The pattern of failures reveals an unexpected interaction between analysis depth and implementation complexity:
+
+- *CS1 condition A failures*: Conventional analysis outputs lacked sufficient detail about streaming token boundary handling. The implementation model produced code that buffered partial patterns (`source_`) excessively, consuming trailing characters from non-citation text. All 5 runs exhibited the same systematic failure.
+- *CS2 condition D failures*: All 5 checklist-derived implementations failed the idempotent bulk invalidation test (`test_idempotent_bulk_invalidation`). The checklist analyses specified a session-version counter architecture (atomic INCR) that correctly invalidates all sessions but does not track which sessions were *already* invalidated — returning the total session count on repeated calls rather than 0. This represents an over-engineered design choice guided by the analysis that introduces a subtle edge-case bug.
+- *CS2 condition C failure*: One of 5 PDD template runs (run 5) failed `test_session_recreation_after_bulk_invalidation`. The analysis specified a JWT-based epoch architecture where bulk invalidation sets `revoked_after` to the current timestamp; new sessions created in the same second inherit `iat ≤ revoked_after`, causing immediate rejection.
+
+**Interpretation.** The downstream results present a nuanced picture. The main externalization effect ({C,D} vs {A,B}) — which showed complete separation (δ = 1.000) on co-primary indicators — does not produce a statistically significant improvement in implementation test pass rates. This is partly due to a ceiling effect: a capable implementation model (Sonnet 4.6) can produce correct implementations even from minimal design analyses, particularly for CS2 where all conditions A and B achieved 100%. The interesting variance is concentrated in CS1 (where A underperforms) and in CS2 edge cases (where D and marginally C underperform).
+
+The qualitative finding that structured analyses (C, D) occasionally led to *more complex* architectures that introduced edge-case bugs — while unstructured analyses (A, B) led to simpler, correct implementations — suggests a trade-off between analysis thoroughness and implementation simplicity. This is consistent with the observation that structured elicitation produces richer design documentation (§4.1) which, when faithfully followed by an implementation model, may over-engineer solutions for problems where simpler approaches suffice.
+
 ## 5. Discussion
 
 ### 5.1 Structured Elicitation as the Active Ingredient
@@ -365,6 +394,8 @@ The data reveal a three-tier hierarchy of prompting effects on co-primary indica
 
 This three-tier structure clarifies the role of paper-format framing: it exists but is limited. Framing contributes a secondary effect on TP through indirect formalization, but this effect is dwarfed by the primary effect of structured requirements. The practical implication reinforces §5.1: while changing instruction framing to "write a paper" may provide modest benefits (particularly for eliciting formal properties), the substantive improvement comes from explicitly specifying which analysis steps to perform.
 
+**Downstream caveat.** The three-tier hierarchy on co-primary indicators does not map linearly to downstream implementation quality (§4.8). When a capable model implements designs from each condition, the pass rate ordering is B ≥ C > D > A — with condition A's deficit concentrated in CS1 (streaming buffer bugs from insufficient analysis detail) and condition D's deficit in CS2 (over-engineered revocation architecture introducing edge-case bugs). This suggests that the relationship between analysis thoroughness and implementation quality is non-monotonic: both too little analysis (A) and analysis that over-specifies architecture (D in some cases) can reduce implementation correctness.
+
 **Cross-model caveat.** The three-tier hierarchy is partially model-specific. In the Sonnet 4.6 replication (§4.7), the intermediate B effect (Tier 2) was absent: B produced TP = 0, identical to A. The hierarchy collapsed to a two-tier structure: A ≈ B << {C, D}. This suggests that the mathematical formalization pathway — through which paper-format framing elicits testable properties in GPT-5.2 — is not a universal model behavior. The primary externalization effect (Tier 1/2 vs Tier 3), in contrast, replicated with identical effect sizes across both models, confirming its robustness.
 
 ### 5.3 Hypotheses for Prompting Effects
@@ -390,7 +421,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 - **Output length confound**: Condition C produced longer outputs (105.3 lines avg) than A (38.9 lines) and B (68.5 lines). However, line-normalized analysis (§4.5) confirms that the externalization effect persists after controlling for output volume: D produces the highest indicator density (CR/TL, TP/TL) despite shorter outputs than C, indicating that the effect is not an artifact of output length.
 - **Prompt optimization**: The conventional prompt (A) was not optimized with CoT, persona, or other prompting techniques. A well-engineered conventional prompt might narrow the observed gap between A and {C, D}. However, B (which implicitly includes persona activation) still shows a large gap with {C, D} (Cliff's δ = 1.000), suggesting that standard prompting enhancements alone are unlikely to close the full gap.
 - **Hallucination risk**: LLMs may fabricate non-existent approaches or citations. The structured requirements mitigate this by directing analysis toward known technologies, but do not eliminate the risk.
-- **Confirmation bias**: Structured output may *appear* more rigorous without improving actual design quality. No downstream outcome measurement (e.g., bug count, test coverage) was performed. The co-primary indicators measure the presence of verification-relevant information, not its correctness or downstream utility.
+- **Confirmation bias**: Structured output may *appear* more rigorous without improving actual design quality. A preliminary downstream outcome measurement (§4.8) found that the externalization effect on co-primary indicators does not directly translate to implementation test pass rate improvements (p = 0.071), partly due to ceiling effects with a capable implementation model. The co-primary indicators measure the presence of verification-relevant information; their relationship to downstream implementation quality is complex (§4.8).
 - **Temperature default**: All LLM executions used the default temperature setting (not explicitly controlled). Temperature variation could affect output variability, though the low within-condition variance observed (§4.1) suggests that this parameter had limited impact in practice.
 
 ### 5.6 Robustness Check: Self-Blinded Rescoring
@@ -434,7 +465,7 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 1. **Human third-party blinded evaluation**: Independent human evaluators scoring outputs without condition labels (§3.7). Preliminary LLM-based evaluation (§4.6) confirms excellent agreement on co-primary indicators (ICC: CR = 0.985, TP = 0.908), but human evaluation is needed to rule out correlated LLM biases. Evaluation packages have been prepared and blinded; evaluator recruitment is pending.
 2. **Additional model validation**: The externalization effect replicates across GPT-5.2 and Claude Sonnet 4.6 (§4.7), but validation with additional model families (e.g., Gemini, open-weight models) would strengthen the generalizability claim. The model-specific B effect (§4.7) suggests that secondary effects may vary across architectures.
 3. **Multi-domain validation**: Apply structured analysis requirements to problem domains beyond citation rendering and session management (e.g., authentication, distributed systems, data modeling) to assess generalizability.
-4. **Downstream impact measurement**: Measure whether designs produced with structured analysis requirements lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally prompted designs. The current co-primary indicators measure the presence of verification-relevant information, not its downstream utility.
+4. **Extended downstream impact measurement**: Preliminary downstream measurement (§4.8) found that a capable implementation model achieves high test pass rates across all conditions, with ceiling effects limiting differentiation. Future work should use more challenging problem domains, larger test suites, and varied implementation model capabilities to better distinguish downstream quality differences. Metrics beyond pass/fail (e.g., code complexity, maintainability, performance) may reveal additional downstream effects.
 5. **Ablation study**: Determine which analysis steps in the structured requirements are most effective. The current C and D conditions include all four categories (conflicting requirements, existing approaches, testable properties, constraints) as a bundle. Systematic removal of individual categories would identify the minimum effective checklist.
 6. **Enhanced prompt comparison**: Compare structured analysis requirements against optimized conventional prompts (e.g., CoT + persona + detailed instructions) to establish whether the observed gap persists under best-practice prompting.
 7. **Causal mechanism investigation**: The implicit chain-of-thought hypothesis (§5.3, H2) suggests that structured requirements work by inducing a reasoning sequence. Controlled experiments varying the order and granularity of analysis steps could test this hypothesis and distinguish it from alternative mechanisms (training data bias, persona effects).
@@ -449,7 +480,7 @@ We interpret the mechanism as **structured elicitation through information exter
 
 For practitioners, the key implication is that a structured checklist is sufficient. Academic paper format is not required to obtain the benefits of structured analysis. We provide both implementations — the PDD template and an equivalent checklist — as open-source tools at https://github.com/rema424/paper-driven-dev.
 
-These findings replicate across two model families (GPT-5.2 and Claude Sonnet 4.6; §4.7) but are limited to two problem domains. Preliminary LLM-based blinded evaluation (§4.6) confirms excellent inter-rater reliability for the co-primary indicators (ICC ≥ 0.90); human third-party evaluation is pending. Domain generalization and downstream impact measurement remain future work (§7).
+These findings replicate across two model families (GPT-5.2 and Claude Sonnet 4.6; §4.7) but are limited to two problem domains. Preliminary LLM-based blinded evaluation (§4.6) confirms excellent inter-rater reliability for the co-primary indicators (ICC ≥ 0.90); human third-party evaluation is pending. A downstream implementation test (§4.8) found that the externalization effect on co-primary indicators does not directly translate to statistically significant implementation quality differences when a capable implementation model is used, though qualitative analysis reveals that structured analyses can both prevent errors (CS1: avoiding streaming buffer bugs) and introduce them (CS2: over-engineered revocation architectures). Domain generalization and extended downstream measurement remain future work (§7).
 
 ## References
 
