@@ -163,27 +163,123 @@ To address the author-evaluation limitation identified in Phase 1, a single-blin
 
 ### 4.1 Descriptive Statistics
 
-[TODO: Phase 2 content]
+Table 1 summarizes the co-primary indicators across the four conditions (N=10 per condition: 2 case studies × 5 runs).
+
+**Table 1. Co-primary indicators by condition (mean ± SD)**
+
+| Condition | CR mean (SD) | TP mean (SD) |
+|-----------|-------------|-------------|
+| A: Conventional | 0.30 (0.48) | 0.20 (0.63) |
+| B: Paper Format | 0.50 (0.53) | 2.00 (0.47) |
+| C: PDD Template | 3.20 (0.42) | 5.20 (0.63) |
+| D: Checklist | 3.70 (0.48) | 5.30 (0.67) |
+
+Conditions with explicit analysis step requirements ({C, D}) produced dramatically higher co-primary indicator values than conditions without ({A, B}). Within each group, within-condition variance was low (SD ≤ 0.67), indicating highly consistent output across runs.
+
+Table 2 presents all six indicators including the exploratory and secondary measures.
+
+**Table 2. All indicators by condition (mean)**
+
+| Condition | CR | TP | CD | EA | FI | TL |
+|-----------|----|----|----|----|----|------|
+| A: Conventional | 0.30 | 0.20 | 1.90 | 0.70 | 0.00 | 38.9 |
+| B: Paper Format | 0.50 | 2.00 | 2.60 | 1.00 | 0.70 | 68.5 |
+| C: PDD Template | 3.20 | 5.20 | 3.90 | 3.30 | 0.30 | 105.3 |
+| D: Checklist | 3.70 | 5.30 | 3.30 | 3.70 | 0.00 | 78.1 |
+
+The per-case-study breakdown (Table 3) confirms that the externalization effect is consistent across both problem domains.
+
+**Table 3. Co-primary indicators by condition and case study (mean ± SD)**
+
+| CS | Condition | CR mean (SD) | TP mean (SD) |
+|----|-----------|-------------|-------------|
+| CS1 | A | 0.00 (0.00) | 0.40 (0.89) |
+| CS1 | B | 0.00 (0.00) | 2.00 (0.00) |
+| CS1 | C | 3.00 (0.00) | 5.20 (0.84) |
+| CS1 | D | 3.40 (0.55) | 5.00 (0.71) |
+| CS2 | A | 0.60 (0.55) | 0.00 (0.00) |
+| CS2 | B | 1.00 (0.00) | 2.00 (0.71) |
+| CS2 | C | 3.40 (0.55) | 5.20 (0.45) |
+| CS2 | D | 4.00 (0.00) | 5.60 (0.55) |
+
+In both CS1 and CS2, {C, D} values consistently exceed {A, B} values with no overlap in the distributions.
 
 ### 4.2 Externalization Effect
 
-[TODO: Phase 2 content]
+**Main Analysis A** tested whether conditions with explicit analysis step requirements ({C, D}) produce higher co-primary indicator counts than conditions without ({A, B}), using a one-sided stratified permutation test (stratified by case study, 10,000 permutations, seed = 42).
+
+| Indicator | Observed diff ({C,D} − {A,B}) | p-value | Significant? |
+|-----------|-------------------------------|---------|--------------|
+| CR | 3.050 | < 0.0001 | Yes (α = 0.025) |
+| TP | 4.150 | < 0.0001 | Yes (α = 0.025) |
+
+The externalization effect is strongly supported: conditions with explicit analysis step requirements produce dramatically more conflicting requirements and testable properties than conditions without.
+
+**Effect sizes.** Cliff's delta for all pairwise comparisons between {C, D} and {A, B} conditions:
+
+| Pair | CR δ [95% CI] | TP δ [95% CI] |
+|------|---------------|---------------|
+| C vs A | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] |
+| C vs B | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] |
+| D vs A | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] |
+| D vs B | 1.000 [1.000, 1.000] | 1.000 [1.000, 1.000] |
+
+All four pairwise comparisons yield δ = 1.000 with degenerate confidence intervals, indicating **complete separation**: every observation in {C, D} exceeds every observation in {A, B} on both co-primary indicators. Post-hoc pairwise permutation tests confirm all four pairs are significant (p < 0.0001 for each, Bonferroni-corrected α = 0.006).
 
 ### 4.3 Framing Effect and Equivalence
 
-[TODO: Phase 2 content]
+**Main Analysis B** tested whether the PDD template condition (C), framed as an academic paper, produces higher co-primary indicator counts than the structurally isomorphic checklist condition (D), using a one-sided stratified permutation test (C > D).
+
+| Indicator | Observed diff (C − D) | p-value | Significant? |
+|-----------|----------------------|---------|--------------|
+| CR | −0.500 | 1.0000 | No (α = 0.025) |
+| TP | −0.100 | 0.5756 | No (α = 0.025) |
+
+The framing effect is not supported: C does not outperform D on either co-primary indicator. D shows slightly higher values than C on both indicators (CR: 3.70 vs. 3.20; TP: 5.30 vs. 5.20), though neither difference is significant.
+
+**Equivalence test (TOST).** Because Main Analysis B was non-significant, a stratified permutation-based Two One-Sided Tests (TOST) was conducted with pre-specified equivalence margins: Δ(CR) = 1.25 and Δ(TP) = 3.25 (50% of Phase 1 C-condition means).
+
+| Indicator | Observed diff | Δ | p_TOST | Equivalent? |
+|-----------|-------------|------|--------|-------------|
+| CR | −0.500 | 1.25 | < 0.0001 | Yes (α = 0.05) |
+| TP | −0.100 | 3.25 | < 0.0001 | Yes (α = 0.05) |
+
+Equivalence is strongly established: the difference between C and D falls well within the pre-specified margins. Per the pre-registered pivot criterion (protocol §9.1), this activates the thesis pivot: the active ingredient in the PDD template is the structuring of analysis steps, not the academic paper framing. D—a structured checklist requesting the same analysis steps without paper framing—achieves statistically equivalent co-primary indicator levels.
 
 ### 4.4 Post-hoc Finding: Paper Format and Testable Properties
 
-[TODO: Phase 2 content]
+An unexpected finding emerged from the B vs. A comparison. The protocol (§2, H_framing) predicted that both B and A would show near-zero co-primary indicators. This prediction held for CR (B: 0.50 vs. A: 0.30, p = 0.216, n.s.) but not for TP:
+
+| Indicator | B mean (SD) | A mean (SD) | Observed diff | p-value | Cliff's δ [95% CI] |
+|-----------|-------------|-------------|--------------|---------|---------------------|
+| TP | 2.00 (0.47) | 0.20 (0.63) | 1.80 | < 0.0001 | 0.900 [0.670, 1.000] |
+
+Paper-format framing (B) consistently produces approximately 2 testable properties per output, while conventional prompting (A) produces near-zero. Examining the B outputs, these TP ≈ 2 arise from mathematical proof-like statements (e.g., "map immutability," "single-source consistency" for CS1; "old version tokens rejected," "propagation delay bound" for CS2)—formal properties derived from B's tendency to generate proof-like sections, not from explicit prompting for testable properties.
+
+This finding establishes a three-tier hierarchy: A (TP ≈ 0.2) < B (TP ≈ 2.0) << {C, D} (TP ≈ 5.2–5.3). Paper-format framing partially elicits testable properties through mathematical formalization, but at a much lower level than explicit requirements. Critically, the gap between B and {C, D} remains a complete separation (Cliff's δ = 1.000).
+
+This result is reported as a **post-hoc exploratory finding** (protocol deviation #2), not as a pre-registered hypothesis test. It is consistent with, but does not causally establish, a partial framing effect on testable property generation.
 
 ### 4.5 Sensitivity Analyses
 
-[TODO: Phase 2 content]
+Three sensitivity analyses were conducted to assess the robustness of the main findings.
+
+**Line-normalized indicators.** Per-line normalization (indicator / TL × 100) does not change the externalization pattern:
+
+| Indicator/TL × 100 | A | B | C | D | {C,D} vs {A,B} p |
+|---------------------|-------|-------|-------|-------|-------------------|
+| CR | 0.862 | 0.656 | 3.106 | 5.083 | < 0.0001 |
+| TP | 0.357 | 2.989 | 5.074 | 7.296 | < 0.0001 |
+
+D shows higher density (more indicators per line) than C, consistent with D's shorter but equally substantive outputs (TL: D = 78.1 vs. C = 105.3).
+
+**Per-case-study direction consistency.** Both case studies show the same direction for the externalization effect (Table 3), with similar magnitude. The effect is not driven by a single problem domain.
+
+**Exploratory indicator: constraints disclosed (CD).** CD shows the same externalization pattern as the co-primary indicators ({C, D} vs. {A, B}: observed diff = 1.350, p < 0.0001). The C vs. D comparison for CD shows C slightly higher (3.90 vs. 3.30), with a marginally non-significant difference (p = 0.0525 at α = 0.05). CD is reported as exploratory (see §3.5); this marginal result does not affect the primary conclusions.
 
 ### 4.6 Third-Party Blinded Evaluation
 
-<!-- Step 2.3 完了後に記述 -->
+<!-- Step 2.3 完了後に記述。評価パッケージは作成済み（paper/evaluation/）。評価者募集中。 -->
 
 ## 5. Discussion
 
