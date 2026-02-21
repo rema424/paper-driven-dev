@@ -4,7 +4,7 @@
 
 ## Abstract
 
-We investigate whether structured analysis requirements — explicitly prompting LLMs to identify conflicting requirements, analyze existing approaches, derive testable properties, and disclose constraints — improve software design analysis quality, and whether academic paper framing provides additional benefit beyond structuring alone. In a four-condition controlled experiment with GPT-5.2 (N=10 per condition, two software design problems, 40 total executions), we compared: (A) conventional prompting, (B) paper-format instruction without template, (C) a paper-format template (Paper-Driven Development), and (D) a structurally isomorphic checklist without paper framing. Conditions with structured requirements ({C, D}) achieved complete separation from those without ({A, B}) on both co-primary indicators — conflicting requirements identified (CR) and testable properties derived (TP) — with Cliff's δ = 1.000 for all pairwise comparisons (p < 0.0001). Crucially, the paper template (C) and checklist (D) produced statistically equivalent results (TOST p < 0.0001 for both indicators), triggering a pre-registered pivot criterion: the active ingredient is the structuring of analysis steps, not the academic paper format. Paper-format framing alone (B) contributed a limited secondary effect on TP (≈2.0 vs A's ≈0.2, p < 0.0001) through mathematical formalization, but this was dwarfed by structured requirements (C/D: TP ≈5.2–5.3). We term the mechanism structured elicitation through information externalization and provide both implementations — paper template and checklist — as open-source tools.
+We investigate whether structured analysis requirements — explicitly prompting LLMs to identify conflicting requirements, analyze existing approaches, derive testable properties, and disclose constraints — improve software design analysis quality, and whether academic paper framing provides additional benefit beyond structuring alone. In a four-condition controlled experiment with GPT-5.2 (N=10 per condition, two software design problems, 40 total executions), replicated with Claude Sonnet 4.6 (N=6 per condition, 24 executions), we compared: (A) conventional prompting, (B) paper-format instruction without template, (C) a paper-format template (Paper-Driven Development), and (D) a structurally isomorphic checklist without paper framing. Conditions with structured requirements ({C, D}) achieved complete separation from those without ({A, B}) on both co-primary indicators — conflicting requirements identified (CR) and testable properties derived (TP) — with Cliff's δ = 1.000 for all pairwise comparisons across both models (p < 0.0001). Crucially, the paper template (C) and checklist (D) produced statistically equivalent results (TOST p < 0.0001 for both indicators), triggering a pre-registered pivot criterion: the active ingredient is the structuring of analysis steps, not the academic paper format. Paper-format framing alone (B) contributed a model-specific secondary effect on TP (≈2.0 vs A's ≈0.2 in GPT-5.2, absent in Sonnet) through mathematical formalization, but this was dwarfed by structured requirements (C/D: TP ≈5.2–6.8). We term the mechanism structured elicitation through information externalization and provide both implementations — paper template and checklist — as open-source tools.
 
 ## 1. Introduction
 
@@ -14,15 +14,15 @@ This study originated from an observation we called **Paper-Driven Development (
 
 To separate these factors, we designed a fourth condition — a structured checklist (D) that requests the same analysis steps as the PDD template but without academic paper framing. If D achieves equivalent results to C (PDD template), the active ingredient is the structuring of analysis steps, not the paper format. We pre-registered this equivalence test as a pivot criterion (protocol §9.1): if D ≈ C, the paper's thesis pivots from "PDD template superiority" to "structured analysis requirements as the active ingredient."
 
-The Phase 2 experiment (4 conditions × 2 case studies × 5 runs = 40 executions with GPT-5.2) produced three main findings: (1) conditions with structured analysis requirements ({C, D}) dramatically outperform those without ({A, B}), with complete separation on both co-primary indicators (Cliff's δ = 1.000); (2) the PDD template (C) and the structured checklist (D) produce statistically equivalent results (TOST p < 0.0001), triggering the pre-registered pivot; and (3) paper-format framing alone (B) contributes a limited secondary effect on testable properties through mathematical formalization, but this effect is dwarfed by structured requirements.
+The Phase 2 experiment (4 conditions × 2 case studies × 5 runs = 40 executions with GPT-5.2, replicated with Claude Sonnet 4.6 at N=3) produced three main findings: (1) conditions with structured analysis requirements ({C, D}) dramatically outperform those without ({A, B}), with complete separation on both co-primary indicators (Cliff's δ = 1.000), replicated across both model families; (2) the PDD template (C) and the structured checklist (D) produce statistically equivalent results (TOST p < 0.0001), triggering the pre-registered pivot; and (3) paper-format framing alone (B) contributes a model-specific secondary effect on testable properties through mathematical formalization (observed in GPT-5.2 but not Sonnet 4.6), dwarfed by structured requirements in both models.
 
 We interpret the mechanism as **structured elicitation through information externalization**: LLMs possess the analytical capabilities to identify trade-offs and derive verification conditions, but do not reliably exercise them without explicit prompting. Structured requirements — whether formatted as a paper template or a checklist — convert this sporadic capability into consistent output.
 
 This paper contributes:
 
-- Experimental evidence that structured analysis requirements produce complete separation (δ = 1.000) in verification-relevant indicators (conflicting requirements, testable properties) compared to unstructured prompting
+- Experimental evidence that structured analysis requirements produce complete separation (δ = 1.000) in verification-relevant indicators (conflicting requirements, testable properties) compared to unstructured prompting, replicated across two model families (GPT-5.2, Claude Sonnet 4.6)
 - An equivalence demonstration (TOST) showing that academic paper framing provides no additional benefit over a structured checklist for co-primary indicators
-- A three-tier hierarchy of prompting effects (A < B << {C, D}) clarifying the limited role of paper-format framing
+- A three-tier hierarchy of prompting effects (A < B << {C, D}) clarifying the limited role of paper-format framing, with the caveat that the intermediate B effect is model-specific
 - A pre-registered four-condition experimental protocol with an explicit pivot criterion (protocol §9.1), which was activated by the data
 - Two equivalent open-source implementations (PDD template and structured checklist) as Claude Code plugins
 
@@ -106,6 +106,8 @@ Both problems are identical to those used in the Phase 1 exploratory study. Prob
 **Randomization.** The 40 runs (4 conditions × 2 case studies × 5 repetitions) were executed in a randomized order (seed = 42) to prevent order effects. Runs were distributed across sessions to avoid concentrating any single condition within a session.
 
 **Exclusion criteria.** Runs were excluded and replaced if: the API returned an error, the output was visibly truncated (sentence mid-break), context compression occurred within the thread, or an incorrect prompt was used. Excluded runs were preserved with reasons in `docs/examples/fullpaper/excluded/`. No runs required exclusion during the actual experiment.
+
+**Replication study (Sonnet 4.6).** To assess external validity across model families, the same four-condition experiment was replicated with Claude Sonnet 4.6 (Anthropic), accessed via Claude Code CLI. N=3 runs per condition per case study (24 total) were executed in a randomized order (seed = 43, distinct from the main experiment). All other parameters — prompts, case studies, independence constraints, exclusion criteria — were identical to the main experiment. The reduced N (3 vs 5) was justified by the large effect sizes observed in the main experiment (Cliff's δ = 1.000, complete separation).
 
 ### 3.5 Evaluation Framework
 
@@ -310,6 +312,33 @@ All evaluators identified condition C (PDD template) with 100% accuracy; errors 
 
 **Limitations of LLM evaluation.** This preliminary evaluation uses LLM models as evaluators, which introduces the possibility of correlated biases with the LLM-generated outputs being scored (protocol deviation #3). Human third-party evaluation remains pending and is required to fully address the author-evaluation limitation. The current LLM evaluation provides preliminary evidence that the author's CR and TP scoring is reproducible, but does not substitute for independent human evaluation.
 
+### 4.7 External Validity: Sonnet 4.6 Replication
+
+To assess whether the externalization effect generalizes across model families, the four-condition experiment was replicated with Claude Sonnet 4.6 (N=3 per condition per case study, 24 total; §3.4).
+
+**Externalization effect.** Table 8 shows the replication results alongside the main GPT-5.2 findings.
+
+*Table 8. Cross-model replication of the externalization effect.*
+
+| Finding | GPT-5.2 (N=10) | Sonnet 4.6 (N=6) |
+|---------|----------------|-------------------|
+| {C,D} vs {A,B} CR | p < 0.0001, δ = 1.000 | p < 0.0001, δ = 1.000 |
+| {C,D} vs {A,B} TP | p < 0.0001, δ = 1.000 | p < 0.0001, δ = 1.000 |
+| C ≈ D (TOST CR) | p < 0.0001 | p = 0.002 |
+| C ≈ D (TOST TP) | p < 0.0001 | p = 0.010 |
+
+The externalization effect replicates with identical effect sizes: Cliff's δ = 1.000 for all {C, D} vs {A, B} comparisons, with complete separation on both co-primary indicators. The C ≈ D equivalence also replicates within pre-specified TOST margins.
+
+**TP complete separation.** For TP, the Sonnet replication shows even starker separation than GPT-5.2: all {A, B} runs produced TP = 0 (GPT-5.2 A produced occasional non-zero TP), while all {C, D} runs produced TP ≥ 4.
+
+**Model-specific differences.** Two notable differences emerged between models:
+
+1. *Sonnet produces higher baseline CR in A/B conditions.* Sonnet A/B CR means (1.17) exceed GPT-5.2 A/B means (0.30/0.50), driven primarily by CS2 where Sonnet consistently identified 2 conflicting requirements even without explicit prompting. Despite this higher baseline, the gap between {C, D} (CR ≈ 3.17) and {A, B} (CR ≈ 1.17) remains statistically significant with complete separation (δ = 1.000).
+
+2. *The three-tier hierarchy (A < B << {C, D}) does not replicate.* GPT-5.2 showed B TP ≈ 2.0 (significantly higher than A), attributed to mathematical formalization induced by paper-format framing (§4.4). Sonnet shows B TP = 0, identical to A. The intermediate B effect appears model-specific — likely reflecting differences in how each model responds to academic framing conventions. The primary finding (externalization effect) is unaffected.
+
+**Consistency across case studies.** Both CS1 and CS2 show {C, D} > {A, B} for both CR and TP with Sonnet, confirming cross-domain consistency within the replication.
+
 ## 5. Discussion
 
 ### 5.1 Structured Elicitation as the Active Ingredient
@@ -336,6 +365,8 @@ The data reveal a three-tier hierarchy of prompting effects on co-primary indica
 
 This three-tier structure clarifies the role of paper-format framing: it exists but is limited. Framing contributes a secondary effect on TP through indirect formalization, but this effect is dwarfed by the primary effect of structured requirements. The practical implication reinforces §5.1: while changing instruction framing to "write a paper" may provide modest benefits (particularly for eliciting formal properties), the substantive improvement comes from explicitly specifying which analysis steps to perform.
 
+**Cross-model caveat.** The three-tier hierarchy is partially model-specific. In the Sonnet 4.6 replication (§4.7), the intermediate B effect (Tier 2) was absent: B produced TP = 0, identical to A. The hierarchy collapsed to a two-tier structure: A ≈ B << {C, D}. This suggests that the mathematical formalization pathway — through which paper-format framing elicits testable properties in GPT-5.2 — is not a universal model behavior. The primary externalization effect (Tier 1/2 vs Tier 3), in contrast, replicated with identical effect sizes across both models, confirming its robustness.
+
 ### 5.3 Hypotheses for Prompting Effects
 
 We retain three non-mutually-exclusive hypotheses for why structured prompting affects LLM output, updated with Phase 2 evidence:
@@ -353,7 +384,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 ### 5.5 Limitations and Threats to Validity
 
 - **Limited problem domains (2 case studies)**: Although each condition was run N=5 times (40 total executions), only two software design problems were used (citation rendering, session management). The externalization effect is consistent across both case studies (§4.5), but generalization to other problem domains (e.g., authentication, distributed systems, data modeling) remains unestablished.
-- **Single model (GPT-5.2)**: The experiment used a single model. The Phase 1 o3 cross-model observation (Appendix C) provides preliminary evidence that the pattern is not model-specific, but formal multi-model validation has not been conducted.
+- **Two models, same problem domains**: The main experiment used GPT-5.2 (N=10 per condition); a replication with Claude Sonnet 4.6 (N=6 per condition; §4.7) confirmed the externalization effect with identical effect sizes (δ = 1.000). However, both experiments used the same two problem domains. Model-specific differences were observed: the intermediate B effect (TP ≈ 2.0 in GPT-5.2) did not replicate with Sonnet (B TP = 0), suggesting that some secondary effects are model-dependent.
 - **Author evaluation**: All Phase 2 indicators were scored by the author using Rubric v2 (§3.5). Preliminary LLM-based blinded evaluation (§4.6) shows excellent inter-rater reliability for the co-primary indicators (ICC: CR = 0.985, TP = 0.908), but LLM evaluators may share correlated biases with the LLM-generated outputs being scored. Human third-party evaluation is pending; until independent human evaluation confirms the scoring, evaluator bias cannot be fully ruled out.
 - **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties) are closely aligned with the analysis step requirements in conditions C and D. As discussed in §5.1, the D ≈ C equivalence partially addresses this concern — D's different format produces equivalent indicators, suggesting genuine analytical work rather than mechanical format-filling — but the concern that we measure "requirement compliance" rather than independent analytical quality remains partially valid.
 - **Output length confound**: Condition C produced longer outputs (105.3 lines avg) than A (38.9 lines) and B (68.5 lines). However, line-normalized analysis (§4.5) confirms that the externalization effect persists after controlling for output volume: D produces the highest indicator density (CR/TL, TP/TL) despite shorter outputs than C, indicating that the effect is not an artifact of output length.
@@ -401,7 +432,7 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 ## 7. Future Work
 
 1. **Human third-party blinded evaluation**: Independent human evaluators scoring outputs without condition labels (§3.7). Preliminary LLM-based evaluation (§4.6) confirms excellent agreement on co-primary indicators (ICC: CR = 0.985, TP = 0.908), but human evaluation is needed to rule out correlated LLM biases. Evaluation packages have been prepared and blinded; evaluator recruitment is pending.
-2. **Multi-model validation**: Test whether the externalization effect ({C, D} >> {A, B}) and the C ≈ D equivalence replicate across different LLM families (e.g., Claude, Gemini). The current findings are limited to GPT-5.2; the Phase 1 o3 cross-model observation (Appendix C) provides preliminary but inconclusive evidence.
+2. **Additional model validation**: The externalization effect replicates across GPT-5.2 and Claude Sonnet 4.6 (§4.7), but validation with additional model families (e.g., Gemini, open-weight models) would strengthen the generalizability claim. The model-specific B effect (§4.7) suggests that secondary effects may vary across architectures.
 3. **Multi-domain validation**: Apply structured analysis requirements to problem domains beyond citation rendering and session management (e.g., authentication, distributed systems, data modeling) to assess generalizability.
 4. **Downstream impact measurement**: Measure whether designs produced with structured analysis requirements lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally prompted designs. The current co-primary indicators measure the presence of verification-relevant information, not its downstream utility.
 5. **Ablation study**: Determine which analysis steps in the structured requirements are most effective. The current C and D conditions include all four categories (conflicting requirements, existing approaches, testable properties, constraints) as a bundle. Systematic removal of individual categories would identify the minimum effective checklist.
@@ -410,7 +441,7 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 ## 8. Conclusion
 
-In a four-condition controlled experiment with GPT-5.2 (N=10 per condition, two software design problems), we found that structured analysis requirements — explicitly prompting an LLM to identify conflicting requirements, analyze existing approaches, derive testable properties, and disclose constraints — dramatically improve design analysis quality as measured by two co-primary indicators. Conditions with structured requirements (C: PDD template, D: structured checklist) achieved complete separation from conditions without them (A: conventional, B: paper-format), with Cliff's δ = 1.000 for all pairwise comparisons (§4.2).
+In a four-condition controlled experiment with GPT-5.2 (N=10 per condition, two software design problems), replicated with Claude Sonnet 4.6 (N=6 per condition; §4.7), we found that structured analysis requirements — explicitly prompting an LLM to identify conflicting requirements, analyze existing approaches, derive testable properties, and disclose constraints — dramatically improve design analysis quality as measured by two co-primary indicators. Conditions with structured requirements (C: PDD template, D: structured checklist) achieved complete separation from conditions without them (A: conventional, B: paper-format), with Cliff's δ = 1.000 for all pairwise comparisons across both models (§4.2, §4.7).
 
 Crucially, the PDD template (C) and the structured checklist (D) produced statistically equivalent co-primary indicator levels (TOST p < 0.0001; §4.3). This equivalence triggered the pre-registered pivot criterion (protocol §9.1): the active ingredient is the structuring of analysis steps, not the academic paper format. Paper-format framing contributes a limited secondary effect — eliciting testable properties through mathematical formalization (B: TP ≈ 2.0 vs A: TP ≈ 0.2; §4.4) — but this effect is dwarfed by structured requirements (C/D: TP ≈ 5.2–5.3).
 
@@ -418,7 +449,7 @@ We interpret the mechanism as **structured elicitation through information exter
 
 For practitioners, the key implication is that a structured checklist is sufficient. Academic paper format is not required to obtain the benefits of structured analysis. We provide both implementations — the PDD template and an equivalent checklist — as open-source tools at https://github.com/rema424/paper-driven-dev.
 
-These findings are limited to two problem domains on a single model. Preliminary LLM-based blinded evaluation (§4.6) confirms excellent inter-rater reliability for the co-primary indicators (ICC ≥ 0.90); human third-party evaluation is pending. Multi-model validation, domain generalization, and downstream impact measurement remain future work (§7).
+These findings replicate across two model families (GPT-5.2 and Claude Sonnet 4.6; §4.7) but are limited to two problem domains. Preliminary LLM-based blinded evaluation (§4.6) confirms excellent inter-rater reliability for the co-primary indicators (ICC ≥ 0.90); human third-party evaluation is pending. Domain generalization and downstream impact measurement remain future work (§7).
 
 ## References
 
@@ -499,6 +530,9 @@ All raw outputs and measurement data are publicly available in the project repos
 - **Phase 2 LLM outputs**: `docs/examples/fullpaper/cs{1,2}-{conventional,paper-format,pdd-template,checklist}-run{1-5}.md` (40 files)
 - **Phase 2 scoring data**: `paper/scoring-data-v2.md` (Rubric v2 applied, all indicators with evidence)
 - **Phase 2 statistical analysis**: `paper/analysis-results-v2.md` (results), `paper/analysis/statistical_analysis.py` (script)
+- **Sonnet replication LLM outputs**: `docs/examples/fullpaper/sonnet/cs{1,2}-{conventional,paper-format,pdd-template,checklist}-run{1-3}.md` (24 files)
+- **Sonnet replication scoring data**: `paper/scoring-data-sonnet.md`
+- **Sonnet replication statistical analysis**: `paper/analysis-results-sonnet.md` (results), `paper/analysis/statistical_analysis_sonnet.py` (script)
 - **Phase 1 LLM outputs**: `docs/examples/cs{1,2}-{conventional,paper-format,pdd-template}.md` (A/B1/C), `docs/examples/cs{1,2}-{paper-write,academic-paper}.md` (B2/B3)
 - **Phase 1 quantitative measurements**: `paper/comparison-data.md`
 - **Repository**: https://github.com/rema424/paper-driven-dev
@@ -511,8 +545,14 @@ All raw outputs and measurement data are publicly available in the project repos
 - **Runs**: 5 independent runs per condition per case study (40 total). Each run used a fresh Codex thread with no prior conversation history.
 - **Execution order**: Randomized across conditions and case studies (seed=42) to prevent ordering effects.
 
+**Sonnet 4.6 replication (§4.7):**
+- **Model**: Claude Sonnet 4.6, accessed via Claude Code CLI (Anthropic), February 2026
+- **Temperature**: Default (not explicitly set)
+- **Runs**: 3 independent runs per condition per case study (24 total). Each run used a fresh agent invocation with no prior conversation history.
+- **Execution order**: Randomized across conditions and case studies (seed=43) to prevent ordering effects.
+
 **Phase 1 (exploratory; Appendix C):**
-- Same model and access method. Each condition was executed once per case study (N=2). CS2-B3 was recovered after context compression in the same Codex thread.
+- Same model and access method as Phase 2. Each condition was executed once per case study (N=2). CS2-B3 was recovered after context compression in the same Codex thread.
 
 ---
 
