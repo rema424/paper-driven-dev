@@ -283,13 +283,13 @@ D shows higher density (more indicators per line) than C, consistent with D's sh
 
 ## 5. Discussion
 
-### 5.1 Framing Effect and Its Ceiling
+### 5.1 Structured Elicitation as the Active Ingredient
 
 The B-variant experiment (Appendix C) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
 
 However, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. This pattern—which we term the **framing effect ceiling**—suggests that framing changes are associated with improvements in output form (structure, breadth, academic conventions) but not with the externalization of verification-relevant information. In this data, the framing effect operated on a qualitatively different dimension than the template effect.
 
-### 5.2 Template Effect as Information Externalization
+### 5.2 Three-Tier Hierarchy of Prompting Effects
 
 The co-primary indicators appeared consistently only under condition C, where the §1–§7 template was provided. This raises a tautology concern: if the template requests "conflicting requirements" in §1.2 and "testable properties" in §6, measuring their presence may simply confirm that the model followed instructions.
 
@@ -316,7 +316,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 - **Small sample (N=2)**: Two case studies, each run once per condition, are insufficient for statistical conclusions. All findings should be interpreted as exploratory observations, not confirmed effects.
 - **Single model (GPT-5.2)**: The primary experiment used a single model. The o3 observation (Appendix C) provides weak supplementary evidence but does not constitute multi-model validation.
 - **Author evaluation**: All metrics were counted by the authors, not independent evaluators. Blinded evaluation is needed to rule out evaluator bias.
-- **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties, constraints) are closely aligned with template section requirements (§1.2, §6, §7). As discussed in §5.2, we frame this as information externalization rather than quality improvement, but the concern remains that we are partially measuring template compliance rather than independent analytical quality.
+- **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties, constraints) are closely aligned with template section requirements (§1.2, §6, §7). As discussed in §5.1, we frame this as information externalization rather than quality improvement, but the concern remains that we are partially measuring template compliance rather than independent analytical quality.
 - **Output length confound**: Condition C produced longer outputs (129 lines avg) than B (90 lines avg). The increase in co-primary indicators may partially reflect increased output volume rather than increased analytical depth. Per-line normalization was not performed.
 - **Missing D condition**: A structured checklist condition (same analysis steps as PDD but without paper framing) was not tested. This prevents separating the template effect from the paper format effect within condition C.
 - **CS2-B3 data uncertainty**: The CS2-B3 output was recovered after context compression in the same Codex thread. While likely close to the original, strict reproducibility cannot be guaranteed.
