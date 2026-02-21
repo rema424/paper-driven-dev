@@ -51,40 +51,38 @@ No existing methodology structurally enforces the combination of exhaustive alte
 
 ### 3.1 Experimental Design
 
-<!-- TODO: Phase 2 experimental design overview — to be written in content commit -->
+We conducted a four-condition controlled experiment to investigate whether structured analysis requirements improve LLM design analysis quality, and whether academic paper framing provides additional benefit beyond structuring alone. The experiment extends an exploratory Phase 1 study (N=2, three conditions A/B/C; see Appendix C) that generated the hypotheses tested here.
+
+**Design.** Four prompting conditions (§3.2) × two case studies (§3.3) × five independent runs = 40 LLM executions. All conditions shared identical problem descriptions; only the instruction prefix differed.
+
+**Hypotheses.**
+
+- **H_main (externalization effect)**: Conditions with explicit analysis step requirements ({C, D}) produce higher co-primary indicator counts than conditions without ({A, B}).
+- **H_framing (framing effect)**: The PDD template condition (C), framed as an academic paper, produces higher co-primary indicator counts than the structurally isomorphic checklist condition (D).
+- **H_checklist (equivalence)**: If C does not significantly exceed D, we test whether C and D are statistically equivalent within pre-specified margins (TOST; §3.6).
+
+**Rationale for condition D.** Phase 1 identified two confounded factors in the PDD template condition (C): (1) explicit analysis step requirements and (2) academic paper framing. Condition D—a structured checklist requesting the same analysis steps without paper framing—was designed to separate these factors. If D ≈ C, the active ingredient is the structuring of analysis steps, not the paper format. This separation follows the pre-registered pivot criterion (protocol §9.1).
 
 ### 3.2 Conditions
 
-PDD uses a seven-section template modeled after academic paper conventions:
+Four conditions were compared. All shared identical problem descriptions (§3.3); only the instruction prefix differed.
 
-```
-§1. Problem Definition
-  §1.1 Background
-  §1.2 Conflicting Requirements (opposing trade-offs)
-  §1.3 Scope of This Document
+| Condition | Label | Instruction framing |
+|-----------|-------|-------------------|
+| A | Conventional | Design analysis prompt (no structural requirements) |
+| B | Paper-format | "Write in academic paper format" (no template) |
+| C | PDD Template | Paper-format instruction + §1–§7 template guidelines |
+| D | Structured Checklist | Checklist instruction + equivalent analysis items (no paper framing) |
 
-§2. Current Architecture and Constraints
+**Condition A (Conventional).** "以下の技術的な問題について、設計分析と解決策を提案してください。" (Please propose a design analysis and solution for this problem.)
 
-§3. Existing Approaches and Their Limitations
-  §3.N Approach N: [Name] — Method / Advantages / Limitations
+**Condition B (Paper-format).** "以下の技術的な問題について、学術論文の形式で書いてください。" (Please write about this problem in academic paper format.) This corresponds to Phase 1's B1 condition.
 
-§4. Essence of the Problem
+**Condition C (PDD Template).** Condition B's instruction plus explicit §1–§7 section guidelines specifying: problem definition with conflicting requirements (§1.2), current architecture (§2), existing approaches with limitations (§3), problem essence (§4), proposed method (§5), testable properties in Given/When/Then format (§6), and constraints (§7). The full template is reproduced in Appendix A.1. Key design decisions: §1.2 requires ≥2 conflicting requirements (forcing identification of genuine trade-offs); §3 requires explicit limitations per approach (preventing the common failure of listing only advantages); §6 requires Given/When/Then testable properties (bridging design analysis and TDD); §7 requires honest constraint disclosure (counteracting LLMs' tendency to present proposals as universally applicable).
 
-§5. Proposed Method
-  §5.1 Fundamental Principle
-  §5.2 Implementation Architecture
+**Condition D (Structured Checklist).** "以下の技術的な問題について、以下の分析項目に従って順番に分析してください。" (Please analyze the following problem by following these analysis items in order.) D requests the same nine analysis steps as C—including ≥2 conflicting requirements (item 2) and Given/When/Then testable conditions (item 8)—using numbered list notation (1–9) instead of paper section notation (§1–§7). The structural granularity (sub-items, approach-level method/advantages/limitations) is isomorphic to C; only the framing differs (technical analysis vs. academic paper). Full prompt in Appendix A.1.
 
-§6. Testable Properties
-
-§7. Constraints and Future Work
-```
-
-Key design decisions in the template:
-
-- **§1.2 requires identifying at least two conflicting requirements.** If only one requirement exists, the problem is trivial and does not warrant this analysis. This forces the model to identify genuine trade-offs.
-- **§3 requires explicit "Limitations" for each approach.** This prevents the common failure mode of listing only advantages before recommending a solution.
-- **§6 requires testable properties in Given/When/Then format.** This bridges the gap between design analysis and test-driven development.
-- **§7 requires honest disclosure of constraints.** This counteracts LLMs' tendency to present proposals as universally applicable.
+**Demand characteristics.** Both C and D explicitly request the co-primary indicators (conflicting requirements, testable properties). This is intentional: the research question is not whether LLMs spontaneously produce these analyses, but (1) whether explicit requirements elicit information that is otherwise omitted (A/B vs. C/D), and (2) whether academic paper framing provides additional value over checklist framing when the same analysis steps are required (C vs. D). Conditions A and B, which do not request these items, serve as the baseline for spontaneous occurrence.
 
 ### 3.3 Case Studies
 
@@ -92,39 +90,74 @@ Key design decisions in the template:
 
 **CS2: Multi-Tenant SaaS Session Management.** A session management system must simultaneously support multi-device login, administrator-initiated immediate session revocation, horizontal scaling, and low latency—requirements that create tension between stateless and stateful architectures.
 
+Both problems are identical to those used in the Phase 1 exploratory study. Problem descriptions were presented in Japanese; see Appendix A.1 for the full prompt text.
+
 ### 3.4 Execution Protocol
 
-<!-- TODO: Model, environment, 40 runs, randomization — to be written in content commit -->
+**Model.** GPT-5.2, accessed via Codex CLI (OpenAI). This is the same model and access method used in Phase 1.
+
+**Parameters.** Temperature was left at the Codex CLI default (not explicitly set). No system prompt was used. Maximum output tokens were unrestricted.
+
+**Independence.** Each of the 40 runs was executed in a fresh Codex thread with no prior conversation history. No run had access to any other run's output.
+
+**Randomization.** The 40 runs (4 conditions × 2 case studies × 5 repetitions) were executed in a randomized order (seed = 42) to prevent order effects. Runs were distributed across sessions to avoid concentrating any single condition within a session.
+
+**Exclusion criteria.** Runs were excluded and replaced if: the API returned an error, the output was visibly truncated (sentence mid-break), context compression occurred within the thread, or an incorrect prompt was used. Excluded runs were preserved with reasons in `docs/examples/fullpaper/excluded/`. No runs required exclusion during the actual experiment.
 
 ### 3.5 Evaluation Framework
 
-To assess whether template-guided output differs from conventional or paper-format-only output, we define the following indicator hierarchy.
+We assessed LLM outputs using a six-indicator rubric (Rubric v2), refined from Phase 1 based on self-blinded rescoring disagreements (Appendix B).
 
-**Co-primary indicators** (main outcome measures):
-- **Conflicting requirements identified**: Explicitly stated trade-offs or opposing requirements (e.g., "real-time display vs. correct sequential numbering")
-- **Testable properties derived**: Concrete conditions that can be translated to test cases (e.g., Given/When/Then specifications)
+**Co-primary indicators** (two; Bonferroni-corrected α = 0.025 each):
 
-**Exploratory indicator** (reported but not used for primary claims due to measurement instability; see §5.6):
-- **Constraints disclosed**: Honest limitations of the proposed approach and conditions under which it does not apply. Self-blinded rescoring revealed 30% inter-rater agreement for this indicator, attributable to definition boundary instability (§5.6, Appendix B).
+- **Conflicting requirements identified (CR)**: Count of explicitly stated pairs of opposing requirements or trade-offs. Implicit tensions (e.g., "balancing X and Y" without formal definition) score zero. Counting unit: undirected unique pair.
+- **Testable properties derived (TP)**: Count of concrete conditions derived from the proposed solution that could be translated to test cases. Each property must specify three elements: precondition (Given), operation (When), and observable expected outcome (Then). **Critical distinction**: Input requirements defining the problem (e.g., R1–R4 notation) are not counted; only properties derived from the proposed approach (verifying how the solution behaves) are counted. This distinction, identified through Phase 1 rescoring disagreements, is the principal refinement in Rubric v2.
 
-**Secondary indicators**:
-- **Existing approaches analyzed**: Number of alternative approaches enumerated and evaluated
-- **Formal invariants/proofs**: Mathematical or logical properties formally stated
-- **Total output length**: Line count of LLM output
+**Exploratory indicator** (one; reported but not used for primary claims):
 
-We adopt a two-axis explanatory model to describe the data:
-- **Framing axis** (A → B1 → B2 → B3): Variation in instruction wording without template structure
-- **Template axis** (B → C): Addition of §1–§7 section guidelines to a paper-format instruction
+- **Constraints disclosed (CD)**: Explicit limitations, boundary conditions, or failure modes of the proposed approach. Reclassified from co-primary after Phase 1 rescoring revealed 30% inter-rater agreement due to definition boundary ambiguity.
 
-This two-axis model is a descriptive framework for organizing the observed data, not a claim of independence or orthogonality. A factorial design testing independence was not conducted.
+**Secondary indicators** (three):
+
+- **Existing approaches analyzed (EA)**: Distinct alternatives enumerated and evaluated (name-only mentions excluded)
+- **Formal invariants/proofs (FI)**: Mathematically or logically formalized properties
+- **Total output length (TL)**: Line count excluding metadata headers
+
+**Per-line normalization.** To control for the output length confound identified in Phase 1, we compute normalized values (indicator / TL × 100) as a sensitivity analysis for each co-primary and exploratory indicator.
+
+Detailed counting rules, boundary case examples, and decision flowcharts are provided in Appendix A.2 (Rubric v2 full specification).
 
 ### 3.6 Statistical Analysis Plan
 
-<!-- TODO: Permutation tests, TOST, Cliff's delta — to be written in content commit -->
+All analyses were pre-registered in the experiment protocol (protocol v1, tag `v1-protocol`) before data collection.
+
+**Main Analysis A (externalization effect).** Stratified permutation test comparing {C, D} vs. {A, B} on each co-primary indicator, stratified by case study. One-sided ({C,D} > {A,B}). 10,000 permutations (seed = 42). Significance: α = 0.025 per indicator (Bonferroni correction for two co-primary indicators).
+
+**Main Analysis B (framing effect).** Stratified permutation test comparing C vs. D on each co-primary indicator, stratified by case study. One-sided (C > D). Same permutation and significance parameters as Analysis A.
+
+**Effect sizes.** Cliff's delta (δ) with 95% bootstrap confidence intervals (10,000 resamples) for all pairwise comparisons.
+
+**Equivalence test (TOST).** If Main Analysis B is non-significant, a stratified permutation-based Two One-Sided Tests (TOST) is conducted to test whether C and D are equivalent within pre-specified margins: Δ(CR) = 1.25 and Δ(TP) = 3.25 (50% of Phase 1 C-condition means). α = 0.05.
+
+**Post-hoc pairwise comparisons.** If Main Analysis A is significant, pairwise comparisons (C vs. A, C vs. B, D vs. A, D vs. B) are conducted with Bonferroni correction (α = 0.025/4 ≈ 0.006 per pair per indicator).
+
+**Sensitivity analyses.** (1) Per-line normalized indicators; (2) per-case-study direction consistency; (3) exploratory indicator (CD) with the same test battery; (4) Poisson regression (`count ~ condition + case_study`) with bootstrap confidence intervals.
+
+**Pre-registered pivot criterion (protocol §9.1).** If D achieves statistically equivalent co-primary indicators to C, the paper's thesis pivots from "PDD template superiority" to "structured analysis requirements as the active ingredient." This criterion was activated by the data (§4).
 
 ### 3.7 Third-Party Blinded Evaluation
 
-<!-- TODO: Blinding procedure, ICC targets — to be written in content commit -->
+To address the author-evaluation limitation identified in Phase 1, a single-blind third-party evaluation is conducted.
+
+**Blinding procedure.** All 40 outputs are stripped of condition labels, file names, and metadata headers. Outputs are presented to evaluators in a randomized order (seed = 142, distinct from the execution seed). Evaluators receive only the rubric (§3.5) and scoring instructions.
+
+**Calibration round.** Before scoring the 40 experimental outputs, evaluators independently score 5 calibration items drawn from Phase 1 outputs (selected for condition diversity). Disagreements are discussed and the rubric interpretation is aligned. If rubric adjustments are needed, reasons are recorded. The calibration rubric becomes the final scoring instrument.
+
+**Scoring.** Each evaluator independently scores all 40 outputs on the two co-primary indicators (CR, TP) and the exploratory indicator (CD). For each count, the evaluator records the evidence (quoted passage and line reference). Evaluators also record their estimate of which condition produced each output, enabling analysis of blinding effectiveness.
+
+**Reliability assessment.** Inter-rater reliability is assessed via ICC (two-way random, absolute agreement) on raw count values. Pass criterion: ICC ≥ 0.60 (moderate agreement). If not met, the rubric is recalibrated and scoring repeated (maximum two rounds). Indicators failing ICC ≥ 0.60 after two rounds are reclassified as exploratory.
+
+**Blinding limitations.** This is single-blind: condition labels are removed, but output format features (§-structured sections in C, numbered checklist in D, academic conventions in B) may allow condition inference. Evaluator condition estimation accuracy is reported and its potential impact on scoring bias is discussed.
 
 ## 4. Case Study
 
