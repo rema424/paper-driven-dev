@@ -251,7 +251,7 @@ Equivalence is supported: the difference between C and D falls within the pre-sp
 
 ### 4.4 Post-hoc Finding: Paper Format and Testable Properties
 
-An unexpected finding emerged from the B vs. A comparison. The protocol (§2, H_framing) predicted that both B and A would show near-zero co-primary indicators. This prediction held for CR (B: 0.50 vs. A: 0.30, p = 0.216, n.s.) but not for TP:
+An unexpected finding emerged from the B vs. A comparison. The protocol predicted that both B and A — lacking explicit analysis step requirements — would show near-zero co-primary indicators. This prediction held for CR (B: 0.50 vs. A: 0.30, p = 0.216, n.s.) but not for TP:
 
 | Indicator | B mean (SD) | A mean (SD) | Observed diff | p-value | Cliff's δ [95% CI] |
 |-----------|-------------|-------------|--------------|---------|---------------------|
@@ -282,7 +282,7 @@ D shows higher density (more indicators per line) than C, consistent with D's sh
 
 ### 4.6 Third-Party Blinded Evaluation
 
-<!-- 評価パッケージは作成済み（paper/evaluation/）。評価者募集中。完了後に記述。 -->
+Third-party blinded evaluation is in progress. Evaluation packages (blinded outputs, scoring rubric, and procedure guide) have been prepared following the protocol described in §3.7. Results will be reported upon completion. Until then, all indicators reported in §4.1–§4.5 are based on author evaluation using Rubric v2 (§3.5).
 
 ## 5. Discussion
 
@@ -344,7 +344,7 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 **Agreement rates by indicator**: existing approaches 90%, conflicting requirements 80%, formal invariants 90%, testable properties 50%, constraints disclosed 30%.
 
-**Core claim robustness.** For conflicting requirements and testable properties under the strict definition (derived properties only, not input requirements), the Phase 1 finding that "these indicators were zero in all non-template conditions and non-zero only in C" was confirmed by the rescoring. In condition C, both indicators showed perfect agreement between original and rescoring (conflicting requirements: 2/2, 3/3; testable properties: 6/6, 7/7). This pattern was subsequently confirmed at scale in Phase 2 (§4.2).
+**Core claim robustness.** For conflicting requirements and testable properties under the strict definition (derived properties only, not input requirements), the Phase 1 finding that "these indicators were zero in all non-template conditions and non-zero only in C" was supported by the rescoring under the strict interpretation (see B.5 for the impact of strict vs. broad definitions on B-condition scoring). In condition C, both indicators showed perfect agreement between original and rescoring (conflicting requirements: 2/2, 3/3; testable properties: 6/6, 7/7). This pattern was subsequently confirmed at scale in Phase 2 (§4.2).
 
 **Rubric sensitivity.** The two low-agreement indicators reveal rubric ambiguity:
 - *Testable properties (50%)*: The rescorer counted B-condition input requirements (R1–R4 notation) as testable properties, while the original scoring distinguished input requirements (what the system must do) from derived testable properties (how the proposed solution behaves). Under the strict definition, B=0 holds; under the broad definition, B conditions contain 3–4 testable conditions. This distinction was clarified in Rubric v2 (§3.5) and applied consistently in Phase 2 scoring.
@@ -426,7 +426,7 @@ These findings are limited to two problem domains on a single model with author 
 
 [11] X. Jiang et al., "Self-Planning Code Generation with Large Language Models," ACM Trans. Softw. Eng. Methodol. 33(7), 2024. https://dl.acm.org/doi/10.1145/3672456
 
-[12] "From Prompts to Templates: A Systematic Prompt Template Analysis for Real-world LLMapps," Proc. FSE 2025 (Industry). https://arxiv.org/abs/2504.02052
+[12] Y. Mao et al., "From Prompts to Templates: A Systematic Prompt Template Analysis for Real-world LLMapps," Proc. FSE 2025 (Industry). https://arxiv.org/abs/2504.02052
 
 ### Books
 
@@ -449,7 +449,7 @@ All prompts were in Japanese. The problem description was identical across condi
 | C: PDD Template | B の指示文 + テンプレート §1–§7 ガイドライン | B instruction + template §1–§7 guidelines |
 | D: Checklist | 「以下の技術的な問題について、以下の分析項目に従って順番に分析してください」+ 分析項目1–9 | "Please analyze by following these analysis items in order" + items 1–9 |
 
-The template §1–§7 guidelines (condition C) and the 1–9 analysis items (condition D) are defined in §3.2. Conditions C and D share the same analytical requirements in isomorphic structure; only the output framing differs.
+The template §1–§7 guidelines (condition C) and the 1–9 analysis items (condition D) are defined in §3.2. Conditions C and D share the same analytical requirements in isomorphic structure; only the output framing differs. The complete Japanese prompt text for each condition (instruction prefix + problem description) is available in the project repository (see A.3).
 
 **Phase 1 B-variant conditions (Appendix C):** B1 = Phase 2's B condition; B2 ("論文を書いてください"); B3 ("学術論文を書いてください").
 
