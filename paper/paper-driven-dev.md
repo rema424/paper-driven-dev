@@ -11,7 +11,7 @@ We present Paper-Driven Development (PDD), a methodology for LLM-assisted softwa
 
 Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2].
 
-We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (§4.3) revealed that this framing effect has a ceiling: two co-primary indicators—conflicting requirements and testable properties—remained at zero regardless of framing variations. These indicators appeared only when the PDD template (§1–§7 section guidelines) was provided.
+We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (§4.2) revealed that this framing effect has a ceiling: two co-primary indicators—conflicting requirements and testable properties—remained at zero regardless of framing variations. These indicators appeared only when the PDD template (§1–§7 section guidelines) was provided.
 
 We interpret the template's role not as eliciting new capabilities from LLMs, but as **information externalization**: by specifying sections for existing approaches (§3), conflicting requirements (§1.2), testable properties (§6), and constraints (§7), the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce under conventional or paper-format-only prompting.
 
@@ -47,9 +47,13 @@ Research on LLM reasoning suggests that output structure affects quality:
 
 No existing methodology structurally enforces the combination of exhaustive alternatives survey, critical evaluation with limitations, and derivation of testable properties. Spec-driven development addresses requirements clarity but not design rationale. RFC/ADR records decisions but does not enforce analysis depth. CoT improves reasoning but does not structure the output for design review. PDD addresses this gap through a section-level template that makes these analysis steps explicit.
 
-## 3. Paper-Driven Development
+## 3. Methods
 
-### 3.1 Template Structure
+### 3.1 Experimental Design
+
+<!-- TODO: Phase 2 experimental design overview — to be written in content commit -->
+
+### 3.2 Conditions
 
 PDD uses a seven-section template modeled after academic paper conventions:
 
@@ -82,7 +86,17 @@ Key design decisions in the template:
 - **§6 requires testable properties in Given/When/Then format.** This bridges the gap between design analysis and test-driven development.
 - **§7 requires honest disclosure of constraints.** This counteracts LLMs' tendency to present proposals as universally applicable.
 
-### 3.2 Evaluation Framework
+### 3.3 Case Studies
+
+**CS1: Real-Time Citation Rendering in RAG Streaming.** Citations must be displayed as sequential numbers ([1], [2], [3]) without gaps during LLM streaming output, but renumbering requires knowing all citations—which is impossible when the full text has not yet been generated.
+
+**CS2: Multi-Tenant SaaS Session Management.** A session management system must simultaneously support multi-device login, administrator-initiated immediate session revocation, horizontal scaling, and low latency—requirements that create tension between stateless and stateful architectures.
+
+### 3.4 Execution Protocol
+
+<!-- TODO: Model, environment, 40 runs, randomization — to be written in content commit -->
+
+### 3.5 Evaluation Framework
 
 To assess whether template-guided output differs from conventional or paper-format-only output, we define the following indicator hierarchy.
 
@@ -104,51 +118,19 @@ We adopt a two-axis explanatory model to describe the data:
 
 This two-axis model is a descriptive framework for organizing the observed data, not a claim of independence or orthogonality. A factorial design testing independence was not conducted.
 
-### 3.3 Integration with Development Workflow
+### 3.6 Statistical Analysis Plan
 
-PDD is designed as an optional step in the design phase, not a replacement for existing practices:
+<!-- TODO: Permutation tests, TOST, Cliff's delta — to be written in content commit -->
 
-```
-Phase 1: Research
-  Step 1. Investigation (research.md)
-  Step 2. Design Analysis [Optional] (article.md via PDD)
-           Applied only when multiple approaches are viable
-           Uses research.md as input context
+### 3.7 Third-Party Blinded Evaluation
 
-Phase 2: Planning
-  Step 3. Implementation plan (plan.md)
-           Uses article.md §5 (Proposed Method) as starting point
-           Derives test plan from §6 (Testable Properties)
-
-Phase 3: Implementation (TDD)
-  Step 4. Test-first development
-           §6 properties → test cases
-```
-
-### 3.4 Application Criteria
-
-PDD is effective when:
-- Multiple design approaches are viable and trade-off analysis is needed
-- The problem involves fundamentally conflicting requirements
-- Existing implementation requires architectural redesign
-- Performance optimization requires trade-off analysis
-
-PDD is unnecessary when:
-- The solution is obvious (single viable approach)
-- The task is a straightforward bug fix or small feature addition
-- The design decision has already been made and only implementation remains
+<!-- TODO: Blinding procedure, ICC targets — to be written in content commit -->
 
 ## 4. Case Study
 
 We applied PDD to two software design problems using GPT-5.2 (via Codex), comparing three prompting conditions and three B-variant framings. All outputs and raw measurements are available in the companion document `comparison-data.md`.
 
-### 4.1 Problem Descriptions
-
-**CS1: Real-Time Citation Rendering in RAG Streaming.** Citations must be displayed as sequential numbers ([1], [2], [3]) without gaps during LLM streaming output, but renumbering requires knowing all citations—which is impossible when the full text has not yet been generated.
-
-**CS2: Multi-Tenant SaaS Session Management.** A session management system must simultaneously support multi-device login, administrator-initiated immediate session revocation, horizontal scaling, and low latency—requirements that create tension between stateless and stateful architectures.
-
-### 4.2 Three-Condition Comparison (A/B/C)
+### 4.1 Three-Condition Comparison (A/B/C)
 
 Three conditions were compared: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template with §1–§7 guidelines. Each condition was run once per case study (N=2 total).
 
@@ -166,7 +148,7 @@ Three conditions were compared: (A) conventional prompting, (B) paper-format ins
 
 **Qualitative notes.** Condition B spontaneously produced academic conventions (abstract, keywords, references in CS2; a mathematical proof of prefix-determinability in CS1) that were absent in both A and C. This suggests that paper-format framing activates distinct output behaviors, though these did not include the co-primary indicators.
 
-### 4.3 B-Variant Comparison (B1/B2/B3)
+### 4.2 B-Variant Comparison (B1/B2/B3)
 
 To investigate whether framing variations could close the gap with condition C, we tested three B-variant phrasings: B1 ("学術論文の形式で書いてください" — write in academic paper format), B2 ("論文を書いてください" — write a paper), and B3 ("学術論文を書いてください" — write an academic paper).
 
@@ -182,7 +164,7 @@ To investigate whether framing variations could close the gap with condition C, 
 
 **Framing effect ceiling.** Despite these progressive improvements, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. The exploratory indicator (constraints disclosed) also showed no increase beyond the A/B baseline (1.5). The framing effect was associated with changes in output characteristics (exploration breadth, formality, academic conventions) but not with the appearance of the co-primary indicators. We term this the **framing effect ceiling**: framing alone was insufficient, in this data, to elicit the information externalization observed under the template condition.
 
-### 4.4 Cross-Model Observation
+### 4.3 Cross-Model Observation
 
 A separate two-condition comparison (conventional vs. PDD) was conducted with OpenAI o3 on the same two problems (see `comparison-data.md`, supplementary section). Although experimental conditions differed (model, number of conditions), o3 exhibited a similar pattern: co-primary indicators appeared only under the PDD template condition. This does not constitute a controlled multi-model comparison, but provides preliminary evidence that the observed pattern is not unique to a single model family.
 
@@ -190,7 +172,7 @@ A separate two-condition comparison (conventional vs. PDD) was conducted with Op
 
 ### 5.1 Framing Effect and Its Ceiling
 
-The B-variant experiment (§4.3) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
+The B-variant experiment (§4.2) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
 
 However, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. This pattern—which we term the **framing effect ceiling**—suggests that framing changes are associated with improvements in output form (structure, breadth, academic conventions) but not with the externalization of verification-relevant information. In this data, the framing effect operated on a qualitatively different dimension than the template effect.
 
@@ -219,7 +201,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 ### 5.5 Limitations and Threats to Validity
 
 - **Small sample (N=2)**: Two case studies, each run once per condition, are insufficient for statistical conclusions. All findings should be interpreted as exploratory observations, not confirmed effects.
-- **Single model (GPT-5.2)**: The primary experiment used a single model. The o3 observation (§4.4) provides weak supplementary evidence but does not constitute multi-model validation.
+- **Single model (GPT-5.2)**: The primary experiment used a single model. The o3 observation (§4.3) provides weak supplementary evidence but does not constitute multi-model validation.
 - **Author evaluation**: All metrics were counted by the authors, not independent evaluators. Blinded evaluation is needed to rule out evaluator bias.
 - **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties, constraints) are closely aligned with template section requirements (§1.2, §6, §7). As discussed in §5.2, we frame this as information externalization rather than quality improvement, but the concern remains that we are partially measuring template compliance rather than independent analytical quality.
 - **Output length confound**: Condition C produced longer outputs (129 lines avg) than B (90 lines avg). The increase in co-primary indicators may partially reflect increased output volume rather than increased analytical depth. Per-line normalization was not performed.
@@ -342,7 +324,7 @@ All prompts were in Japanese. The problem description was identical across condi
 | B3: Academic-paper | 「この問題について、学術論文を書いてください」 | "Please write an academic paper about this problem" |
 | C: PDD Template | B1 の指示文 + §1–§7 テンプレートガイドライン | B1 instruction + §1–§7 template guidelines |
 
-The §1–§7 template guidelines used in condition C are defined in §3.1 of this paper.
+The §1–§7 template guidelines used in condition C are defined in §3.2 of this paper.
 
 ### A.2 Scoring Rubric
 
