@@ -11,7 +11,7 @@ We present Paper-Driven Development (PDD), a methodology for LLM-assisted softwa
 
 Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2].
 
-We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (§4.2) revealed that this framing effect has a ceiling: two co-primary indicators—conflicting requirements and testable properties—remained at zero regardless of framing variations. These indicators appeared only when the PDD template (§1–§7 section guidelines) was provided.
+We began with an observation: simply changing the instruction from "propose a solution" to "write a paper" altered the output characteristics of LLM design analysis—increasing exploration breadth, structural formality, and adherence to academic conventions. However, further investigation through B-variant experiments (Appendix C) revealed that this framing effect has a ceiling: two co-primary indicators—conflicting requirements and testable properties—remained at zero regardless of framing variations. These indicators appeared only when the PDD template (§1–§7 section guidelines) was provided.
 
 We interpret the template's role not as eliciting new capabilities from LLMs, but as **information externalization**: by specifying sections for existing approaches (§3), conflicting requirements (§1.2), testable properties (§6), and constraints (§7), the template prevents omission of analysis steps that LLMs can perform but do not spontaneously produce under conventional or paper-format-only prompting.
 
@@ -159,53 +159,37 @@ To address the author-evaluation limitation identified in Phase 1, a single-blin
 
 **Blinding limitations.** This is single-blind: condition labels are removed, but output format features (§-structured sections in C, numbered checklist in D, academic conventions in B) may allow condition inference. Evaluator condition estimation accuracy is reported and its potential impact on scoring bias is discussed.
 
-## 4. Case Study
+## 4. Results
 
-We applied PDD to two software design problems using GPT-5.2 (via Codex), comparing three prompting conditions and three B-variant framings. All outputs and raw measurements are available in the companion document `comparison-data.md`.
+### 4.1 Descriptive Statistics
 
-### 4.1 Three-Condition Comparison (A/B/C)
+[TODO: Phase 2 content]
 
-Three conditions were compared: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template with §1–§7 guidelines. Each condition was run once per case study (N=2 total).
+### 4.2 Externalization Effect
 
-| Metric | A: Conventional (avg) | B: Paper-format (avg) | C: PDD Template (avg) |
-| --- | ---: | ---: | ---: |
-| Total lines | 62 | 90 | 129 |
-| Existing approaches analyzed | 1.5 | 2.0 | 4.0 |
-| Conflicting requirements | 0 | 0 | 2.5 |
-| Testable properties | 0 | 0 | 6.5 |
-| Constraints disclosed | 1.5 | 1.5 | 4.0 |
+[TODO: Phase 2 content]
 
-**Co-primary indicators.** Conflicting requirements and testable properties were observed only under condition C, remaining at zero for both A and B. Self-blinded rescoring confirmed this pattern with perfect agreement in condition C (§5.6). **Exploratory indicator.** Constraints disclosed were present at baseline (A: 1.5, B: 1.5) and increased under C (4.0), but this indicator was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement; see §5.6). Among secondary indicators, formal invariants showed no condition-dependent variation (0.5 across all conditions).
+### 4.3 Framing Effect and Equivalence
 
-**Secondary observations.** Existing approaches analyzed increased modestly from A (1.5) to B (2.0) and substantially under C (4.0). All three conditions reached the same correct design conclusion for both problems—the difference was in justification and verifiability, not in the answer itself.
+[TODO: Phase 2 content]
 
-**Qualitative notes.** Condition B spontaneously produced academic conventions (abstract, keywords, references in CS2; a mathematical proof of prefix-determinability in CS1) that were absent in both A and C. This suggests that paper-format framing activates distinct output behaviors, though these did not include the co-primary indicators.
+### 4.4 Post-hoc Finding: Paper Format and Testable Properties
 
-### 4.2 B-Variant Comparison (B1/B2/B3)
+[TODO: Phase 2 content]
 
-To investigate whether framing variations could close the gap with condition C, we tested three B-variant phrasings: B1 ("学術論文の形式で書いてください" — write in academic paper format), B2 ("論文を書いてください" — write a paper), and B3 ("学術論文を書いてください" — write an academic paper).
+### 4.5 Sensitivity Analyses
 
-| Metric | B1 (avg) | B2 (avg) | B3 (avg) | C (avg, ref) |
-| --- | ---: | ---: | ---: | ---: |
-| Total lines | 90 | 102 | 104 | 129 |
-| Existing approaches analyzed | 2.0 | 2.5 | 3.5 | 4.0 |
-| Conflicting requirements | 0 | 0 | 0 | 2.5 |
-| Testable properties | 0 | 0 | 0 | 6.5 |
-| Constraints disclosed | 1.5 | 1.5 | 1.5 | 4.0 |
+[TODO: Phase 2 content]
 
-**Framing effect.** Output length and exploration breadth (existing approaches analyzed) increased progressively from B1 to B3. B3 also exhibited stronger academic conventions: keywords, references, and formalized requirement definitions (R1–R4 notation). In CS1, B3 independently generated an "evaluation metrics and experimental plan" section with four measurable criteria—a behavior absent in B1 and B2.
+### 4.6 Third-Party Blinded Evaluation
 
-**Framing effect ceiling.** Despite these progressive improvements, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. The exploratory indicator (constraints disclosed) also showed no increase beyond the A/B baseline (1.5). The framing effect was associated with changes in output characteristics (exploration breadth, formality, academic conventions) but not with the appearance of the co-primary indicators. We term this the **framing effect ceiling**: framing alone was insufficient, in this data, to elicit the information externalization observed under the template condition.
-
-### 4.3 Cross-Model Observation
-
-A separate two-condition comparison (conventional vs. PDD) was conducted with OpenAI o3 on the same two problems (see `comparison-data.md`, supplementary section). Although experimental conditions differed (model, number of conditions), o3 exhibited a similar pattern: co-primary indicators appeared only under the PDD template condition. This does not constitute a controlled multi-model comparison, but provides preliminary evidence that the observed pattern is not unique to a single model family.
+<!-- Step 2.3 完了後に記述 -->
 
 ## 5. Discussion
 
 ### 5.1 Framing Effect and Its Ceiling
 
-The B-variant experiment (§4.2) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
+The B-variant experiment (Appendix C) revealed that instruction framing—varying the wording from "write in paper format" to "write an academic paper"—was associated with progressive changes in output characteristics. From B1 to B3, outputs exhibited increased exploration breadth (existing approaches: 2.0 → 3.5), stronger academic conventions (keywords, references, formalized requirements), and greater structural formality. In CS1, B3 spontaneously generated an evaluation metrics section with four measurable criteria—a behavior not observed in B1 or B2.
 
 However, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. This pattern—which we term the **framing effect ceiling**—suggests that framing changes are associated with improvements in output form (structure, breadth, academic conventions) but not with the externalization of verification-relevant information. In this data, the framing effect operated on a qualitatively different dimension than the template effect.
 
@@ -234,7 +218,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 ### 5.5 Limitations and Threats to Validity
 
 - **Small sample (N=2)**: Two case studies, each run once per condition, are insufficient for statistical conclusions. All findings should be interpreted as exploratory observations, not confirmed effects.
-- **Single model (GPT-5.2)**: The primary experiment used a single model. The o3 observation (§4.3) provides weak supplementary evidence but does not constitute multi-model validation.
+- **Single model (GPT-5.2)**: The primary experiment used a single model. The o3 observation (Appendix C) provides weak supplementary evidence but does not constitute multi-model validation.
 - **Author evaluation**: All metrics were counted by the authors, not independent evaluators. Blinded evaluation is needed to rule out evaluator bias.
 - **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties, constraints) are closely aligned with template section requirements (§1.2, §6, §7). As discussed in §5.2, we frame this as information externalization rather than quality improvement, but the concern remains that we are partially measuring template compliance rather than independent analytical quality.
 - **Output length confound**: Condition C produced longer outputs (129 lines avg) than B (90 lines avg). The increase in co-primary indicators may partially reflect increased output volume rather than increased analytical depth. Per-line normalization was not performed.
@@ -257,7 +241,7 @@ To assess the stability of the manual scoring, we conducted a self-blinded resco
 - *Testable properties (50%)*: The rescorer counted B-condition input requirements (R1–R4 notation) as testable properties, while the original scoring distinguished input requirements (what the system must do) from derived testable properties (how the proposed solution behaves). Under the strict definition, B=0 holds; under the broad definition, B conditions contain 3–4 testable conditions. This distinction was not explicit in the original rubric and has been clarified in Appendix A.2.
 - *Constraints disclosed (30%)*: The original scoring included operational advice and future work items as constraint disclosure, while the rescorer counted only explicit limitations and boundary conditions of the proposed approach. The baseline values shift (A/B: 1.5 → 0–1), but the increase pattern under C is preserved.
 
-**Post-hoc reclassification.** Based on the measurement reliability findings above, constraints disclosed was reclassified from co-primary to exploratory indicator. This reclassification was motivated by measurement instability (30% agreement, definition boundary ambiguity), not by the effect direction—the increase pattern under C was preserved under both scoring interpretations. The reclassification was performed after the rescoring results were known; the original three-indicator data remain fully reported in §4 and Appendix B.
+**Post-hoc reclassification.** Based on the measurement reliability findings above, constraints disclosed was reclassified from co-primary to exploratory indicator. This reclassification was motivated by measurement instability (30% agreement, definition boundary ambiguity), not by the effect direction—the increase pattern under C was preserved under both scoring interpretations. The reclassification was performed after the rescoring results were known; the original three-indicator data remain fully reported in Appendix C and Appendix B.
 
 **Limitations of this procedure.** This is not independent third-party evaluation. The rescoring was conducted by an AI agent under author instruction, and both scorer and rescorer are AI systems with potentially correlated biases. The procedure serves as a supplementary robustness check, not a substitute for the blinded human evaluation recommended in §7.
 
@@ -452,3 +436,47 @@ In condition C, conflicting requirements and testable properties showed perfect 
 **Constraints disclosed (30% agreement).** Two sources of disagreement: (1) In A/B conditions, the original scoring counted operational advice as constraint disclosure while the rescorer did not. This reduces baseline values from 1.5 to 0–1 but preserves the increase pattern under C. (2) In CS1-C, the original scoring included 3 future work items as constraints; the rescorer excluded these. The C-condition increase relative to A/B is maintained under both interpretations.
 
 **Conflicting requirements (80% agreement).** In CS2-B1 and CS2-B3, the rescorer counted narrative tension descriptions as conflicting requirements (1 each), while the original scoring required formally defined pairs (as in §1.2). The qualitative difference between narrative mention and formal definition remains.
+
+---
+
+## Appendix C: Phase 1 Exploratory Study (N=2)
+
+This appendix preserves the results of the Phase 1 exploratory study (N=2, three conditions A/B/C plus B-variant comparison), which generated the hypotheses tested in the Phase 2 experiment (§3–§4). Per protocol §10.2, Phase 1 data are not included in the main analysis.
+
+### C.1 Three-Condition Comparison (A/B/C)
+
+Three conditions were compared: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template with §1–§7 guidelines. Each condition was run once per case study (N=2 total).
+
+| Metric | A: Conventional (avg) | B: Paper-format (avg) | C: PDD Template (avg) |
+| --- | ---: | ---: | ---: |
+| Total lines | 62 | 90 | 129 |
+| Existing approaches analyzed | 1.5 | 2.0 | 4.0 |
+| Conflicting requirements | 0 | 0 | 2.5 |
+| Testable properties | 0 | 0 | 6.5 |
+| Constraints disclosed | 1.5 | 1.5 | 4.0 |
+
+**Co-primary indicators.** Conflicting requirements and testable properties were observed only under condition C, remaining at zero for both A and B. Self-blinded rescoring confirmed this pattern with perfect agreement in condition C (§5.6). **Exploratory indicator.** Constraints disclosed were present at baseline (A: 1.5, B: 1.5) and increased under C (4.0), but this indicator was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement; see §5.6). Among secondary indicators, formal invariants showed no condition-dependent variation (0.5 across all conditions).
+
+**Secondary observations.** Existing approaches analyzed increased modestly from A (1.5) to B (2.0) and substantially under C (4.0). All three conditions reached the same correct design conclusion for both problems—the difference was in justification and verifiability, not in the answer itself.
+
+**Qualitative notes.** Condition B spontaneously produced academic conventions (abstract, keywords, references in CS2; a mathematical proof of prefix-determinability in CS1) that were absent in both A and C. This suggests that paper-format framing activates distinct output behaviors, though these did not include the co-primary indicators.
+
+### C.2 B-Variant Comparison (B1/B2/B3)
+
+To investigate whether framing variations could close the gap with condition C, three B-variant phrasings were tested: B1 ("学術論文の形式で書いてください" — write in academic paper format), B2 ("論文を書いてください" — write a paper), and B3 ("学術論文を書いてください" — write an academic paper).
+
+| Metric | B1 (avg) | B2 (avg) | B3 (avg) | C (avg, ref) |
+| --- | ---: | ---: | ---: | ---: |
+| Total lines | 90 | 102 | 104 | 129 |
+| Existing approaches analyzed | 2.0 | 2.5 | 3.5 | 4.0 |
+| Conflicting requirements | 0 | 0 | 0 | 2.5 |
+| Testable properties | 0 | 0 | 0 | 6.5 |
+| Constraints disclosed | 1.5 | 1.5 | 1.5 | 4.0 |
+
+**Framing effect.** Output length and exploration breadth (existing approaches analyzed) increased progressively from B1 to B3. B3 also exhibited stronger academic conventions: keywords, references, and formalized requirement definitions (R1–R4 notation). In CS1, B3 independently generated an "evaluation metrics and experimental plan" section with four measurable criteria—a behavior absent in B1 and B2.
+
+**Framing effect ceiling.** Despite these progressive improvements, the two co-primary indicators—conflicting requirements and testable properties—remained at zero across all B variants. The exploratory indicator (constraints disclosed) also showed no increase beyond the A/B baseline (1.5). The framing effect was associated with changes in output characteristics (exploration breadth, formality, academic conventions) but not with the appearance of the co-primary indicators. This framing effect ceiling—together with the observation that co-primary indicators appeared only under the template condition (C)—motivated the Phase 2 hypothesis that explicit analysis step requirements, rather than framing alone, drive co-primary indicator appearance.
+
+### C.3 Cross-Model Observation
+
+A separate two-condition comparison (conventional vs. PDD) was conducted with OpenAI o3 on the same two problems (see `comparison-data.md`, supplementary section). Although experimental conditions differed (model, number of conditions), o3 exhibited a similar pattern: co-primary indicators appeared only under the PDD template condition. This does not constitute a controlled multi-model comparison, but provides preliminary evidence that the observed pattern is not unique to a single model family.
