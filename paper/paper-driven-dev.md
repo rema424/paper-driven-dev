@@ -10,7 +10,7 @@ We investigate whether structured analysis requirements — explicitly prompting
 
 Large Language Models (LLMs) have become integral to software development workflows, assisting with code generation, debugging, and design analysis. However, the quality of LLM output varies significantly depending on how problems are presented. The emerging field of prompt engineering has demonstrated that structured prompts can substantially improve reasoning quality [1, 2], but the mechanisms underlying these improvements — and which aspects of prompt structure matter most — remain poorly understood.
 
-This study originated from an observation we called **Paper-Driven Development (PDD)**: instructing an LLM to "write a paper" about a software design problem, guided by a seven-section academic paper template (§1–§7), appeared to produce more thorough design analysis than conventional prompting. An exploratory Phase 1 study (N=2; Appendix C) confirmed that two verification-relevant indicators — conflicting requirements identified and testable properties derived — appeared only under the PDD template condition, remaining at zero under both conventional prompting and paper-format-only instruction. However, this Phase 1 design could not distinguish two confounded factors within the PDD template: (1) the explicit analysis step requirements (e.g., "identify conflicting requirements," "derive testable properties") and (2) the academic paper framing.
+This study originated from an observation we called **Paper-Driven Development (PDD)**: instructing an LLM to "write a paper" about a software design problem, guided by a seven-section academic paper template (template §1–§7), appeared to produce more thorough design analysis than conventional prompting. An exploratory Phase 1 study (N=2; Appendix C) confirmed that two verification-relevant indicators — conflicting requirements identified and testable properties derived — appeared only under the PDD template condition, remaining at zero under both conventional prompting and paper-format-only instruction. However, this Phase 1 design could not distinguish two confounded factors within the PDD template: (1) the explicit analysis step requirements (e.g., "identify conflicting requirements," "derive testable properties") and (2) the academic paper framing.
 
 To separate these factors, we designed a fourth condition — a structured checklist (D) that requests the same analysis steps as the PDD template but without academic paper framing. If D achieves equivalent results to C (PDD template), the active ingredient is the structuring of analysis steps, not the paper format. We pre-registered this equivalence test as a pivot criterion (protocol §9.1): if D ≈ C, the paper's thesis pivots from "PDD template superiority" to "structured analysis requirements as the active ingredient."
 
@@ -74,16 +74,16 @@ Four conditions were compared. All shared identical problem descriptions (§3.3)
 |-----------|-------|-------------------|
 | A | Conventional | Design analysis prompt (no structural requirements) |
 | B | Paper-format | "Write in academic paper format" (no template) |
-| C | PDD Template | Paper-format instruction + §1–§7 template guidelines |
+| C | PDD Template | Paper-format instruction + template §1–§7 guidelines |
 | D | Structured Checklist | Checklist instruction + equivalent analysis items (no paper framing) |
 
 **Condition A (Conventional).** "以下の技術的な問題について、設計分析と解決策を提案してください。" (Please propose a design analysis and solution for this problem.)
 
 **Condition B (Paper-format).** "以下の技術的な問題について、学術論文の形式で書いてください。" (Please write about this problem in academic paper format.) This corresponds to Phase 1's B1 condition.
 
-**Condition C (PDD Template).** Condition B's instruction plus explicit §1–§7 section guidelines specifying: problem definition with conflicting requirements (§1.2), current architecture (§2), existing approaches with limitations (§3), problem essence (§4), proposed method (§5), testable properties in Given/When/Then format (§6), and constraints (§7). The full template is reproduced in Appendix A.1. Key design decisions: §1.2 requires ≥2 conflicting requirements (forcing identification of genuine trade-offs); §3 requires explicit limitations per approach (preventing the common failure of listing only advantages); §6 requires Given/When/Then testable properties (bridging design analysis and TDD); §7 requires honest constraint disclosure (counteracting LLMs' tendency to present proposals as universally applicable).
+**Condition C (PDD Template).** Condition B's instruction plus explicit seven-section template guidelines (template §1–§7) specifying: problem definition with conflicting requirements (template §1.2), current architecture (template §2), existing approaches with limitations (template §3), problem essence (template §4), proposed method (template §5), testable properties in Given/When/Then format (template §6), and constraints (template §7). The full template is reproduced in Appendix A.1. Key design decisions: template §1.2 requires ≥2 conflicting requirements (forcing identification of genuine trade-offs); template §3 requires explicit limitations per approach (preventing the common failure of listing only advantages); template §6 requires Given/When/Then testable properties (bridging design analysis and TDD); template §7 requires honest constraint disclosure (counteracting LLMs' tendency to present proposals as universally applicable).
 
-**Condition D (Structured Checklist).** "以下の技術的な問題について、以下の分析項目に従って順番に分析してください。" (Please analyze the following problem by following these analysis items in order.) D requests the same nine analysis steps as C—including ≥2 conflicting requirements (item 2) and Given/When/Then testable conditions (item 8)—using numbered list notation (1–9) instead of paper section notation (§1–§7). The structural granularity (sub-items, approach-level method/advantages/limitations) is isomorphic to C; only the framing differs (technical analysis vs. academic paper). Full prompt in Appendix A.1.
+**Condition D (Structured Checklist).** "以下の技術的な問題について、以下の分析項目に従って順番に分析してください。" (Please analyze the following problem by following these analysis items in order.) D requests the same nine analysis steps as C—including ≥2 conflicting requirements (item 2) and Given/When/Then testable conditions (item 8)—using numbered list notation (1–9) instead of paper section notation (template §1–§7). The structural granularity (sub-items, approach-level method/advantages/limitations) is isomorphic to C; only the framing differs (technical analysis vs. academic paper). Full prompt in Appendix A.1.
 
 **Demand characteristics.** Both C and D explicitly request the co-primary indicators (conflicting requirements, testable properties). This is intentional: the research question is not whether LLMs spontaneously produce these analyses, but (1) whether explicit requirements elicit information that is otherwise omitted (A/B vs. C/D), and (2) whether academic paper framing provides additional value over checklist framing when the same analysis steps are required (C vs. D). Conditions A and B, which do not request these items, serve as the baseline for spontaneous occurrence.
 
@@ -247,7 +247,7 @@ The framing effect is not supported: C does not outperform D on either co-primar
 | CR | −0.500 | 1.25 | < 0.0001 | Yes (α = 0.05) |
 | TP | −0.100 | 3.25 | < 0.0001 | Yes (α = 0.05) |
 
-Equivalence is strongly established: the difference between C and D falls well within the pre-specified margins. Per the pre-registered pivot criterion (protocol §9.1), this activates the thesis pivot: the active ingredient in the PDD template is the structuring of analysis steps, not the academic paper framing. D—a structured checklist requesting the same analysis steps without paper framing—achieves statistically equivalent co-primary indicator levels.
+Equivalence is supported: the difference between C and D falls within the pre-specified margins. Per the pre-registered pivot criterion (protocol §9.1), this activates the thesis pivot: the active ingredient in the PDD template is the structuring of analysis steps, not the academic paper framing. D—a structured checklist requesting the same analysis steps without paper framing—achieves statistically equivalent co-primary indicator levels.
 
 ### 4.4 Post-hoc Finding: Paper Format and Testable Properties
 
@@ -282,7 +282,7 @@ D shows higher density (more indicators per line) than C, consistent with D's sh
 
 ### 4.6 Third-Party Blinded Evaluation
 
-<!-- Step 2.3 完了後に記述。評価パッケージは作成済み（paper/evaluation/）。評価者募集中。 -->
+<!-- 評価パッケージは作成済み（paper/evaluation/）。評価者募集中。完了後に記述。 -->
 
 ## 5. Discussion
 
@@ -328,7 +328,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 
 - **Limited problem domains (2 case studies)**: Although each condition was run N=5 times (40 total executions), only two software design problems were used (citation rendering, session management). The externalization effect is consistent across both case studies (§4.5), but generalization to other problem domains (e.g., authentication, distributed systems, data modeling) remains unestablished.
 - **Single model (GPT-5.2)**: The experiment used a single model. The Phase 1 o3 cross-model observation (Appendix C) provides preliminary evidence that the pattern is not model-specific, but formal multi-model validation has not been conducted.
-- **Author evaluation**: All Phase 2 indicators were scored by the author using Rubric v2 (§3.5). Third-party blinded evaluation (Step 2.3; §4.6) is in progress but not yet complete. Until independent evaluation confirms the scoring, evaluator bias cannot be ruled out.
+- **Author evaluation**: All Phase 2 indicators were scored by the author using Rubric v2 (§3.5). Third-party blinded evaluation (§3.7; §4.6) is in progress but not yet complete. Until independent evaluation confirms the scoring, evaluator bias cannot be ruled out.
 - **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties) are closely aligned with the analysis step requirements in conditions C and D. As discussed in §5.1, the D ≈ C equivalence partially addresses this concern — D's different format produces equivalent indicators, suggesting genuine analytical work rather than mechanical format-filling — but the concern that we measure "requirement compliance" rather than independent analytical quality remains partially valid.
 - **Output length confound**: Condition C produced longer outputs (105.3 lines avg) than A (38.9 lines) and B (68.5 lines). However, line-normalized analysis (§4.5) confirms that the externalization effect persists after controlling for output volume: D produces the highest indicator density (CR/TL, TP/TL) despite shorter outputs than C, indicating that the effect is not an artifact of output length.
 - **Prompt optimization**: The conventional prompt (A) was not optimized with CoT, persona, or other prompting techniques. A well-engineered conventional prompt might narrow the observed gap between A and {C, D}. However, B (which implicitly includes persona activation) still shows a large gap with {C, D} (Cliff's δ = 1.000), suggesting that standard prompting enhancements alone are unlikely to close the full gap.
@@ -374,7 +374,7 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 ## 7. Future Work
 
-1. **Third-party blinded evaluation**: Independent evaluators scoring outputs without condition labels (Step 2.3; §4.6). This is in progress — evaluation packages have been prepared and blinded, but evaluator recruitment is pending. Until inter-rater reliability is established (target: ICC ≥ 0.60), the findings rest on author evaluation alone.
+1. **Third-party blinded evaluation**: Independent evaluators scoring outputs without condition labels (§3.7; §4.6). This is in progress — evaluation packages have been prepared and blinded, but evaluator recruitment is pending. Until inter-rater reliability is established (target: ICC ≥ 0.60), the findings rest on author evaluation alone.
 2. **Multi-model validation**: Test whether the externalization effect ({C, D} >> {A, B}) and the C ≈ D equivalence replicate across different LLM families (e.g., Claude, Gemini). The current findings are limited to GPT-5.2; the Phase 1 o3 cross-model observation (Appendix C) provides preliminary but inconclusive evidence.
 3. **Multi-domain validation**: Apply structured analysis requirements to problem domains beyond citation rendering and session management (e.g., authentication, distributed systems, data modeling) to assess generalizability.
 4. **Downstream impact measurement**: Measure whether designs produced with structured analysis requirements lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally prompted designs. The current co-primary indicators measure the presence of verification-relevant information, not its downstream utility.
@@ -446,10 +446,10 @@ All prompts were in Japanese. The problem description was identical across condi
 |-----------|------------------------------|-------------|
 | A: Conventional | 「以下の技術的な問題について、設計分析と解決策を提案してください」 | "Please propose a design analysis and solution for this problem" |
 | B: Paper-format | 「以下の技術的な問題について、学術論文の形式で書いてください」 | "Please write about this problem in academic paper format" |
-| C: PDD Template | B の指示文 + §1–§7 テンプレートガイドライン | B instruction + §1–§7 template guidelines |
+| C: PDD Template | B の指示文 + テンプレート §1–§7 ガイドライン | B instruction + template §1–§7 guidelines |
 | D: Checklist | 「以下の技術的な問題について、以下の分析項目に従って順番に分析してください」+ 分析項目1–9 | "Please analyze by following these analysis items in order" + items 1–9 |
 
-The §1–§7 template guidelines (condition C) and the 1–9 analysis items (condition D) are defined in §3.2. Conditions C and D share the same analytical requirements in isomorphic structure; only the output framing differs.
+The template §1–§7 guidelines (condition C) and the 1–9 analysis items (condition D) are defined in §3.2. Conditions C and D share the same analytical requirements in isomorphic structure; only the output framing differs.
 
 **Phase 1 B-variant conditions (Appendix C):** B1 = Phase 2's B condition; B2 ("論文を書いてください"); B3 ("学術論文を書いてください").
 
@@ -552,7 +552,7 @@ In condition C, conflicting requirements and testable properties showed perfect 
 
 **Constraints disclosed (30% agreement).** Two sources of disagreement: (1) In A/B conditions, the original scoring counted operational advice as constraint disclosure while the rescorer did not. This reduces baseline values from 1.5 to 0–1 but preserves the increase pattern under C. (2) In CS1-C, the original scoring included 3 future work items as constraints; the rescorer excluded these. The C-condition increase relative to A/B is maintained under both interpretations.
 
-**Conflicting requirements (80% agreement).** In CS2-B1 and CS2-B3, the rescorer counted narrative tension descriptions as conflicting requirements (1 each), while the original scoring required formally defined pairs (as in §1.2). The qualitative difference between narrative mention and formal definition remains.
+**Conflicting requirements (80% agreement).** In CS2-B1 and CS2-B3, the rescorer counted narrative tension descriptions as conflicting requirements (1 each), while the original scoring required formally defined pairs (as in template §1.2). The qualitative difference between narrative mention and formal definition remains.
 
 ---
 
@@ -562,7 +562,7 @@ This appendix preserves the results of the Phase 1 exploratory study (N=2, three
 
 ### C.1 Three-Condition Comparison (A/B/C)
 
-Three conditions were compared: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template with §1–§7 guidelines. Each condition was run once per case study (N=2 total).
+Three conditions were compared: (A) conventional prompting, (B) paper-format instruction without template, and (C) PDD template with template §1–§7 guidelines. Each condition was run once per case study (N=2 total).
 
 | Metric | A: Conventional (avg) | B: Paper-format (avg) | C: PDD Template (avg) |
 | --- | ---: | ---: | ---: |
@@ -572,7 +572,7 @@ Three conditions were compared: (A) conventional prompting, (B) paper-format ins
 | Testable properties | 0 | 0 | 6.5 |
 | Constraints disclosed | 1.5 | 1.5 | 4.0 |
 
-**Co-primary indicators.** Conflicting requirements and testable properties were observed only under condition C, remaining at zero for both A and B. Self-blinded rescoring confirmed this pattern with perfect agreement in condition C (§5.6). **Exploratory indicator.** Constraints disclosed were present at baseline (A: 1.5, B: 1.5) and increased under C (4.0), but this indicator was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement; see §5.6). Among secondary indicators, formal invariants showed no condition-dependent variation (0.5 across all conditions).
+**Co-primary indicators.** Conflicting requirements and testable properties were observed only under condition C, remaining at zero for both A and B under the strict scoring definition. Self-blinded rescoring confirmed this pattern with perfect agreement in condition C (§5.6). **Note on B vs. Phase 2 discrepancy**: Phase 2 found B produces TP ≈ 2.0 (§4.4), whereas Phase 1 scored B as TP = 0. The Phase 1 rescoring (Appendix B.5) revealed that B outputs contain formalized properties (R1–R4 notation), but these were classified as input requirements rather than derived testable properties under the strict definition. Phase 2 B outputs, with N=5 per case study, consistently produce mathematical proof-like properties (e.g., "map immutability," "propagation delay bound") that qualify as derived testable properties under Rubric v2. The discrepancy likely reflects both the small Phase 1 sample (N=2) and the rubric clarification between phases. **Exploratory indicator.** Constraints disclosed were present at baseline (A: 1.5, B: 1.5) and increased under C (4.0), but this indicator was reclassified as exploratory due to low measurement reliability (30% inter-rater agreement; see §5.6). Among secondary indicators, formal invariants showed no condition-dependent variation (0.5 across all conditions).
 
 **Secondary observations.** Existing approaches analyzed increased modestly from A (1.5) to B (2.0) and substantially under C (4.0). All three conditions reached the same correct design conclusion for both problems—the difference was in justification and verifiability, not in the answer itself.
 
