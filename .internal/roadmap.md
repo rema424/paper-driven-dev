@@ -2,7 +2,7 @@
 
 ## 現在地（最終更新: 2026-02-21）
 
-**Phase 2: フルペーパー化 — Step 2.6 論文全面改訂完了**
+**Phase 2: フルペーパー化 — Step 2.4 外的妥当性完了**
 
 ```
 Phase 0: Bootstrap                    ✅ 完了
@@ -15,15 +15,16 @@ Phase 2: フルペーパー化                 ⏳ 方向転換後ロードマ�
   A-1: プロトコル逸脱の記録             ✅
   A-2: Codex との Narrative 議論        ✅
   Step 2.3: 第三者盲検評価              ⏳ LLM暫定評価完了（ICC CR=0.985,TP=0.908）、人間評価待ち
-  Step 2.4: 外的妥当性の確保            ⬚ 未着手
+  Step 2.4: 外的妥当性の確保            ✅ Sonnet 4.6 で外在化効果+C≈D 完全再現
   Step 2.5: 差別化強化                  ⬚ 未着手
-  Step 2.6: 論文の全面改訂              ✅ 全セクション改訂完了
+  Step 2.6: 論文の全面改訂              ✅ 全セクション改訂完了（§4.7 外的妥当性追加）
   Step 2.7: 投稿                       ⬚ 未着手
 ```
 
-- 最新コミット: `dc51b4f docs: ロードマップを更新（§4 Results 書き換え完了）`
+- 最新コミット: `4c31132 docs: ロードマップを更新（LLM 盲検評価完了）`
 - タグ: `v0-draft`（`ad30111`）、`v1-protocol`（Step 2.0 固定）
-- ブランチ: `main`（LLM 盲検評価の変更は未コミット）
+- ブランチ: `main`
+- 未コミット: Sonnet 外的妥当性実験（24 出力 + 採点 + 統計 + 論文更新）
 
 ### Step 2.2 の結果サマリー
 
@@ -48,13 +49,31 @@ LLM 3モデル（GPT-5.2, Opus 4.6, Sonnet 4.6）による暫定盲検評価を�
 - 条件推定精度: GPT-5.2=97.5%, Opus=90.0%, Sonnet=82.5%
 - 人間評価は引き続き必要（LLM-as-judge の限界を §4.6 に明記済み）
 
+### Step 2.4 外的妥当性の結果サマリー
+
+Claude Sonnet 4.6（N=3 per condition per CS, 24 total）で外在化効果を完全再現。
+
+| Finding | GPT-5.2 (N=10) | Sonnet 4.6 (N=6) |
+|---------|----------------|-------------------|
+| {C,D} > {A,B} CR | p < 0.0001, δ=1.000 | p < 0.0001, δ=1.000 |
+| {C,D} > {A,B} TP | p < 0.0001, δ=1.000 | p < 0.0001, δ=1.000 |
+| C ≈ D (TOST CR) | p < 0.0001 | p = 0.002 |
+| C ≈ D (TOST TP) | p < 0.0001 | p = 0.010 |
+| B > A (TP) | p < 0.0001 | n.s. (B TP = 0) |
+
+- 外在化効果はモデル不変（δ = 1.000 for both）
+- 三層階層の B 中間効果はモデル固有（GPT-5.2 のみ）
+- Sonnet では A ≈ B（TP = 0）の二層構造
+
 ### 次のアクション
 
 1. **Step 2.3 人間評価**: 評価者の募集・依頼（評価パッケージ配布 → 校正 → 本番 → ICC 更新）
-2. ~~**Codex レビュー**~~: ✅ 完了（7項目中7項目対応済み — 参照不整合3件 + Codex レビュー4件）
-3. **Step 2.4**: 外的妥当性の確保（追加モデルで4条件実験）
+2. **Step 2.5**: 差別化強化（下流アウトカム測定 or 強化版プロンプト比較）
+3. **Step 2.7**: 投稿準備
 
-### 実験出力の現状（`docs/examples/fullpaper/`）
+### 実験出力の現状
+
+**GPT-5.2（`docs/examples/fullpaper/`）— 40 files**
 
 | ファイル | Run 1 | Run 2 | Run 3 | Run 4 | Run 5 |
 |----------|-------|-------|-------|-------|-------|
@@ -66,6 +85,19 @@ LLM 3モデル（GPT-5.2, Opus 4.6, Sonnet 4.6）による暫定盲検評価を�
 | cs2-paper-format | ✅ | ✅ | ✅ | ✅ | ✅ |
 | cs2-pdd-template | ✅ | ✅ | ✅ | ✅ | ✅ |
 | cs2-checklist | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+**Sonnet 4.6（`docs/examples/fullpaper/sonnet/`）— 24 files**
+
+| ファイル | Run 1 | Run 2 | Run 3 |
+|----------|-------|-------|-------|
+| cs1-conventional | ✅ | ✅ | ✅ |
+| cs1-paper-format | ✅ | ✅ | ✅ |
+| cs1-pdd-template | ✅ | ✅ | ✅ |
+| cs1-checklist | ✅ | ✅ | ✅ |
+| cs2-conventional | ✅ | ✅ | ✅ |
+| cs2-paper-format | ✅ | ✅ | ✅ |
+| cs2-pdd-template | ✅ | ✅ | ✅ |
+| cs2-checklist | ✅ | ✅ | ✅ |
 
 ---
 
@@ -275,7 +307,7 @@ Step 2.2 の結果により、プロトコル §9.1 の中止基準が発動:
 
 ---
 
-### Step 2.4: 外的妥当性の確保（準必須） ⬚
+### Step 2.4: 外的妥当性の確保（準必須） ✅
 
 **目的**: 結果の一般化可能性の確認。
 
@@ -284,11 +316,24 @@ Step 2.2 の結果により、プロトコル §9.1 の中止基準が発動:
 - **新**: 「{C, D} > {A, B} かつ C ≈ D」の再現
 
 実施内容:
-- [ ] 追加1モデル（Claude Sonnet 等）で4条件実験
-- [ ] 外在化効果の再現確認
-- [ ] D ≈ C の再現確認
+- [x] Claude Sonnet 4.6 で4条件実験（N=3 per condition per CS, 24 total）
+- [x] 外在化効果の再現確認: CR p < 0.0001, TP p < 0.0001, δ = 1.000
+- [x] D ≈ C の再現確認: TOST CR p = 0.002, TP p = 0.010
+- [x] 論文 §3.4, §4.7, §5.2, §5.5, §7, §8, Abstract, §1, Appendix 更新
+- [x] protocol-deviations.md に逸脱 #4（N=3）を記録
 
-**完了条件**: 追加モデルで外在化効果 + D ≈ C が再現。
+**追加の発見**:
+- 三層階層（A < B << {C,D}）は再現せず: Sonnet では B TP = 0（GPT-5.2 では B TP ≈ 2.0）
+- 中間 B 効果はモデル固有。外在化効果は両モデルで同一の効果量
+
+成果物:
+- LLM 出力: `docs/examples/fullpaper/sonnet/` (24 files)
+- 採点データ: `paper/scoring-data-sonnet.md`
+- 統計解析結果: `paper/analysis-results-sonnet.md`
+- 解析スクリプト: `paper/analysis/statistical_analysis_sonnet.py`
+- 実行順序: `.internal/execution-order-sonnet.md`
+
+**完了条件**: ✅ 追加モデルで外在化効果 + D ≈ C が再現。
 
 ---
 
