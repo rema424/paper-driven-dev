@@ -357,19 +357,21 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 ## 6. Related Work
 
-**Spec-Driven Development.** Kiro (AWS) and GitHub Spec Kit [3, 4] structure requirements into specifications that guide LLM code generation. PDD complements SDD by addressing design rationale rather than requirements.
+**Spec-Driven Development.** Kiro (AWS) and GitHub Spec Kit [3, 4] structure requirements into specifications that guide LLM code generation. Structured analysis requirements complement SDD by addressing design rationale — why to build it that way — rather than requirements specification alone.
 
-**Amazon Six-Pager / PR FAQ** [5]. Demonstrates that writing format affects thinking quality. PDD extends this principle to LLM-assisted technical analysis, adding critical evaluation of alternatives.
+**Amazon Six-Pager / PR FAQ** [5]. Demonstrates that writing format affects thinking quality. Our findings refine this principle: while format (paper vs. checklist) has limited impact on verification-relevant indicators, the structuring of analytical steps within the format is the primary driver.
 
-**RFC / ADR** [6]. Architecture Decision Records capture design decisions with context and consequences. PDD's §3 (existing approaches) and §7 (constraints) provide more structured analysis than typical ADR templates.
+**RFC / ADR** [6]. Architecture Decision Records capture context → decision → consequences. The structured analysis requirements tested in this study (existing approaches, conflicting requirements, testable properties, constraints) provide a more systematic framework for design analysis than typical ADR templates.
 
-**Prompt Engineering** [1, 2, 8]. CoT, persona prompting, and format constraint research provide theoretical grounding for PDD's observed effects. PDD can be viewed as a domain-specific application of these techniques to software design analysis.
+**Checklists in Professional Practice** [9]. Gawande demonstrated that checklists reduce omission errors in surgery and aviation by making required steps explicit. Our D ≈ C equivalence result directly supports this principle in the LLM prompting domain: a structured checklist achieves the same analytical quality as a more elaborate paper template, suggesting that step enumeration — not format — is the active mechanism.
 
-**Prompt Engineering Surveys.** The Prompt Report [10] catalogued 58 text-based prompting techniques across six problem-solving categories, establishing a taxonomy for the fragmented prompting landscape. PDD can be positioned within this taxonomy as a domain-specific template prompt combining elements of role prompting, structured output, and implicit CoT—applied specifically to software design analysis rather than general-purpose reasoning.
+**Prompt Engineering** [1, 2, 8]. CoT, persona prompting, and format constraint research provide theoretical grounding for the observed effects. The structured analysis requirements can be viewed as a domain-specific application of these techniques to software design analysis, with the three-tier hierarchy (§5.2) empirically distinguishing the contributions of persona activation (B's TP effect) from explicit step structuring ({C, D}'s full externalization).
 
-**Self-Planning Code Generation.** Jiang et al. [11] decompose code generation into a planning phase (deriving solution steps from the problem intent) and an implementation phase. PDD similarly separates design analysis (§1–§7) from implementation but operates at the architectural level—structuring trade-off analysis and constraint identification rather than function-level code planning.
+**Prompt Engineering Surveys.** The Prompt Report [10] catalogued 58 text-based prompting techniques across six problem-solving categories, establishing a taxonomy for the fragmented prompting landscape. Structured analysis requirements can be positioned within this taxonomy as a domain-specific template prompt combining elements of role prompting, structured output, and implicit CoT — applied specifically to software design analysis rather than general-purpose reasoning.
 
-**Prompt Templates in Practice.** A systematic analysis of prompt templates in real-world LLM-powered applications [12] found that template structure—component ordering, role placement, and example positioning—affects LLM instruction-following performance. PDD's §1–§7 structure is a specific instance of this broader observation, with the additional property that each section targets a distinct analytical dimension (problem definition, alternatives analysis, verification).
+**Self-Planning Code Generation.** Jiang et al. [11] decompose code generation into a planning phase (deriving solution steps from the problem intent) and an implementation phase. Structured analysis requirements similarly separate design analysis from implementation but operate at the architectural level — structuring trade-off analysis and constraint identification rather than function-level code planning.
+
+**Prompt Templates in Practice.** A systematic analysis of prompt templates in real-world LLM-powered applications [12] found that template structure — component ordering, role placement, and example positioning — affects LLM instruction-following performance. The structured analysis requirements tested in this study are a specific instance of this broader observation, with the additional finding that the content of the template (which analytical steps to require) matters more than the format (paper vs. checklist).
 
 ## 7. Future Work
 
