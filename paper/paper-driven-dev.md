@@ -37,6 +37,7 @@ Recent tools and methodologies leverage LLMs for software design:
 - **Amazon Narratives** [5]: Six-page memo format that forces structured prose over slides. Demonstrates that writing format affects thinking quality. Focuses on customer-facing narratives rather than technical analysis.
 - **RFC/ADR** [6]: Architecture Decision Records capture context → decision → consequences. Record design rationale but do not structurally enforce exhaustive alternatives analysis.
 - **Design Docs** [7]: Standard practice at Google, Uber, and Meta. Include "Alternatives Considered" sections, but their depth depends on the author rather than being structurally enforced.
+- **Checklists in Professional Practice** [9]: Gawande demonstrated that checklists reduce omission errors in surgery and aviation not by teaching new skills but by making required steps explicit. This principle — that structured enumeration of steps prevents omission of known-but-skippable actions — provides theoretical grounding for the structured analysis requirements tested in this study.
 
 ### 2.2 Structured Output and Reasoning
 
@@ -48,7 +49,7 @@ Research on LLM reasoning suggests that output structure affects quality:
 
 ### 2.3 Gap in Existing Approaches
 
-No existing methodology structurally enforces the combination of exhaustive alternatives survey, critical evaluation with limitations, and derivation of testable properties. Spec-driven development addresses requirements clarity but not design rationale. RFC/ADR records decisions but does not enforce analysis depth. CoT improves reasoning but does not structure the output for design review. PDD addresses this gap through a section-level template that makes these analysis steps explicit.
+No existing methodology structurally enforces the combination of exhaustive alternatives survey, critical evaluation with limitations, and derivation of testable properties in LLM-assisted design analysis. Spec-driven development addresses requirements clarity but not design rationale. RFC/ADR records decisions but does not enforce analysis depth. CoT improves reasoning but does not structure the output for design review. Checklists enforce step completion but have not been systematically applied to LLM prompting for software design analysis. This study investigates whether structured analysis requirements — explicitly prompting an LLM to perform specific analytical steps — can fill this gap, and whether the format of those requirements (academic paper template vs. structured checklist) matters.
 
 ## 3. Methods
 
