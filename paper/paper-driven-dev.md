@@ -282,7 +282,33 @@ D shows higher density (more indicators per line) than C, consistent with D's sh
 
 ### 4.6 Third-Party Blinded Evaluation
 
-Third-party blinded evaluation is in progress. Evaluation packages (blinded outputs, scoring rubric, and procedure guide) have been prepared following the protocol described in §3.7. Results will be reported upon completion. Until then, all indicators reported in §4.1–§4.5 are based on author evaluation using Rubric v2 (§3.5).
+**Preliminary LLM evaluation.** As a preliminary step before human third-party evaluation, three LLM models (GPT-5.2, Opus 4.6, Sonnet 4.6) independently scored all 40 blinded outputs following the protocol described in §3.7. Each evaluator received only the rubric (§3.5), scoring instructions, and blinded outputs — with no access to condition labels, the paper, hypotheses, or other evaluators' scores. A five-item calibration round preceded the main scoring; all three evaluators achieved perfect agreement on CR and TP counts for all calibration items.
+
+**Inter-rater reliability (ICC).** Table 6 reports ICC(2,1) (two-way random, absolute agreement, single measures) across the four raters (author + three LLMs).
+
+*Table 6. Inter-rater reliability: ICC(2,1) across 4 raters (40 targets).*
+
+| Indicator | ICC(2,1) | Interpretation | Pass (≥ 0.60) |
+|-----------|----------|----------------|:--------------:|
+| CR | 0.985 | Excellent | Yes |
+| TP | 0.908 | Excellent | Yes |
+| CD | 0.560 | Fair | No |
+
+The co-primary indicators (CR, TP) exceed the pre-registered pass criterion of ICC ≥ 0.60, with excellent agreement. The exploratory indicator CD falls below the threshold (ICC = 0.560). Pairwise analysis reveals the source: the LLM-only ICC for CD is 0.790 (good agreement among themselves), but the author scored CD systematically higher than all three LLMs (mean absolute difference: 0.98–1.38 per output). This suggests a broader author interpretation of "constraints disclosed" — counting implementation recommendations that LLMs classified as design choices rather than failure conditions. The author-LLM divergence on CD is consistent with the Phase 1 self-blinded rescoring observation (§5.6), where CD showed 30% inter-rater agreement.
+
+**Condition estimation accuracy.** Table 7 reports how accurately each LLM evaluator identified the experimental condition from the blinded output alone.
+
+*Table 7. Condition estimation accuracy (3 LLM evaluators, 40 items).*
+
+| Evaluator | Accuracy |
+|-----------|----------|
+| GPT-5.2 | 97.5% (39/40) |
+| Opus 4.6 | 90.0% (36/40) |
+| Sonnet 4.6 | 82.5% (33/40) |
+
+All evaluators identified condition C (PDD template) with 100% accuracy; errors concentrated on A↔D and B↔C confusions. High condition estimation accuracy (82.5–97.5%) confirms that the experimental conditions produce structurally distinct outputs — an expected consequence of different prompting strategies (§3.7, blinding limitations). The blinding prevents evaluators from knowing which conditions are hypothesized to score higher, preserving evaluation independence. However, the ability to infer conditions means that evaluator expectations could potentially influence scoring; the excellent CR and TP agreement across raters (including the author, who knows the true conditions) suggests that any such bias is minimal for the co-primary indicators.
+
+**Limitations of LLM evaluation.** This preliminary evaluation uses LLM models as evaluators, which introduces the possibility of correlated biases with the LLM-generated outputs being scored (protocol deviation #3). Human third-party evaluation remains pending and is required to fully address the author-evaluation limitation. The current LLM evaluation provides preliminary evidence that the author's CR and TP scoring is reproducible, but does not substitute for independent human evaluation.
 
 ## 5. Discussion
 
@@ -328,7 +354,7 @@ The "Let Me Speak Freely?" study [2] found that strict format constraints (e.g.,
 
 - **Limited problem domains (2 case studies)**: Although each condition was run N=5 times (40 total executions), only two software design problems were used (citation rendering, session management). The externalization effect is consistent across both case studies (§4.5), but generalization to other problem domains (e.g., authentication, distributed systems, data modeling) remains unestablished.
 - **Single model (GPT-5.2)**: The experiment used a single model. The Phase 1 o3 cross-model observation (Appendix C) provides preliminary evidence that the pattern is not model-specific, but formal multi-model validation has not been conducted.
-- **Author evaluation**: All Phase 2 indicators were scored by the author using Rubric v2 (§3.5). Third-party blinded evaluation (§3.7; §4.6) is in progress but not yet complete. Until independent evaluation confirms the scoring, evaluator bias cannot be ruled out.
+- **Author evaluation**: All Phase 2 indicators were scored by the author using Rubric v2 (§3.5). Preliminary LLM-based blinded evaluation (§4.6) shows excellent inter-rater reliability for the co-primary indicators (ICC: CR = 0.985, TP = 0.908), but LLM evaluators may share correlated biases with the LLM-generated outputs being scored. Human third-party evaluation is pending; until independent human evaluation confirms the scoring, evaluator bias cannot be fully ruled out.
 - **Tautology concern**: The co-primary indicators (conflicting requirements, testable properties) are closely aligned with the analysis step requirements in conditions C and D. As discussed in §5.1, the D ≈ C equivalence partially addresses this concern — D's different format produces equivalent indicators, suggesting genuine analytical work rather than mechanical format-filling — but the concern that we measure "requirement compliance" rather than independent analytical quality remains partially valid.
 - **Output length confound**: Condition C produced longer outputs (105.3 lines avg) than A (38.9 lines) and B (68.5 lines). However, line-normalized analysis (§4.5) confirms that the externalization effect persists after controlling for output volume: D produces the highest indicator density (CR/TL, TP/TL) despite shorter outputs than C, indicating that the effect is not an artifact of output length.
 - **Prompt optimization**: The conventional prompt (A) was not optimized with CoT, persona, or other prompting techniques. A well-engineered conventional prompt might narrow the observed gap between A and {C, D}. However, B (which implicitly includes persona activation) still shows a large gap with {C, D} (Cliff's δ = 1.000), suggesting that standard prompting enhancements alone are unlikely to close the full gap.
@@ -374,7 +400,7 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 ## 7. Future Work
 
-1. **Third-party blinded evaluation**: Independent evaluators scoring outputs without condition labels (§3.7; §4.6). This is in progress — evaluation packages have been prepared and blinded, but evaluator recruitment is pending. Until inter-rater reliability is established (target: ICC ≥ 0.60), the findings rest on author evaluation alone.
+1. **Human third-party blinded evaluation**: Independent human evaluators scoring outputs without condition labels (§3.7). Preliminary LLM-based evaluation (§4.6) confirms excellent agreement on co-primary indicators (ICC: CR = 0.985, TP = 0.908), but human evaluation is needed to rule out correlated LLM biases. Evaluation packages have been prepared and blinded; evaluator recruitment is pending.
 2. **Multi-model validation**: Test whether the externalization effect ({C, D} >> {A, B}) and the C ≈ D equivalence replicate across different LLM families (e.g., Claude, Gemini). The current findings are limited to GPT-5.2; the Phase 1 o3 cross-model observation (Appendix C) provides preliminary but inconclusive evidence.
 3. **Multi-domain validation**: Apply structured analysis requirements to problem domains beyond citation rendering and session management (e.g., authentication, distributed systems, data modeling) to assess generalizability.
 4. **Downstream impact measurement**: Measure whether designs produced with structured analysis requirements lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally prompted designs. The current co-primary indicators measure the presence of verification-relevant information, not its downstream utility.
@@ -392,7 +418,7 @@ We interpret the mechanism as **structured elicitation through information exter
 
 For practitioners, the key implication is that a structured checklist is sufficient. Academic paper format is not required to obtain the benefits of structured analysis. We provide both implementations — the PDD template and an equivalent checklist — as open-source tools at https://github.com/rema424/paper-driven-dev.
 
-These findings are limited to two problem domains on a single model with author evaluation. Third-party blinded evaluation is in progress (§4.6). Multi-model validation, domain generalization, and downstream impact measurement remain future work (§7).
+These findings are limited to two problem domains on a single model. Preliminary LLM-based blinded evaluation (§4.6) confirms excellent inter-rater reliability for the co-primary indicators (ICC ≥ 0.90); human third-party evaluation is pending. Multi-model validation, domain generalization, and downstream impact measurement remain future work (§7).
 
 ## References
 
