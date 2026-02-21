@@ -2,7 +2,7 @@
 
 ## 現在地（最終更新: 2026-02-21）
 
-**Phase 2: フルペーパー化 — Step 2.6 論文改訂継続（§3 Methods + §4 Results + §5 Discussion 完了）**
+**Phase 2: フルペーパー化 — Step 2.6 論文改訂継続（§3 + §4 + §5 + §8 完了）**
 
 ```
 Phase 0: Bootstrap                    ✅ 完了
@@ -17,13 +17,13 @@ Phase 2: フルペーパー化                 ⏳ 方向転換後ロードマ�
   Step 2.3: 第三者盲検評価              ⏳ 評価パッケージ作成完了、評価者募集待ち
   Step 2.4: 外的妥当性の確保            ⬚ 未着手
   Step 2.5: 差別化強化                  ⬚ 未着手
-  Step 2.6: 論文の全面改訂              ⏳ §3 Methods + §4 Results + §5 Discussion 完了
+  Step 2.6: 論文の全面改訂              ⏳ §3 + §4 + §5 + §8 完了
   Step 2.7: 投稿                       ⬚ 未着手
 ```
 
-- 最新コミット: `c6d7483 paper: §5 Discussion を Phase 2 結果に基づき改訂`
+- 最新コミット: `5b882bf paper: §8 Conclusion を Phase 2 結果と新 thesis に基づき全面書き換え`
 - タグ: `v0-draft`（`ad30111`）、`v1-protocol`（Step 2.0 固定）
-- ブランチ: `main`（リモートに 70+ コミット未プッシュ）
+- ブランチ: `main`（リモートに 72+ コミット未プッシュ）
 
 ### Step 2.2 の結果サマリー
 
@@ -37,8 +37,8 @@ Phase 2: フルペーパー化                 ⏳ 方向転換後ロードマ�
 ### 次のアクション
 
 1. **Step 2.3 実行**: 評価者の募集・依頼（評価パッケージ配布 → 校正 → 本番 → ICC 算出）
-2. **Step 2.6 継続**: §8 Conclusion の全面書き換え（新 thesis に合わせる）
-3. **Step 2.6 継続**: §1 Introduction の大幅書き換え（RQ 転換）
+2. **Step 2.6 継続**: §1 Introduction の大幅書き換え（RQ 転換、新 thesis 導入）
+3. **Step 2.6 継続**: §7 Future Work の改訂（完了項目削除、新項目追加）
 
 ### 実験出力の現状（`docs/examples/fullpaper/`）
 
@@ -301,7 +301,7 @@ Step 2.2 の結果により、プロトコル §9.1 の中止基準が発動:
 | §5 Discussion | フレーミング効果天井 | **大幅書き換え**: 「構造 > フォーマット」、三層階層 | 3 | ✅ |
 | §6 Related Work | 5件の関連研究 | **拡張**: チェックリスト系、構造化プロンプト系の文献追加 | 9 | ⬚ |
 | §7 Future Work | 8項目（D条件等は完了） | **改訂**: 完了項目の削除、新項目追加 | 7 | ⬚ |
-| §8 Conclusion | PDD の成果 | **全面書き換え**: 新 thesis に合わせる | 6 | ⬚ |
+| §8 Conclusion | PDD の成果 | **全面書き換え**: 新 thesis に合わせる | 6 | ✅ |
 | Appendices | Phase 1 詳細 | **大幅拡張**: Phase 1 データ移動、Rubric v2 全文 | 10 | ⏳ Appendix C 作成済み |
 | Title | Paper-Driven Development | **変更必須**: 最終内容確定後に決定 | 11 | ⬚ |
 
