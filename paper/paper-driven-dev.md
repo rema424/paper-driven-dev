@@ -441,15 +441,18 @@ These findings are limited to two problem domains on a single model with author 
 
 All prompts were in Japanese. The problem description was identical across conditions; only the instruction prefix differed.
 
+**Phase 2 conditions (4 conditions × 2 CS × 5 runs = 40 executions):**
+
 | Condition | Instruction prefix (Japanese) | Translation |
 |-----------|------------------------------|-------------|
-| A: Conventional | 「この問題の設計分析と解決策を提案してください」 | "Please propose a design analysis and solution for this problem" |
-| B1: Paper-format | 「この問題について学術論文の形式で書いてください」 | "Please write about this problem in academic paper format" |
-| B2: Paper-write | 「この問題について、論文を書いてください」 | "Please write a paper about this problem" |
-| B3: Academic-paper | 「この問題について、学術論文を書いてください」 | "Please write an academic paper about this problem" |
-| C: PDD Template | B1 の指示文 + §1–§7 テンプレートガイドライン | B1 instruction + §1–§7 template guidelines |
+| A: Conventional | 「以下の技術的な問題について、設計分析と解決策を提案してください」 | "Please propose a design analysis and solution for this problem" |
+| B: Paper-format | 「以下の技術的な問題について、学術論文の形式で書いてください」 | "Please write about this problem in academic paper format" |
+| C: PDD Template | B の指示文 + §1–§7 テンプレートガイドライン | B instruction + §1–§7 template guidelines |
+| D: Checklist | 「以下の技術的な問題について、以下の分析項目に従って順番に分析してください」+ 分析項目1–9 | "Please analyze by following these analysis items in order" + items 1–9 |
 
-The §1–§7 template guidelines used in condition C are defined in §3.2 of this paper.
+The §1–§7 template guidelines (condition C) and the 1–9 analysis items (condition D) are defined in §3.2. Conditions C and D share the same analytical requirements in isomorphic structure; only the output framing differs.
+
+**Phase 1 B-variant conditions (Appendix C):** B1 = Phase 2's B condition; B2 ("論文を書いてください"); B3 ("学術論文を書いてください").
 
 ### A.2 Scoring Rubric
 
@@ -468,16 +471,23 @@ Each indicator was counted manually by the first author using the following defi
 
 All raw outputs and measurement data are publicly available in the project repository:
 
-- **LLM outputs**: `docs/examples/cs{1,2}-{conventional,paper-format,pdd-template}.md` (A/B1/C conditions), `docs/examples/cs{1,2}-{paper-write,academic-paper}.md` (B2/B3 conditions)
-- **Quantitative measurements**: `paper/comparison-data.md` (all tables, including per-case-study breakdowns)
+- **Phase 2 LLM outputs**: `docs/examples/fullpaper/cs{1,2}-{conventional,paper-format,pdd-template,checklist}-run{1-5}.md` (40 files)
+- **Phase 2 scoring data**: `paper/scoring-data-v2.md` (Rubric v2 applied, all indicators with evidence)
+- **Phase 2 statistical analysis**: `paper/analysis-results-v2.md` (results), `paper/analysis/statistical_analysis.py` (script)
+- **Phase 1 LLM outputs**: `docs/examples/cs{1,2}-{conventional,paper-format,pdd-template}.md` (A/B1/C), `docs/examples/cs{1,2}-{paper-write,academic-paper}.md` (B2/B3)
+- **Phase 1 quantitative measurements**: `paper/comparison-data.md`
 - **Repository**: https://github.com/rema424/paper-driven-dev
 
 ### A.4 Execution Environment
 
+**Phase 2 (main experiment):**
 - **Model**: GPT-5.2, accessed via Codex CLI (OpenAI), February 2026
-- **Temperature**: Default (not explicitly set)
-- **Single run**: Each condition was executed once per case study. No repetition or cherry-picking was performed.
-- **Context**: Each condition was run in a fresh Codex thread with no prior conversation history, except CS2-B3 which was recovered in the same thread after context compression (see §5.5).
+- **Temperature**: Default (not explicitly set; see §5.5)
+- **Runs**: 5 independent runs per condition per case study (40 total). Each run used a fresh Codex thread with no prior conversation history.
+- **Execution order**: Randomized across conditions and case studies (seed=42) to prevent ordering effects.
+
+**Phase 1 (exploratory; Appendix C):**
+- Same model and access method. Each condition was executed once per case study (N=2). CS2-B3 was recovered after context compression in the same Codex thread.
 
 ---
 
