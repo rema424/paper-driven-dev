@@ -372,14 +372,13 @@ All 10 Phase 1 output files were stripped of condition labels, randomized, and r
 
 ## 7. Future Work
 
-1. **D condition (structured checklist without paper framing)**: Test a condition where the same analysis steps (conflicting requirements, existing approaches, testable properties, constraints) are requested as a checklist without academic paper framing. This would separate the template effect from the paper format effect within condition C.
-2. **Repeated trials (N≥5)**: Run each condition multiple times on the same problems to assess within-condition variability and establish confidence intervals for the observed differences.
-3. **Blinded evaluation**: Have independent evaluators (not the authors) count the indicators without knowing which condition produced each output.
-4. **Per-line normalization**: Normalize co-primary indicator counts by output length to control for the output volume confound identified in §5.5.
-5. **Multi-model validation**: Test PDD with Claude, Gemini, and other LLMs to assess whether the observed pattern generalizes beyond GPT-5.2 and o3.
-6. **Multi-domain validation**: Apply PDD to authentication design, performance optimization, data modeling, and other problem domains.
-7. **Downstream impact measurement**: Measure whether PDD-analyzed designs lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally designed features.
-8. **Rubric refinement for constraints disclosed**: The 30% inter-rater agreement for constraints disclosed indicates that the current definition boundary (what counts as a "constraint" vs. operational advice or future work) requires explicit operationalization before this indicator can serve as a primary outcome measure.
+1. **Third-party blinded evaluation**: Independent evaluators scoring outputs without condition labels (Step 2.3; §4.6). This is in progress — evaluation packages have been prepared and blinded, but evaluator recruitment is pending. Until inter-rater reliability is established (target: ICC ≥ 0.60), the findings rest on author evaluation alone.
+2. **Multi-model validation**: Test whether the externalization effect ({C, D} >> {A, B}) and the C ≈ D equivalence replicate across different LLM families (e.g., Claude, Gemini). The current findings are limited to GPT-5.2; the Phase 1 o3 cross-model observation (Appendix C) provides preliminary but inconclusive evidence.
+3. **Multi-domain validation**: Apply structured analysis requirements to problem domains beyond citation rendering and session management (e.g., authentication, distributed systems, data modeling) to assess generalizability.
+4. **Downstream impact measurement**: Measure whether designs produced with structured analysis requirements lead to fewer bugs, higher test coverage, or faster implementation compared to conventionally prompted designs. The current co-primary indicators measure the presence of verification-relevant information, not its downstream utility.
+5. **Ablation study**: Determine which analysis steps in the structured requirements are most effective. The current C and D conditions include all four categories (conflicting requirements, existing approaches, testable properties, constraints) as a bundle. Systematic removal of individual categories would identify the minimum effective checklist.
+6. **Enhanced prompt comparison**: Compare structured analysis requirements against optimized conventional prompts (e.g., CoT + persona + detailed instructions) to establish whether the observed gap persists under best-practice prompting.
+7. **Causal mechanism investigation**: The implicit chain-of-thought hypothesis (§5.3, H2) suggests that structured requirements work by inducing a reasoning sequence. Controlled experiments varying the order and granularity of analysis steps could test this hypothesis and distinguish it from alternative mechanisms (training data bias, persona effects).
 
 ## 8. Conclusion
 
