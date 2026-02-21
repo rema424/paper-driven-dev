@@ -20,5 +20,9 @@
 paper/evaluation/blinding/mapping-secret.json
 paper/evaluation/calibration/mapping-secret.json
 
+# Python
+__pycache__/
+*.pyc
+
 # Node.js
 node_modules/
